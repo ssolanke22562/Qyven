@@ -1,0 +1,27 @@
+{
+  "traceId": "trace-news-503-diagnosis",
+  "diagnosedAt": "2026-08-23T04:00:00.000Z",
+  "severityLevel": "HIGH",
+  "rootCause": "News API tool call failed with 'News API 503 Service Unavailable (Simulated Tool Disruption)'. Span: task.NEWS_AGENT (span-news-503). The News Agent was unable to retrieve live market signals, causing Synthesis Agent to proceed with zero news sources. This is a controlled failure injected via demoOptions.forceNewsFailure=true.",
+  "failedSpan": {
+    "spanId": "span-news-503",
+    "name": "task.NEWS_AGENT",
+    "agentRole": "NEWS_AGENT",
+    "errorMessage": "News API 503 Service Unavailable (Simulated Tool Disruption)"
+  },
+  "downstreamImpact": [
+    "Synthesis Agent proceeded with 0 external news sources → hallucination risk elevated.",
+    "Pipeline entered fallback mode → response generated from KB cache, not live intelligence.",
+    "Autonomous Replanner triggered → additional latency and LLM call budget consumed.",
+    "Confidence score dropped to ~52% — below acceptable threshold of 60%."
+  ],
+  "suggestedFix": "Add retry-with-exponential-backoff (2 retries, 500ms base delay) to news.ts before returning []. Also ensure the Replanner routes through cached KB context when news retrieval fails entirely. FIX APPLIED: news.ts now retries twice before returning empty array.",
+  "autoFixApplied": "src/lib/tools/news.ts: Added retryFetch() with 2 retries and 500ms/1000ms backoff. stateGraph.ts replanner already provides KB fallback when NEWS_AGENT fails.",
+  "beforeAfterSummary": {
+    "sourcesWithoutFix": 0,
+    "sourcesWithFix": 0,
+    "confidenceWithoutFix": 52,
+    "confidenceWithFix": 58
+  },
+  "raw": "news-503-controlled-failure: forceNewsFailure=true injected at stateGraph.ts line 117. NEWS_AGENT task failed in 200ms. Replanner triggered (usedReplans=1). KB fallback activated. Synthesis proceeded with sources=0 live articles. Confidence: 52% (below threshold). FIX: Added retryFetch() to news.ts — on real 503s (not demo-flag ones) this gives 2 more attempts before falling through to replanner."
+}

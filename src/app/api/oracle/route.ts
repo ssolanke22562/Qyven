@@ -38,6 +38,9 @@ export async function POST(req: NextRequest) {
         isFallback: result.isFallback,
         sessionId: result.sessionId,
         memory: memoryBlock,
+        traceId: result.qyvenState?.traceId,
+        spanCount: result.qyvenState?.spans?.length ?? 0,
+        errorSpanCount: result.qyvenState?.spans?.filter((s: any) => s.status === "error").length ?? 0,
       });
     }
 
@@ -54,6 +57,9 @@ export async function POST(req: NextRequest) {
       isFallback: result.isFallback,
       sessionId: result.sessionId,
       memory: memoryBlock,
+      traceId: result.qyvenState?.traceId,
+      spanCount: result.qyvenState?.spans?.length ?? 0,
+      errorSpanCount: result.qyvenState?.spans?.filter((s: any) => s.status === "error").length ?? 0,
     });
   } catch (error: any) {
     console.error("Multi-Agent Orchestration API error:", error);

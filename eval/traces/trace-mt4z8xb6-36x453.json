@@ -1,0 +1,292 @@
+{
+  "traceId": "trace-mt4z8xb6-36x453",
+  "investigationId": "inv-mt4z8xb6-nznb",
+  "sessionId": "benchmark-before-3-1787439365538",
+  "query": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+  "status": "COMPLETED",
+  "startTimeMs": 1787439365538,
+  "endTimeMs": 1787439366234,
+  "totalDurationMs": 696,
+  "spanCount": 17,
+  "errorSpanCount": 4,
+  "totalPromptTokens": 0,
+  "totalCompletionTokens": 0,
+  "estimatedTotalCostUsd": 0,
+  "spans": [
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xb6-mzel2d",
+      "name": "pipeline.run",
+      "agentRole": "ORCHESTRATOR",
+      "startTimeMs": 1787439365538,
+      "endTimeMs": 1787439366233,
+      "durationMs": 695,
+      "status": "error",
+      "attributes": {
+        "inputSummary": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+        "outputSummary": "Pipeline COMPLETED in 695ms",
+        "confidenceScore": 61,
+        "isFallback": true
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xb6-dgg5ik",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "node.PLANNER",
+      "agentRole": "PLANNER",
+      "startTimeMs": 1787439365538,
+      "endTimeMs": 1787439365538,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "outputSummary": "4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xb7-owpytn",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "node.PARALLEL_EXECUTION",
+      "agentRole": "PLANNER",
+      "startTimeMs": 1787439365539,
+      "endTimeMs": 1787439366229,
+      "durationMs": 690,
+      "status": "error",
+      "attributes": {
+        "outputSummary": "Failures: NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xb7-agfmz1",
+      "parentSpanId": "span-mt4z8xb7-owpytn",
+      "name": "task.RESEARCH_AGENT",
+      "agentRole": "RESEARCH_AGENT",
+      "startTimeMs": 1787439365539,
+      "endTimeMs": 1787439366229,
+      "durationMs": 690,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Extract published scientific literature & pre-prints regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"",
+        "outputSummary": "Retrieved 5 sources (88% confidence)",
+        "sourcesRetrieved": 5,
+        "confidenceScore": 88
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xba-qqk0ne",
+      "parentSpanId": "span-mt4z8xb7-owpytn",
+      "name": "task.NEWS_AGENT",
+      "agentRole": "NEWS_AGENT",
+      "startTimeMs": 1787439365542,
+      "endTimeMs": 1787439365750,
+      "durationMs": 208,
+      "status": "error",
+      "attributes": {
+        "inputSummary": "Retrieve breaking news & market announcements for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"",
+        "errorMessage": "News API 503 Service Unavailable (Simulated Tool Disruption)",
+        "errorType": "HTTP_503"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xbb-v0lo78",
+      "parentSpanId": "span-mt4z8xb7-owpytn",
+      "name": "task.PATENT_AGENT",
+      "agentRole": "PATENT_AGENT",
+      "startTimeMs": 1787439365543,
+      "endTimeMs": 1787439365557,
+      "durationMs": 14,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Investigate USPTO/WIPO filings & IP assignments related to \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"",
+        "outputSummary": "Retrieved 3 patent specifications"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xbc-5s4cob",
+      "parentSpanId": "span-mt4z8xb7-owpytn",
+      "name": "task.SEC_AGENT",
+      "agentRole": "SEC_AGENT",
+      "startTimeMs": 1787439365544,
+      "endTimeMs": 1787439365544,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Audit official SEC 10-K, 10-Q & 8-K financial disclosure filings",
+        "outputSummary": "Retrieved 2 SEC EDGAR filings"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xbc-7ovnh3",
+      "parentSpanId": "span-mt4z8xbc-5s4cob",
+      "name": "tool.call [searchSecFilings]",
+      "agentRole": "TOOL",
+      "startTimeMs": 1787439365544,
+      "endTimeMs": 1787439365544,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchSecFilings",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"}",
+        "toolResult": "2 filings retrieved",
+        "toolLatencyMs": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xbp-bxmrnx",
+      "parentSpanId": "span-mt4z8xbb-v0lo78",
+      "name": "tool.call [searchPatents]",
+      "agentRole": "TOOL",
+      "startTimeMs": 1787439365543,
+      "endTimeMs": 1787439365557,
+      "durationMs": 14,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchPatents",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"}",
+        "toolResult": "3 patents retrieved",
+        "toolLatencyMs": 14
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xh2-5g2rgq",
+      "parentSpanId": "span-mt4z8xba-qqk0ne",
+      "name": "tool.call [searchNews]",
+      "agentRole": "TOOL",
+      "startTimeMs": 1787439365550,
+      "endTimeMs": 1787439365750,
+      "durationMs": 200,
+      "status": "error",
+      "attributes": {
+        "toolName": "searchNews",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"}",
+        "toolLatencyMs": 200,
+        "errorMessage": "News API 503 Service Unavailable (Simulated Tool Disruption)",
+        "errorType": "ToolFailure"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xud-6i3hgh",
+      "parentSpanId": "span-mt4z8xb7-agfmz1",
+      "name": "tool.call [searchArxiv+searchNews]",
+      "agentRole": "TOOL",
+      "startTimeMs": 1787439365539,
+      "endTimeMs": 1787439366229,
+      "durationMs": 690,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchArxiv+searchNews",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"}",
+        "toolResult": "5 sources retrieved",
+        "toolLatencyMs": 690
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xue-2ffb0f",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "decision [AUTONOMOUS_REPLAN]",
+      "agentRole": "REPLANNER",
+      "startTimeMs": 1787439366230,
+      "endTimeMs": 1787439366230,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "decision": "AUTONOMOUS_REPLAN",
+        "reasoning": "Failures detected: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Creating alternate strategy."
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xue-oymdga",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "node.EVIDENCE_RESOLVER",
+      "agentRole": "EVIDENCE_RESOLVER",
+      "startTimeMs": 1787439366230,
+      "endTimeMs": 1787439366230,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "outputSummary": "5 evidence items, 0 conflicts"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xuf-apvv8s",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "node.CONFIDENCE_JUDGE",
+      "agentRole": "CONFIDENCE_JUDGE",
+      "startTimeMs": 1787439366231,
+      "endTimeMs": 1787439366231,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "confidenceScore": 61,
+        "outputSummary": "Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s)."
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xuf-nsi0u5",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "node.SELF_EVALUATOR",
+      "agentRole": "SELF_EVALUATOR",
+      "startTimeMs": 1787439366231,
+      "endTimeMs": 1787439366231,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "decision": "PASSED",
+        "reasoning": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xuf-8vb4ih",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "node.ANALYSIS_AGENT",
+      "agentRole": "EVIDENCE_RESOLVER",
+      "startTimeMs": 1787439366231,
+      "endTimeMs": 1787439366231,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "entitiesExtracted": 9,
+        "outputSummary": "9 entities, 1 relationships"
+      }
+    },
+    {
+      "traceId": "trace-mt4z8xb6-36x453",
+      "spanId": "span-mt4z8xuf-x6kg15",
+      "parentSpanId": "span-mt4z8xb6-mzel2d",
+      "name": "node.SYNTHESIS_AGENT",
+      "agentRole": "SYNTHESIS_AGENT",
+      "startTimeMs": 1787439366231,
+      "endTimeMs": 1787439366232,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "sourcesRetrieved": 5,
+        "inputSummary": "5 sources, 9 entities",
+        "outputSummary": "Synthesis complete. Threat: MEDIUM (Threat Index: 65/100)",
+        "confidenceScore": 61
+      }
+    }
+  ],
+  "demoOptions": {
+    "enableAdversarialMode": false,
+    "forceNewsFailure": true,
+    "forcePatentTimeout": false,
+    "forceSecUnavailable": false,
+    "injectConflictingEvidence": false,
+    "deterministicSeed": "before-seed"
+  }
+}

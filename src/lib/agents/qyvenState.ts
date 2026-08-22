@@ -1,4 +1,6 @@
 import { ResearchAgentSource } from "./types";
+import { TraceSpan } from "../../../eval/types";
+
 
 export type AgentRole =
   | "PLANNER"
@@ -169,6 +171,11 @@ export interface QyvenState {
 
   startTimeMs: number;
   totalLatencyMs?: number;
+  // ──────────────────────────────────────────────
+  // Distributed Tracing
+  // ──────────────────────────────────────────────
+  traceId: string;
+  spans: TraceSpan[];
 }
 
 export function createInitialQyvenState(
@@ -224,5 +231,7 @@ export function createInitialQyvenState(
     isFallback: false,
     demoOptions,
     startTimeMs: Date.now(),
+    traceId: `trace-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    spans: [],
   };
 }

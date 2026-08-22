@@ -10,6 +10,11 @@ import { calculateDeterministicConfidence } from "./confidenceJudge";
 import { evaluateInvestigationQuality } from "./selfEvaluator";
 import { runSynthesisAgent } from "./synthesisAgent";
 import { investigationMemory } from "./investigationMemory";
+import {
+  startSpan, endSpan, recordToolSpan, recordDecisionSpan, writeTraceFile
+} from "@/lib/tracing/tracer";
+import { diagnoseTrace, writeDiagnosis, readTraceFile } from "@/lib/tracing/diagnose";
+
 
 export class QyvenStateGraphEngine {
   private addLog(
@@ -51,12 +56,22 @@ export class QyvenStateGraphEngine {
     const state = { ...initialState };
     state.status = "PLANNING";
 
+    // Root trace span — wraps entire pipeline
+    const rootSpanId = startSpan(state, "pipeline.run", "ORCHESTRATOR", undefined, {
+      inputSummary: state.userQuery.slice(0, 200),
+    });
+
     // 1. NODE: PLANNER
     const tPlanStart = Date.now();
+    const plannerSpanId = startSpan(state, "node.PLANNER", "PLANNER", rootSpanId);
     this.addLog(state, "Node: PLANNER", "PLANNER", "INFO", `Creating dynamic investigation plan for "${state.userQuery}"...`);
+
     state.currentPlan = await createDynamicPlan(state);
     state.budget.usedLlmCalls += 1;
     this.saveCheckpoint(state, "PLANNER");
+    endSpan(state, plannerSpanId, "ok", {
+      outputSummary: `${state.currentPlan.tasks.length} tasks scheduled (${state.currentPlan.rationale})`,
+    });
     this.addLog(
       state,
       "Node: PLANNER",
@@ -66,6 +81,7 @@ export class QyvenStateGraphEngine {
       { tasksCount: state.currentPlan.tasks.length },
       Date.now() - tPlanStart
     );
+
 
     // 2. NODE: PARALLEL EXECUTION & FAILURE RECOVERY LOOP
     let continueLoop = true;
@@ -90,6 +106,7 @@ export class QyvenStateGraphEngine {
 
       state.status = "EXECUTING";
       const tExecStart = Date.now();
+      const execSpanId = startSpan(state, "node.PARALLEL_EXECUTION", "PLANNER", rootSpanId);
 
       // Filter tasks ready for execution in current parallel group
       const pendingTasks = state.currentPlan.tasks.filter((t) => t.status === "PENDING");
@@ -100,71 +117,108 @@ export class QyvenStateGraphEngine {
         pendingTasks.map(async (task) => {
           const taskStart = Date.now();
           task.status = "RUNNING";
+          const taskSpanId = startSpan(state, `task.${task.agent}`, task.agent, execSpanId, {
+            inputSummary: task.description,
+          });
 
           try {
+
             if (task.agent === "RESEARCH_AGENT") {
               state.budget.usedSearchCalls += 2;
+              const toolStart = Date.now();
               const res = await runResearchAgent(state.userQuery);
+              const toolLatency = Date.now() - toolStart;
               task.status = "COMPLETED";
-              task.executionTimeMs = Date.now() - taskStart;
+              task.executionTimeMs = toolLatency;
               task.outputSummary = `Retrieved ${res.sources.length} sources (${res.output.confidenceScore}% confidence)`;
+              endSpan(state, taskSpanId, "ok", {
+                outputSummary: task.outputSummary,
+                sourcesRetrieved: res.sources.length,
+                confidenceScore: res.output.confidenceScore,
+              });
+              recordToolSpan(state, taskSpanId, "searchArxiv+searchNews", { query: state.userQuery }, toolLatency,
+                `${res.sources.length} sources retrieved`);
               return { agent: task.agent, success: true, data: res.output, sources: res.sources };
             }
 
             if (task.agent === "NEWS_AGENT") {
               state.budget.usedSearchCalls += 1;
               const forceFail = state.demoOptions.forceNewsFailure || state.demoOptions.enableAdversarialMode;
+              const toolStart = Date.now();
               if (forceFail) {
                 await new Promise((r) => setTimeout(r, 200));
+                const errMsg = "News API 503 Service Unavailable (Simulated Tool Disruption)";
                 task.status = "FAILED";
-                task.error = "News API 503 Service Unavailable (Simulated Tool Disruption)";
+                task.error = errMsg;
+                endSpan(state, taskSpanId, "error", { errorMessage: errMsg, errorType: "HTTP_503" });
+                recordToolSpan(state, taskSpanId, "searchNews", { query: state.userQuery }, 200, undefined, errMsg);
                 return { agent: task.agent, success: false, error: task.error };
               }
 
               const articles = await searchNews(state.userQuery);
+              const toolLatency = Date.now() - toolStart;
               task.status = "COMPLETED";
-              task.executionTimeMs = Date.now() - taskStart;
+              task.executionTimeMs = toolLatency;
               task.outputSummary = `Retrieved ${articles.length} news articles`;
+              endSpan(state, taskSpanId, "ok", { outputSummary: task.outputSummary, sourcesRetrieved: articles.length });
+              recordToolSpan(state, taskSpanId, "searchNews", { query: state.userQuery }, toolLatency,
+                `${articles.length} articles retrieved`);
               return { agent: task.agent, success: true, articles };
             }
 
             if (task.agent === "PATENT_AGENT") {
               state.budget.usedSearchCalls += 1;
+              const toolStart = Date.now();
               const res = await searchPatents(state.userQuery, {
                 forceFailure: state.demoOptions.forcePatentTimeout,
               });
+              const toolLatency = Date.now() - toolStart;
               if (!res.success) {
                 task.status = "FAILED";
                 task.error = res.error?.message;
+                endSpan(state, taskSpanId, "error", { errorMessage: res.error?.message, errorType: "PatentToolFailure" });
+                recordToolSpan(state, taskSpanId, "searchPatents", { query: state.userQuery }, toolLatency, undefined, res.error?.message);
                 return { agent: task.agent, success: false, error: res.error?.message };
               }
               task.status = "COMPLETED";
-              task.executionTimeMs = Date.now() - taskStart;
+              task.executionTimeMs = toolLatency;
               task.outputSummary = `Retrieved ${res.data.length} patent specifications`;
+              endSpan(state, taskSpanId, "ok", { outputSummary: task.outputSummary });
+              recordToolSpan(state, taskSpanId, "searchPatents", { query: state.userQuery }, toolLatency,
+                `${res.data.length} patents retrieved`);
               return { agent: task.agent, success: true, data: res.data };
             }
 
             if (task.agent === "SEC_AGENT") {
               state.budget.usedSearchCalls += 1;
+              const toolStart = Date.now();
               const res = await searchSecFilings(state.userQuery, {
                 forceFailure: state.demoOptions.forceSecUnavailable,
               });
+              const toolLatency = Date.now() - toolStart;
               if (!res.success) {
                 task.status = "FAILED";
                 task.error = res.error?.message;
+                endSpan(state, taskSpanId, "error", { errorMessage: res.error?.message });
+                recordToolSpan(state, taskSpanId, "searchSecFilings", { query: state.userQuery }, toolLatency, undefined, res.error?.message);
                 return { agent: task.agent, success: false, error: res.error?.message };
               }
               task.status = "COMPLETED";
-              task.executionTimeMs = Date.now() - taskStart;
+              task.executionTimeMs = toolLatency;
               task.outputSummary = `Retrieved ${res.data.length} SEC EDGAR filings`;
+              endSpan(state, taskSpanId, "ok", { outputSummary: task.outputSummary });
+              recordToolSpan(state, taskSpanId, "searchSecFilings", { query: state.userQuery }, toolLatency,
+                `${res.data.length} filings retrieved`);
               return { agent: task.agent, success: true, data: res.data };
             }
           } catch (err: any) {
             task.status = "FAILED";
             task.error = err.message || "Task execution error";
+            endSpan(state, taskSpanId, "error", { errorMessage: task.error, errorType: "UnhandledException" });
             return { agent: task.agent, success: false, error: task.error };
           }
 
+          endSpan(state, taskSpanId, "ok");
           return { agent: task.agent, success: true };
         })
       );
@@ -187,6 +241,9 @@ export class QyvenStateGraphEngine {
       });
 
       this.saveCheckpoint(state, "PARALLEL_EXECUTION");
+      endSpan(state, execSpanId, hasFailures ? "error" : "ok", {
+        outputSummary: hasFailures ? `Failures: ${failureDetails.join("; ")}` : "All tasks completed",
+      });
 
       // 3. NODE: FAILURE RECOVERY & AUTONOMOUS REPLANNER
       if (hasFailures) {
@@ -202,6 +259,10 @@ export class QyvenStateGraphEngine {
         if (state.budget.usedReplans < state.budget.maxReplans) {
           state.status = "REPLANNING";
           state.budget.usedReplans += 1;
+
+          recordDecisionSpan(state, rootSpanId, "REPLANNER",
+            "AUTONOMOUS_REPLAN",
+            `Failures detected: [${failureDetails.join("; ")}]. Creating alternate strategy.`);
 
           this.addLog(
             state,
@@ -237,15 +298,21 @@ export class QyvenStateGraphEngine {
 
       // 4. NODE: EVIDENCE & CONFLICT RESOLUTION AGENT
       const tEvStart = Date.now();
+      const evSpanId = startSpan(state, "node.EVIDENCE_RESOLVER", "EVIDENCE_RESOLVER", rootSpanId);
       const evResult = await processEvidenceAndConflicts(state);
       state.evidenceTable = evResult.evidenceTable;
       state.conflicts = evResult.conflicts;
+      endSpan(state, evSpanId, "ok", {
+        outputSummary: `${evResult.evidenceTable.length} evidence items, ${evResult.conflicts.length} conflicts`,
+      });
       this.addLog(state, "Node: EVIDENCE_RESOLVER", "EVIDENCE_RESOLVER", "INFO", evResult.logsMessage, null, Date.now() - tEvStart);
       this.saveCheckpoint(state, "EVIDENCE_RESOLVER");
 
       // 5. NODE: CONFIDENCE JUDGE
+      const confSpanId = startSpan(state, "node.CONFIDENCE_JUDGE", "CONFIDENCE_JUDGE", rootSpanId);
       const conf = calculateDeterministicConfidence(state);
       state.confidence = conf;
+      endSpan(state, confSpanId, "ok", { confidenceScore: conf.score, outputSummary: conf.reasoning });
       this.addLog(
         state,
         "Node: CONFIDENCE_JUDGE",
@@ -256,16 +323,20 @@ export class QyvenStateGraphEngine {
 
       // 6. NODE: SELF EVALUATOR
       state.status = "EVALUATING";
+      const selfEvalSpanId = startSpan(state, "node.SELF_EVALUATOR", "SELF_EVALUATOR", rootSpanId);
       const evalRes = await evaluateInvestigationQuality(state);
       state.selfEvaluation = evalRes;
 
       if (evalRes.passed) {
+        endSpan(state, selfEvalSpanId, "ok", { decision: "PASSED", reasoning: evalRes.feedback });
         this.addLog(state, "Node: SELF_EVALUATOR", "SELF_EVALUATOR", "SUCCESS", evalRes.feedback);
         continueLoop = false;
       } else {
+        endSpan(state, selfEvalSpanId, "error", { decision: "FAILED", reasoning: evalRes.feedback });
         this.addLog(state, "Node: SELF_EVALUATOR", "SELF_EVALUATOR", "WARNING", evalRes.feedback);
         if (state.budget.usedReplans < state.budget.maxReplans) {
           state.budget.usedReplans += 1;
+          recordDecisionSpan(state, rootSpanId, "REPLANNER", "SELF_EVAL_REPLAN", evalRes.feedback);
           state.currentPlan = await createDynamicPlan(state, { isReplan: true, failureContext: evalRes.feedback });
         } else {
           this.addLog(state, "Node: SELF_EVALUATOR", "SELF_EVALUATOR", "INFO", "Max replans budget reached. Finalizing best available output.");
@@ -277,6 +348,7 @@ export class QyvenStateGraphEngine {
     }
 
     // 7. NODE: ANALYSIS & GRAPH GROUNDING
+    const analysisSpanId = startSpan(state, "node.ANALYSIS_AGENT", "EVIDENCE_RESOLVER", rootSpanId);
     try {
       const researchOutput = state.agentOutputs["RESEARCH_AGENT"]?.data || {
         query: state.userQuery,
@@ -291,8 +363,16 @@ export class QyvenStateGraphEngine {
       const analysisOutput = await runAnalysisAgent(researchOutput);
       state.agentOutputs["ANALYSIS_AGENT"] = analysisOutput;
       state.groundedNodes = analysisOutput.groundedNodes;
+      endSpan(state, analysisSpanId, "ok", {
+        entitiesExtracted: analysisOutput.extractedEntities.length,
+        outputSummary: `${analysisOutput.extractedEntities.length} entities, ${analysisOutput.relationships.length} relationships`,
+      });
 
       // 8. NODE: SYNTHESIS AGENT (Final Intelligence Dossier)
+      const synthesisSpanId = startSpan(state, "node.SYNTHESIS_AGENT", "SYNTHESIS_AGENT", rootSpanId, {
+        sourcesRetrieved: state.sources.length,
+        inputSummary: `${state.sources.length} sources, ${analysisOutput.extractedEntities.length} entities`,
+      });
       const synthesisRes = await runSynthesisAgent(researchOutput, analysisOutput, true);
       state.agentOutputs["SYNTHESIS_AGENT"] = synthesisRes;
 
@@ -308,6 +388,10 @@ export class QyvenStateGraphEngine {
       };
 
       state.status = "COMPLETED";
+      endSpan(state, synthesisSpanId, "ok", {
+        outputSummary: `Synthesis complete. Threat: ${synthesisRes.output.threatAssessment}`,
+        confidenceScore: state.confidence.score,
+      });
       this.addLog(state, "Node: SYNTHESIS_AGENT", "SYNTHESIS_AGENT", "SUCCESS", "Final Strategic Intelligence Dossier compiled successfully.");
       this.saveCheckpoint(state, "COMPLETED");
 
@@ -316,11 +400,38 @@ export class QyvenStateGraphEngine {
     } catch (err: any) {
       console.error("Synthesis error:", err);
       state.status = "COMPLETED";
+      endSpan(state, analysisSpanId, "error", { errorMessage: err.message });
     }
 
     state.totalLatencyMs = Date.now() - state.startTimeMs;
+
+    // ── Close root span ──────────────────────────────────────────
+    endSpan(state, rootSpanId, state.spans.some((s) => s.status === "error") ? "error" : "ok", {
+      outputSummary: `Pipeline ${state.status} in ${state.totalLatencyMs}ms`,
+      confidenceScore: state.confidence.score,
+      isFallback: state.isFallback,
+    });
+
+    // ── Write trace file to disk ─────────────────────────────────
+    writeTraceFile(state);
+
+    // ── Auto-diagnose on any span errors ─────────────────────────
+    if (state.spans.some((s) => s.status === "error")) {
+      try {
+        const traceFile = readTraceFile(state.traceId);
+        if (traceFile) {
+          const diagnosis = diagnoseTrace(traceFile);
+          writeDiagnosis(diagnosis);
+        }
+      } catch (diagErr) {
+        console.warn("[Tracer] Auto-diagnosis failed:", diagErr);
+      }
+    }
+
     return state;
   }
 }
+
+
 
 export const qyvenEngine = new QyvenStateGraphEngine();

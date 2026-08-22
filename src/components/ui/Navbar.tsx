@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { Shield, Sparkles, Github, Terminal, Menu, X, BarChart3 } from "lucide-react";
+import { Shield, Sparkles, Github, Terminal, Menu, X, BarChart3, Activity } from "lucide-react";
 
 interface NavbarProps {
   onOpenTerminal?: () => void;
@@ -113,6 +113,14 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
             <span>Eval Scorecard</span>
           </Link>
 
+          <Link
+            href="/trace-dashboard"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-violet-950/70 border border-violet-500/40 hover:border-violet-400 text-xs font-mono text-violet-300 hover:text-white transition-all shadow-sm"
+          >
+            <Activity className="w-3.5 h-3.5 text-violet-400" />
+            <span>Trace Dashboard</span>
+          </Link>
+
           <a
             href="#oracle-simulator"
             className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-xs font-mono font-bold text-slate-950 shadow-cyan-glow hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-all scale-100 hover:scale-[1.02] active:scale-95"
@@ -165,6 +173,14 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
             >
               <BarChart3 className="w-4 h-4 text-cyan-400" />
               Evaluation Scorecard Dashboard
+            </Link>
+            <Link
+              href="/trace-dashboard"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-2 px-4 rounded-lg bg-violet-950/60 border border-violet-500/40 text-xs font-mono text-violet-300 flex items-center justify-center gap-2"
+            >
+              <Activity className="w-4 h-4 text-violet-400" />
+              Trace & Observability Dashboard
             </Link>
             <button
               onClick={() => {

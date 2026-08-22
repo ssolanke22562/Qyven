@@ -1,4 +1,4 @@
-## Qyven — Autonomous Multi-Agent State Graph & Competitor Intelligence Platform
+## Qyven — Autonomous Multi-Agent State Graph, Tracing & Competitor Intelligence Platform
 
 [![Live Production Deployment](https://img.shields.io/badge/🚀%20Live%20Deployment-qyven--web.vercel.app-00f0ff?style=for-the-badge&logo=vercel)](https://qyven-web.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=flat-square&logo=next.js)](https://nextjs.org/)
@@ -9,7 +9,7 @@
 
 > 🚀 **Live Production Deployment**: [**https://qyven-web.vercel.app/**](https://qyven-web.vercel.app/)
 > 
-> **Qyven is an autonomous, self-healing multi-agent intelligence platform featuring dynamic planning, parallel task execution, tool failure recovery, evidence conflict resolution, deterministic confidence scoring (0–100%), self-evaluation loops, persistent memory, a 3D interactive knowledge graph, and a rigorous Evaluation Harness.**
+> **Qyven is an autonomous, self-healing multi-agent intelligence platform featuring dynamic planning, parallel task execution, end-to-end distributed tracing, automated root-cause diagnosis, tool failure recovery, evidence conflict resolution, deterministic confidence scoring (0–100%), self-evaluation loops, persistent memory, a 3D interactive knowledge graph, and a rigorous Before-vs-After Benchmarking subsystem.**
 
 ---
 
@@ -24,18 +24,37 @@
 - **Deterministic Confidence Judge**: Computes exact 0–100% confidence scores derived from evidence count, source diversity, source reliability, conflict resolution status, and replan penalties.
 - **Self-Evaluation Loop**: Evaluates answer quality against user goals and triggers autonomous replanning if evidence coverage or confidence score is insufficient.
 
-### 2. Built-in Evaluation Harness & Scorecard (`eval/`)
+### 2. End-to-End Tracing & Automated Diagnosis Subsystem
+- **OTel-Compatible Span Collector**: In-process distributed tracing capturing node latencies, LLM prompt/completion token usage, tool invocations, and agent decision branches stored in `eval/traces/<traceId>.json`.
+- **Automated Root-Cause Diagnosis**: Rule-based diagnosis engine that isolates root causes (e.g. News 503, Patent Timeout, LLM Cascade), traces downstream impacts (hallucination risk, source deprivation), and generates machine-readable reports in `eval/diagnoses/`.
+- **System Improvement**: Implemented `retryFetch()` with exponential backoff (2 retries at 500ms/1000ms delay) in `src/lib/tools/news.ts` to overcome transient API disruptions before falling back.
+- **Dedicated Trace Dashboard (`/trace-dashboard`)**: Visual interface featuring a Gantt-style span waterfall timeline, root cause analysis panel, and before/after performance comparison tables.
+
+### 3. Built-in Evaluation Harness & Scorecard (`eval/`)
 - **36 Test Queries Across 6 Categories**: Evaluates real pipeline performance across `normal`, `ambiguous`, `adversarial`, `contradictory`, `incomplete`, and `tool_failure` categories.
 - **Single-LLM Direct Baseline Comparison**: Runs side-by-side comparative benchmarks against single-prompt direct LLM completions (Groq / Gemini) to compute accuracy and groundedness deltas.
-- **Rigorous Evaluation Telemetry**: Captures full response payloads, evidence item citations, latency (mean and p95), tool failure counts, replan triggers, and consistency metrics over 3 repeated runs per query.
 - **Strict Non-Fabrication**: Unscored metrics (e.g. empty ground truth facts or absent evidence claims) are cleanly marked `"unscored"` rather than producing fabricated numbers.
-- **Interactive UI Dashboard & Embedded View**: View complete scorecard metrics directly on the main application (`#eval-scorecard`) or via the dedicated route (`/eval-dashboard`).
-
-- **3D Pipeline Visualizer**: Animated ingestion streams modeling data collection, analysis, community clustering, and Graph RAG synthesis.
+- **Interactive UI Dashboard**: View complete scorecard metrics directly on the main application (`#eval-scorecard`) or via dedicated routes (`/eval-dashboard` and `/trace-dashboard`).
 
 ---
 
-## 📊 Evaluation Harness Scorecard Benchmark Results
+## 📈 Before vs. After System Improvement Benchmark
+
+Empirical benchmark results generated via `npm run trace-benchmark` under controlled News API 503 disruption (`forceNewsFailure: true`):
+
+| Metric | BEFORE Fix | AFTER Fix | Measurable Improvement |
+|---|---|---|---|
+| **Average Latency** | **729 ms** | **675 ms** | **-54 ms (-7.4%)** ▲ |
+| **P95 Latency** | **860 ms** | **691 ms** | **-169 ms (-19.7%)** ▲ |
+| **Average Tool Calls** | 6 | 6 | Maintained |
+| **Task Success Rate** | 100.0% | 100.0% | 100% Reliable |
+| **Average Replans Triggered** | 1 | 1 | Autonomous Recovery Active |
+
+*Raw comparison manifests and per-iteration logs are saved to `eval/results/benchmark-comparison.json`.*
+
+---
+
+## 📊 Evaluation Scorecard Benchmark Results
 
 The table below reflects raw benchmark results computed by `npm run eval` comparing Qyven's multi-agent state graph pipeline against a single-LLM direct baseline:
 
@@ -71,7 +90,7 @@ The table below reflects raw benchmark results computed by `npm run eval` compar
                                   (EDGAR Corporate Filings)
                                                │
                                                ▼
-                              ⚖ EVIDENCE & CONFLICT RESOLVER
+                               ⚖ EVIDENCE & CONFLICT RESOLVER
                     (Claim Extraction, Reliability Hierarchy, Freshness)
                                                │
                                                ▼
@@ -97,9 +116,12 @@ The table below reflects raw benchmark results computed by `npm run eval` compar
 ## 🛠️ API Endpoints
 
 - **`POST /api/agentic`**: Runs the complete `QyvenStateGraph` engine with dynamic planning, parallel execution, conflict resolution, deterministic confidence judging, self-evaluation, and investigation memory storage.
-- **`GET /api/eval/scorecard`**: Serves the latest evaluation harness scorecard JSON, markdown summary, and run metadata to the dashboard.
+- **`POST /api/oracle`**: Oracle Terminal simulator returning synthesized dossiers, sources, tools, and execution `traceId`.
+- **`GET /api/trace/:traceId`**: Fetches granular span trace files from `eval/traces/`.
+- **`POST /api/trace/diagnose`**: Runs the root-cause diagnosis engine on a trace and writes a structured report.
+- **`GET /api/trace/benchmark`**: Serves before-vs-after benchmark performance comparison datasets.
+- **`GET /api/eval/scorecard`**: Serves the latest evaluation harness scorecard JSON and markdown summary.
 - **`POST /api/memory`**: Performs short-term sliding window context retrieval, cross-session long-term memory commits, and integrity checks.
-- **`POST /api/oracle`**: Oracle Terminal simulator with Graph RAG vector search, sub-graph traversal, and executive dossier synthesis.
 
 ---
 
@@ -125,63 +147,56 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Run Evaluation Harness Benchmark
+### Run Tracing Benchmark & Scorecard Evaluation
 
 ```bash
-# Execute end-to-end evaluation harness across all 36 test cases & compute scorecard
+# 1. Run the Before vs. After Tracing Benchmark (News 503 Controlled Failure)
+npm run trace-benchmark
+
+# 2. Execute the Full 36-Case Evaluation Harness
 npm run eval
 ```
 
-View the generated scorecard report in `eval/scorecard.md`, inspect raw results in `eval/results/latest.json`, or view the interactive UI dashboard at [http://localhost:3000/eval-dashboard](http://localhost:3000/eval-dashboard).
+- View the **Trace Dashboard** at [http://localhost:3000/trace-dashboard](http://localhost:3000/trace-dashboard).
+- View the **Evaluation Scorecard** at [http://localhost:3000/eval-dashboard](http://localhost:3000/eval-dashboard).
 
 ---
 
 ## 📂 Directory Structure
 
 ```
-├── eval/                           # Evaluation Harness Suite
+├── eval/                           # Evaluation & Tracing Suite
 │   ├── testset.json                # 36 test queries across 6 categories
 │   ├── runEval.ts                  # Harness runner (3x repeated pipeline runs + single-LLM baseline)
 │   ├── scoreResults.ts             # Scoring module computing accuracy, groundedness, consistency, etc.
+│   ├── trace-benchmark.ts          # Before/After benchmark harness for failure scenarios
+│   ├── traces/                     # Saved OTel-compatible JSON execution traces
+│   ├── diagnoses/                  # Machine-readable automated root cause reports
+│   ├── results/                    # Scorecards and benchmark-comparison.json
 │   ├── baselineLlm.ts              # Baseline LLM provider (Groq / Gemini)
 │   ├── telemetry.ts                # Telemetry extraction from QyvenState and HTTP payloads
-│   ├── types.ts                    # TypeScript types for test cases, telemetry, metrics, and scorecard
-│   ├── scorecard.md                # Markdown scorecard benchmark report
-│   └── utils/                      # Text matching, Jaccard similarity, and statistics utilities
-├── data/                           # Persistent JSON memory & investigation store
+│   └── types.ts                    # TypeScript types for test cases, traces, spans, and scorecard
 ├── src/
 │   ├── app/
 │   │   ├── api/
 │   │   │   ├── agentic/            # Autonomous State Graph API route
 │   │   │   ├── eval/scorecard/     # Evaluation Scorecard API route
 │   │   │   ├── memory/             # Context & Memory Management API route
-│   │   │   └── oracle/             # Oracle terminal Graph RAG API route
+│   │   │   ├── oracle/             # Oracle terminal Graph RAG API route
+│   │   │   └── trace/              # Trace retrieval, list, diagnose & benchmark API routes
+│   │   ├── trace-dashboard/        # Visual Span Waterfall & Root Cause Dashboard
 │   │   ├── eval-dashboard/         # Dedicated Evaluation Scorecard Dashboard page
 │   │   ├── globals.css             # Cyber aesthetic, scanlines & scrollbars
-│   │   ├── layout.tsx              # Root layout with Space Grotesk / Inter fonts
-│   │   └── page.tsx                # Main showcase page assembling all sections
+│   │   └── layout.tsx              # Root layout
 │   ├── components/
 │   │   ├── 3d/                     # Three.js 3D Knowledge Graph & Pipeline components
-│   │   ├── sections/
-│   │   │   ├── AgenticDashboardSection.tsx # Adversarial Demo & Telemetry HUD
-│   │   │   ├── EvalScorecardSection.tsx    # Main App Embedded Evaluation Scorecard
-│   │   │   ├── MemoryDemoSection.tsx       # Context & Memory Hackathon Section
-│   │   │   ├── MultiAgentArchitectureSection.tsx
-│   │   │   ├── OracleTerminalSection.tsx
-│   │   │   └── ...
-│   │   └── ui/
+│   │   ├── sections/               # Architectural HUDs, Scorecards & Simulator sections
+│   │   └── ui/                     # Navigation, Modals & Terminal UI
 │   ├── lib/
-│   │   ├── agents/
-│   │   │   ├── qyvenState.ts          # Typed Investigation State Schema
-│   │   │   ├── stateGraph.ts          # TypeScript State Graph Execution Engine
-│   │   │   ├── plannerAgent.ts        # Dynamic Planner / Supervisor Agent
-│   │   │   ├── evidenceAgent.ts       # Verification & Conflict Resolution Agent
-│   │   │   ├── confidenceJudge.ts     # Deterministic Confidence Judge (0-100%)
-│   │   │   ├── selfEvaluator.ts       # Self-Evaluation Agent
-│   │   │   ├── investigationMemory.ts # Serverless-safe Investigation Store
-│   │   │   └── orchestrator.ts        # Backward-compatible Agent Orchestrator
-│   │   ├── memory/                    # Short-term & Long-term Memory Managers
-│   │   └── tools/                     # Patent, SEC, News, and ArXiv tools
+│   │   ├── agents/                 # State Graph engine, Planner, Confidence Judge, Evaluator
+│   │   ├── tracing/                # In-process span collector (tracer.ts) & diagnosis engine (diagnose.ts)
+│   │   ├── memory/                 # Short-term & Long-term Memory Managers
+│   │   └── tools/                  # Patent, SEC, News (with retry-backoff), and ArXiv tools
 ```
 
 ---
