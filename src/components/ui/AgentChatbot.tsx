@@ -1,0 +1,251 @@
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import { MessageSquare, X, Send, Sparkles, Bot, User, RefreshCw, Trash2, ChevronDown, Minimize2 } from "lucide-react";
+
+interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+  modelUsed?: string;
+  latencyMs?: number;
+}
+
+export function AgentChatbot() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      id: "welcome-1",
+      role: "assistant",
+      content: "👋 Greetings! I am **AgentX Oracle**, powered by **Groq LPU Inference**. Ask me anything about competitor strategies, patent filings, research trends, or topological knowledge graph synthesis!",
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      modelUsed: "openai/gpt-oss-120b",
+    },
+  ]);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      scrollToBottom();
+    }
+  }, [messages, isOpen]);
+
+  const handleSendMessage = async (textToSend?: string) => {
+    const query = textToSend || input;
+    if (!query.trim() || isLoading) return;
+
+    const userMessage: ChatMessage = {
+      id: `user-${Date.now()}`,
+      role: "user",
+      content: query.trim(),
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/oracle", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: query.trim(),
+          history: messages.map((m) => ({ role: m.role, content: m.content })),
+          isChatMode: true,
+        }),
+      });
+
+      if (!res.ok) throw new Error("API request failed");
+
+      const data = await res.json();
+      const botMessage: ChatMessage = {
+        id: `bot-${Date.now()}`,
+        role: "assistant",
+        content: data.response || "No response generated.",
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        modelUsed: data.modelUsed || "Groq LPU Engine",
+        latencyMs: data.latencyMs,
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (err: any) {
+      const errorMessage: ChatMessage = {
+        id: `err-${Date.now()}`,
+        role: "assistant",
+        content: `⚠️ Error communicating with Groq API: ${err.message || "Please check network connection."}`,
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const quickPrompts = [
+    "Summarize top competitor threats",
+    "Explain 3nm custom NPU acquisition",
+    "What is the EU AI Act risk?",
+    "How does Graph RAG work?",
+  ];
+
+  return (
+    <>
+      {/* Floating Launcher Button */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:to-violet-500 text-slate-950 shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:shadow-[0_0_40px_rgba(0,240,255,0.6)] transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-3 group"
+          aria-label="Open AgentX AI Chatbot"
+        >
+          <div className="relative">
+            <Bot className="w-6 h-6 text-slate-950" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+          </div>
+          <div className="flex flex-col text-left">
+            <span className="font-heading font-extrabold text-xs tracking-wider uppercase">
+              AgentX Oracle AI
+            </span>
+            <span className="text-[10px] font-mono text-slate-900 font-semibold">
+              Live Groq Chat • Online
+            </span>
+          </div>
+        </button>
+      )}
+
+      {/* Expandable Chat Window */}
+      {isOpen && (
+        <div className="fixed bottom-6 right-4 sm:right-6 z-50 w-[95vw] sm:w-[440px] h-[580px] max-h-[85vh] bg-slate-950/95 border border-cyan-500/40 rounded-2xl shadow-[0_0_50px_rgba(0,240,255,0.25)] backdrop-blur-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-6 duration-300">
+          
+          {/* Header */}
+          <div className="px-4 py-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shadow-cyan-glow">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-sm text-white flex items-center gap-1.5">
+                  AgentX Oracle Chatbot
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                </h3>
+                <span className="text-[10px] font-mono text-cyan-400">
+                  Engine: Groq LPU (Llama / GPT-OSS)
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setMessages(messages.slice(0, 1))}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                title="Clear Chat"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                title="Minimize"
+              >
+                <Minimize2 className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Messages Feed */}
+          <div className="flex-1 p-4 overflow-y-auto space-y-3 font-sans text-xs">
+            {messages.map((msg) => {
+              const isUser = msg.role === "user";
+              return (
+                <div
+                  key={msg.id}
+                  className={`flex gap-2.5 ${isUser ? "justify-end" : "justify-start"}`}
+                >
+                  {!isUser && (
+                    <div className="w-6 h-6 rounded-md bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 mt-0.5">
+                      <Bot className="w-3.5 h-3.5" />
+                    </div>
+                  )}
+
+                  <div
+                    className={`p-3 rounded-2xl max-w-[82%] leading-relaxed ${
+                      isUser
+                        ? "bg-cyan-500 text-slate-950 font-medium rounded-tr-none shadow-cyan-glow"
+                        : "bg-slate-900/80 border border-slate-800 text-slate-200 rounded-tl-none"
+                    }`}
+                  >
+                    <div className="whitespace-pre-wrap">{msg.content}</div>
+                    <div className="mt-1 flex items-center justify-between text-[9px] opacity-70 font-mono">
+                      <span>{msg.timestamp}</span>
+                      {msg.latencyMs && <span>{msg.latencyMs}ms</span>}
+                    </div>
+                  </div>
+
+                  {isUser && (
+                    <div className="w-6 h-6 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 shrink-0 mt-0.5">
+                      <User className="w-3.5 h-3.5" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {isLoading && (
+              <div className="flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-cyan-400 w-fit">
+                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                <span className="text-[11px] font-mono">Synthesizing intelligence via Groq LPU...</span>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick Prompts */}
+          <div className="px-3 py-2 bg-slate-950/80 border-t border-slate-850 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            {quickPrompts.map((qp, i) => (
+              <button
+                key={i}
+                onClick={() => handleSendMessage(qp)}
+                className="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-cyan-500/40 text-[10px] font-mono text-slate-300 hover:text-cyan-300 whitespace-nowrap transition-all"
+              >
+                {qp}
+              </button>
+            ))}
+          </div>
+
+          {/* Input Box */}
+          <div className="p-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSendMessage();
+                }
+              }}
+              placeholder="Ask Oracle any competitor question..."
+              className="flex-1 px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-cyan-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors"
+            />
+            <button
+              onClick={() => handleSendMessage()}
+              disabled={isLoading || !input.trim()}
+              className="p-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold transition-all disabled:opacity-40 active:scale-95 shadow-cyan-glow"
+              aria-label="Send message"
+            >
+              <Send className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
