@@ -1,0 +1,149 @@
+[
+  {
+    "investigationId": "inv-mt4ocmg3-wp59",
+    "userQuery": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
+    "timestamp": "2026-08-22T17:51:03.980Z",
+    "planObjective": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
+    "confidenceScore": 79,
+    "evidenceCount": 7,
+    "conflictsCount": 1,
+    "replansCount": 1,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "11:21:02 pm",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "11:21:02 pm",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 10
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "11:21:02 pm",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "11:21:03 pm",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "11:21:03 pm",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "11:21:03 pm",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "11:21:03 pm",
+        "status": "INFO",
+        "message": "Collected 7 evidence items. DETECTED 1 conflicting claim(s). RESOLVED 1 conflict(s) using Source Reliability Hierarchy (SEC > NEWS).",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "11:21:03 pm",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 79% (Calculated 79% confidence deterministically: 7 evidence items across 3 distinct source categories (PATENT, SEC, NEWS). Avg Reliability: 91%. Resolved 1/1 conflicting claims. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "11:21:03 pm",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 7 evidence items with 79% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "11:21:03 pm",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T17:51:02.318Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T17:51:03.977Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T17:51:03.978Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 7,
+        "conflictsCount": 1,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T17:51:03.979Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 7,
+        "conflictsCount": 1,
+        "confidenceScore": 79
+      }
+    ]
+  }
+]

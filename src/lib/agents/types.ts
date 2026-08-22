@@ -102,6 +102,8 @@ export interface OrchestrationResult {
     summary: string;
     recentNews?: string[];
     pastContext?: string[];
+    patentSignals?: string[];
+    secFilings?: string[];
     threatAssessment: string;
     recommendedActions: string[];
     linkedNodes: string[];
@@ -116,4 +118,10 @@ export interface OrchestrationResult {
     longTermRecordsRetrieved: number;
     longTermRecordsStored: number;
   };
+  // Agentic Framework Upgrades
+  qyvenState?: any;
+  evidenceTable?: any[];
+  conflicts?: any[];
+  confidenceScore?: number;
+  replansCount?: number;
 }

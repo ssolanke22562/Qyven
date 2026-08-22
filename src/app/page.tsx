@@ -16,6 +16,7 @@ import { AgentChatbot } from "@/components/ui/AgentChatbot";
 
 import { MultiAgentArchitectureSection } from "@/components/sections/MultiAgentArchitectureSection";
 import { MemoryDemoSection } from "@/components/sections/MemoryDemoSection";
+import { AgenticDashboardSection } from "@/components/sections/AgenticDashboardSection";
 
 export default function Home() {
   const [architectureOpen, setArchitectureOpen] = useState(false);
@@ -46,6 +47,11 @@ export default function Home() {
 
       {/* Problem / Solution Framing Section */}
       <ProblemSection />
+
+      {/* Real Autonomous Agentic Framework & Adversarial Demo Section */}
+      <AgenticDashboardSection
+        onRunDemoQuery={(q) => setOracleQuery(q)}
+      />
 
       {/* Real Context & Memory Management Hackathon Demonstration Section */}
       <MemoryDemoSection />
