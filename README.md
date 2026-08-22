@@ -1,11 +1,14 @@
-# AgentX (InsightScout Engine) — Autonomous Competitor Intelligence Agent
+## AgentX (InsightScout Engine) — Autonomous Competitor Intelligence Agent
 
+[![Live Vercel Deployment](https://img.shields.io/badge/🚀%20Live%20Deployment-qyven--web.vercel.app-00f0ff?style=for-the-badge&logo=vercel)](https://qyven-web.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React Three Fiber](https://img.shields.io/badge/Three.js-R3F-blue?style=flat-square&logo=three.js)](https://docs.pmnd.rs/react-three-fiber)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![Groq LPU](https://img.shields.io/badge/Groq-LPU%20650%20tok%2Fs-orange?style=flat-square)](https://groq.com/)
 
+> 🚀 **Live Production Deployment**: [**https://qyven-web.vercel.app/**](https://qyven-web.vercel.app/)
+> 
 > **Visually striking, dark-themed, 3D interactive landing and showcase application for AgentX — an autonomous competitor intelligence & research agent powered by persistent self-organizing knowledge graphs, Groq LPU inference, and Graph RAG.**
 
 ---

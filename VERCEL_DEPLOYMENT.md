@@ -31,7 +31,7 @@ vercel
    ```
 
 2. Go to [Vercel Dashboard](https://vercel.com/new) and click **"Add New Project"**.
-3. Import your GitHub repository (`crystalOG9/Qyven-APP` or your fork).
+3. Import your GitHub repository (`ssolanke22562/Qyven`).
 4. Framework Preset: **Next.js** (automatically detected).
 
 ---
@@ -46,13 +46,13 @@ In the Vercel Project Settings → **Environment Variables**, add the following 
 | `GROQ_API_KEY` | Groq API Key for LPU fallback inference | `gsk_TvGg...` |
 | `NEWS_API_KEY` | NewsData / GNews / NewsAPI Key for live market news retrieval | `pub_e730...` |
 | `GROQ_MODEL` | Groq Model ID (Optional) | `openai/gpt-oss-120b` |
-| `NEXT_PUBLIC_GITHUB_URL` | Your GitHub repository URL | `https://github.com/crystalOG9/Qyven-APP` |
+| `NEXT_PUBLIC_GITHUB_URL` | Your GitHub repository URL | `https://github.com/ssolanke22562/Qyven` |
 | `NEXT_PUBLIC_ARCHITECTURE_DOC_URL` | Optional Whitepaper Doc URL | *(Leave empty to open modal)* |
 
 ---
 
-## 🛠️ Verification After Deployment
+## 🛠️ Live Production Deployment
 
-- Visit your Vercel deployment URL (e.g. `https://qyven-app.vercel.app`).
+- **Live URL**: [https://qyven-web.vercel.app/](https://qyven-web.vercel.app/)
 - Verify that the 3D Knowledge Graph renders cleanly.
 - Test a query in the **Multi-Agent Engine** section to verify live serverless API execution across Research, Analysis, and Synthesis agents.
