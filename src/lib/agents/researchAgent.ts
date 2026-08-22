@@ -5,7 +5,8 @@ import { LongTermMemoryRecord } from "@/lib/memory/types";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const GROQ_API_KEY = process.env.GROQ_API_KEY || "";
-const GEMINI_MODELS = ["gemini-2.5-flash", "gemini-3.6-flash", "gemini-1.5-flash-latest"];
+const GEMINI_MODELS = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-2.5-flash"];
+const GROQ_MODELS = ["groq/compound", "openai/gpt-oss-120b", "qwen/qwen3.6-27b", "groq/compound-mini"];
 
 export const RESEARCH_AGENT_SYSTEM_PROMPT = `You are a specialized Research Agent in the AgentX Multi-Agent architecture.
 Your responsibility:
@@ -13,6 +14,21 @@ Your responsibility:
 2. Filter out noise and identify highly relevant evidence, key findings, and preliminary entities.
 3. Assess evidence strength and provide a confidence score (0-100%).
 4. Output structured JSON matching the requested schema strictly.`;
+
+function cleanLlmText(text: string): string {
+  let clean = text.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+  if (clean.startsWith("```")) {
+    clean = clean.replace(/^```[a-z]*\n?/i, "").replace(/\n?```$/i, "").trim();
+  }
+  const jsonMatch = clean.match(/\{[\s\S]*\}/);
+  return jsonMatch ? jsonMatch[0] : clean;
+}
+
+function extractKeywordsFromQuery(query: string): string[] {
+  const stopwords = new Set(["what", "who", "where", "when", "why", "how", "is", "are", "the", "a", "an", "and", "or", "in", "on", "at", "to", "for", "of", "with", "about", "latest", "recent", "news", "tell", "me"]);
+  const words = query.replace(/[^\w\s]/gi, "").split(/\s+/);
+  return words.filter((w) => w.length > 2 && !stopwords.has(w.toLowerCase()));
+}
 
 export async function runResearchAgent(
   query: string,
@@ -28,8 +44,8 @@ export async function runResearchAgent(
 }> {
   const startTime = Date.now();
   const lowerQ = query.toLowerCase();
-  const isNewsQuery = lowerQ.includes("news") || lowerQ.includes("market") || lowerQ.includes("recent") || lowerQ.includes("competitor") || lowerQ.includes("chip") || lowerQ.includes("acquisition");
-  const isArxivQuery = lowerQ.includes("arxiv") || lowerQ.includes("paper") || lowerQ.includes("research") || lowerQ.includes("breakthrough") || lowerQ.includes("model");
+  const isNewsQuery = lowerQ.includes("news") || lowerQ.includes("market") || lowerQ.includes("recent") || lowerQ.includes("competitor") || lowerQ.includes("chip") || lowerQ.includes("acquisition") || lowerQ.includes("latest") || lowerQ.includes("today");
+  const isArxivQuery = lowerQ.includes("arxiv") || lowerQ.includes("paper") || lowerQ.includes("research") || lowerQ.includes("breakthrough") || lowerQ.includes("model") || lowerQ.includes("ai");
 
   // Fetch real tool results in parallel
   const [newsResults, arxivResults] = await Promise.all([
@@ -81,81 +97,84 @@ ${arxivResults.length > 0 ? arxivResults.map((p, i) => `[Paper ${i + 1}] "${p.ti
 
 Return a valid JSON object with exact keys:
 {
-  "keyFindings": ["Finding 1", "Finding 2"],
+  "keyFindings": ["Finding 1 directly answering user query", "Finding 2"],
   "relevantEntities": ["Entity 1", "Entity 2"],
   "evidence": ["Evidence point 1", "Evidence point 2"],
   "confidenceScore": 92
 }`;
 
-  let modelUsed = "Google Gemini 2.5 Flash";
+  let modelUsed = "Groq Engine (groq/compound)";
   let llmText: string | null = null;
 
-  // Try Gemini
-  for (const model of GEMINI_MODELS) {
-    try {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
-      const res = await fetch(geminiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: `${RESEARCH_AGENT_SYSTEM_PROMPT}\n\n${userPrompt}` }],
-            },
-          ],
-          generationConfig: {
-            temperature: 0.2,
-            maxOutputTokens: 800,
-            responseMimeType: "application/json",
+  // Try Groq API first (since Groq models are verified active)
+  if (GROQ_API_KEY) {
+    for (const model of GROQ_MODELS) {
+      try {
+        const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${GROQ_API_KEY}`,
+            "Content-Type": "application/json",
           },
-        }),
-      });
+          body: JSON.stringify({
+            model,
+            messages: [
+              { role: "system", content: RESEARCH_AGENT_SYSTEM_PROMPT },
+              { role: "user", content: userPrompt },
+            ],
+            temperature: 0.2,
+            max_tokens: 800,
+          }),
+        });
 
-      if (res.ok) {
-        const data = await res.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (text) {
-          llmText = text;
-          modelUsed = `Google ${model}`;
-          break;
+        if (res.ok) {
+          const data = await res.json();
+          const text = data.choices?.[0]?.message?.content;
+          if (text) {
+            llmText = text;
+            modelUsed = `Groq (${model})`;
+            break;
+          }
         }
+      } catch (e) {
+        console.warn(`ResearchAgent Groq ${model} error:`, e);
       }
-    } catch (e) {
-      console.warn(`ResearchAgent Gemini ${model} error:`, e);
     }
   }
 
-  // Fallback to Groq if Gemini fails
-  if (!llmText && GROQ_API_KEY) {
-    try {
-      const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${GROQ_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "openai/gpt-oss-120b",
-          messages: [
-            { role: "system", content: RESEARCH_AGENT_SYSTEM_PROMPT },
-            { role: "user", content: userPrompt },
-          ],
-          temperature: 0.2,
-          max_tokens: 800,
-          response_format: { type: "json_object" },
-        }),
-      });
+  // Try Gemini if Groq fails
+  if (!llmText && GEMINI_API_KEY) {
+    for (const model of GEMINI_MODELS) {
+      try {
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+        const res = await fetch(geminiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [{ text: `${RESEARCH_AGENT_SYSTEM_PROMPT}\n\n${userPrompt}` }],
+              },
+            ],
+            generationConfig: {
+              temperature: 0.2,
+              maxOutputTokens: 800,
+            },
+          }),
+        });
 
-      if (res.ok) {
-        const data = await res.json();
-        const text = data.choices?.[0]?.message?.content;
-        if (text) {
-          llmText = text;
-          modelUsed = "Groq LPU Engine";
+        if (res.ok) {
+          const data = await res.json();
+          const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (text) {
+            llmText = text;
+            modelUsed = `Google ${model}`;
+            break;
+          }
         }
+      } catch (e) {
+        console.warn(`ResearchAgent Gemini ${model} error:`, e);
       }
-    } catch (e) {
-      console.warn("ResearchAgent Groq fallback error:", e);
     }
   }
 
@@ -166,7 +185,8 @@ Return a valid JSON object with exact keys:
 
   if (llmText) {
     try {
-      const parsed = JSON.parse(llmText);
+      const cleaned = cleanLlmText(llmText);
+      const parsed = JSON.parse(cleaned);
       keyFindings = parsed.keyFindings || [];
       relevantEntities = parsed.relevantEntities || [];
       evidence = parsed.evidence || [];
@@ -176,25 +196,40 @@ Return a valid JSON object with exact keys:
     }
   }
 
-  // Local defaults if LLM output missing or incomplete
+  // DYNAMIC fallback generation tailored strictly to the user query
+  const queryKeywords = extractKeywordsFromQuery(query);
+
   if (keyFindings.length === 0) {
-    if (newsResults.length > 0) {
-      keyFindings.push(`Retrieved ${newsResults.length} breaking market signals from live news APIs.`);
-    }
-    if (arxivResults.length > 0) {
-      keyFindings.push(`Retrieved ${arxivResults.length} pre-print research papers from ArXiv.`);
-    }
-    if (keyFindings.length === 0) {
-      keyFindings.push(`Ingested internal domain signals regarding user query "${query}".`);
+    if (sources.length > 0) {
+      sources.slice(0, 3).forEach((s) => {
+        keyFindings.push(`[${s.type.toUpperCase()}] ${s.title}: ${s.summary || "Retrieved live intelligence data."}`);
+      });
+    } else {
+      keyFindings.push(`Synthesized intelligence analysis regarding "${query}".`);
+      if (queryKeywords.length > 0) {
+        keyFindings.push(`Domain focus identified: ${queryKeywords.join(", ")}.`);
+      }
     }
   }
 
   if (relevantEntities.length === 0) {
-    relevantEntities = ["NVIDIA", "Custom NPU Fab", "2nm Foundry", "FP4 Dynamic Quantization", "Test-Time Compute"];
+    const entitySet = new Set<string>();
+    queryKeywords.forEach((k) => entitySet.add(k.charAt(0).toUpperCase() + k.slice(1)));
+    sources.forEach((s) => {
+      if (s.source) entitySet.add(s.source);
+    });
+    if (entitySet.size === 0) {
+      entitySet.add(query.slice(0, 30));
+    }
+    relevantEntities = Array.from(entitySet);
   }
 
   if (evidence.length === 0) {
-    evidence = sources.map((s) => `[${s.type.toUpperCase()}] ${s.title}: ${s.summary.slice(0, 100)}...`);
+    if (sources.length > 0) {
+      evidence = sources.map((s) => `[${s.type.toUpperCase()}] ${s.title}`);
+    } else {
+      evidence = [`Primary query directive: "${query}"`];
+    }
   }
 
   const output: ResearchAgentOutput = {
@@ -218,3 +253,4 @@ Return a valid JSON object with exact keys:
     modelUsed,
   };
 }
+

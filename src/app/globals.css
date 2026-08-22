@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -16,8 +16,11 @@
     color: #f8fafc;
     font-family: var(--font-sans);
     overflow-x: hidden;
-    selection-background-color: #00f0ff;
-    selection-color: #030712;
+  }
+
+  ::selection {
+    background-color: #00f0ff;
+    color: #030712;
   }
 }
 

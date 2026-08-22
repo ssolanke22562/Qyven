@@ -42,5 +42,114 @@
       "mkt-03"
     ],
     "timestamp": "2026-08-22T14:08:20.520Z"
+  },
+  {
+    "id": "45445ebb-ca00-46bb-8be6-254bf44f47e9",
+    "userId": "anonymous",
+    "query": "Track NVIDIA's recent AI chip developments. Remember that NVIDIA is the company I want to monitor.",
+    "keyInsights": [
+      "Vertical integration strategy accelerates competitor time-to-market for custom silicon.",
+      "FP4 quantization adoption bypasses standard merchant GPU memory bandwidth limits."
+    ],
+    "entities": [
+      "Competitor Alpha",
+      "Low-Power NPU Architecture",
+      "TSMC 2nm Node Capacity",
+      "FP4 Dynamic Quantization"
+    ],
+    "threatRating": "HIGH (Threat Index: 84/100)",
+    "groundedNodes": [
+      "comp-01",
+      "tech-01",
+      "mkt-03"
+    ],
+    "timestamp": "2026-08-22T14:33:08.416Z"
+  },
+  {
+    "id": "a646c13c-b8ba-4cba-8ac8-06eccc104816",
+    "userId": "anonymous",
+    "query": "Track NVIDIA's recent AI chip developments. Remember that NVIDIA is the company I want to monitor.",
+    "keyInsights": [
+      "Vertical integration strategy accelerates competitor time-to-market for custom silicon.",
+      "FP4 quantization adoption bypasses standard merchant GPU memory bandwidth limits."
+    ],
+    "entities": [
+      "Competitor Alpha",
+      "Low-Power NPU Architecture",
+      "TSMC 2nm Node Capacity",
+      "FP4 Dynamic Quantization"
+    ],
+    "threatRating": "HIGH (Threat Index: 84/100)",
+    "groundedNodes": [
+      "comp-01",
+      "tech-01",
+      "mkt-03"
+    ],
+    "timestamp": "2026-08-22T14:47:10.023Z"
+  },
+  {
+    "id": "24e9ff12-d668-4c95-9e57-c4348e52b9ba",
+    "userId": "anonymous",
+    "query": "What are the latest developments in quantum computing?",
+    "keyInsights": [
+      "Grounded insight: Synthesized intelligence analysis regarding \"What are the latest developments in quantum computing?\".",
+      "Grounded insight: Domain focus identified: developments, quantum, computing."
+    ],
+    "entities": [
+      "Developments",
+      "Quantum",
+      "Computing"
+    ],
+    "threatRating": "MEDIUM (Threat Index: 65/100)",
+    "groundedNodes": [
+      "comp-01",
+      "tech-01"
+    ],
+    "timestamp": "2026-08-22T14:54:22.725Z"
+  },
+  {
+    "id": "a7ba9afb-d53e-41cc-86d4-ebc051b6c5a8",
+    "userId": "anonymous",
+    "query": "Tell me about Tesla battery technology breakthroughs",
+    "keyInsights": [
+      "Grounded insight: [ARXIV] Alternative IR geometries for TESLA with a small crossing angle: The formulation of hybrid crossing angle schemes has been a recent development of the TESLA collision geometry debate. Here we report on two such schemes, characterised by either a small vertical or horizontal beam crossing angle.",
+      "Grounded insight: [ARXIV] Midterm Status Report of the ILC Technology Network Activities: The ILC Technology Network (ITN) was established in 2022 by the ILC International Development Team, a subcommittee of the International Committee for Future Accelerators, to advance engineering studies toward the realisation of the International Line...",
+      "Grounded insight: [ARXIV] Coherently Driven Quantum Harmonic Oscillator Battery: Quantum harmonic oscillator (QHO) battery models have been studied with significant importance in the recent past because these batteries are experimentally realizable and have high ergotropy and capacity to store more than one quanta of energy. QHO ..."
+    ],
+    "entities": [
+      "Tesla",
+      "Battery",
+      "Technology",
+      "Breakthroughs"
+    ],
+    "threatRating": "MEDIUM (Threat Index: 65/100)",
+    "groundedNodes": [
+      "mkt-03"
+    ],
+    "timestamp": "2026-08-22T14:54:23.383Z"
+  },
+  {
+    "id": "6b8d8f90-7c22-464c-bbf4-5edec7a9272f",
+    "userId": "anonymous",
+    "query": "Who are the top competitors in AI silicon chips?",
+    "keyInsights": [
+      "Grounded insight: [ARXIV] Faith in AI can narrow the futures individuals consider: Artificial intelligence (AI) predictions are increasingly used to inform human decisions. Here, using a behavioral implementation of the classic Newcomb's paradox in 1,305 participants, we show that AI predictions can also shape the reasoning people ...",
+      "Grounded insight: [ARXIV] Foundations of GenIR: The chapter discusses the foundational impact of modern generative AI models on information access (IA) systems. In contrast to traditional AI, the large-scale training and superior data modeling of generative AI models enable them to produce high-qu...",
+      "Grounded insight: [ARXIV] Competing Visions of Ethical AI: A Case Study of OpenAI: Introduction. AI Ethics is framed distinctly across actors and stakeholder groups. We report results from a case study of OpenAI analysing ethical AI discourse. Method. Research addressed: How has OpenAI's public discourse leveraged 'ethics', 'safety..."
+    ],
+    "entities": [
+      "Top",
+      "Competitors",
+      "Silicon",
+      "Chips"
+    ],
+    "threatRating": "MEDIUM (Threat Index: 65/100)",
+    "groundedNodes": [
+      "comp-01",
+      "comp-04",
+      "comp-05",
+      "mkt-03"
+    ],
+    "timestamp": "2026-08-22T14:54:24.019Z"
   }
 ]
