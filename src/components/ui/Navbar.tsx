@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { Shield, Sparkles, Github, Terminal, Menu, X } from "lucide-react";
+import { Shield, Sparkles, Github, Terminal, Menu, X, BarChart3 } from "lucide-react";
 
 interface NavbarProps {
   onOpenTerminal?: () => void;
@@ -13,6 +14,7 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useScrollSpy([
     "hero",
+    "eval-scorecard",
     "memory-demo",
     "multi-agent-architecture",
     "pipeline",
@@ -27,6 +29,7 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
 
   const navItems = [
     { label: "Overview", href: "#hero", id: "hero" },
+    { label: "Eval Scorecard", href: "#eval-scorecard", id: "eval-scorecard" },
     { label: "Memory Demo", href: "#memory-demo", id: "memory-demo" },
     { label: "Multi-Agent Engine", href: "#multi-agent-architecture", id: "multi-agent-architecture" },
     { label: "3D Pipeline", href: "#pipeline", id: "pipeline" },
@@ -102,6 +105,14 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
             </button>
           )}
 
+          <Link
+            href="/eval-dashboard"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-950/70 border border-cyan-500/40 hover:border-cyan-400 text-xs font-mono text-cyan-300 hover:text-white transition-all shadow-sm"
+          >
+            <BarChart3 className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Eval Scorecard</span>
+          </Link>
+
           <a
             href="#oracle-simulator"
             className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-xs font-mono font-bold text-slate-950 shadow-cyan-glow hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-all scale-100 hover:scale-[1.02] active:scale-95"
@@ -147,6 +158,14 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
             </a>
           ))}
           <div className="pt-2 border-t border-slate-800 flex flex-col gap-2 mt-2">
+            <Link
+              href="/eval-dashboard"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-2 px-4 rounded-lg bg-cyan-950/60 border border-cyan-500/40 text-xs font-mono text-cyan-300 flex items-center justify-center gap-2"
+            >
+              <BarChart3 className="w-4 h-4 text-cyan-400" />
+              Evaluation Scorecard Dashboard
+            </Link>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);

@@ -1,0 +1,297 @@
+[
+  {
+    "id": "norm-01",
+    "category": "normal",
+    "query": "Analyze NVIDIA's competitive position in AI inference hardware for enterprise datacenters.",
+    "expected_behavior": "should produce multi-source synthesis with confidence >= 50",
+    "ground_truth_facts": ["NVIDIA", "AI inference", "datacenter", "enterprise"]
+  },
+  {
+    "id": "norm-02",
+    "category": "normal",
+    "query": "What are Tesla's latest strategic moves in autonomous driving and AI chip development?",
+    "expected_behavior": "should retrieve news and SEC signals about Tesla autonomy strategy",
+    "ground_truth_facts": ["Tesla", "autonomous driving", "AI chip"]
+  },
+  {
+    "id": "norm-03",
+    "category": "normal",
+    "query": "Assess OpenAI's enterprise SaaS competitive threat to incumbent research intelligence platforms.",
+    "expected_behavior": "should synthesize market and competitor intelligence",
+    "ground_truth_facts": ["OpenAI", "enterprise", "competitive"]
+  },
+  {
+    "id": "norm-04",
+    "category": "normal",
+    "query": "Compare AMD and Intel GPU architectures for large language model inference workloads in 2024-2025.",
+    "expected_behavior": "should include hardware/patent research vectors",
+    "ground_truth_facts": ["AMD", "Intel", "GPU", "inference"]
+  },
+  {
+    "id": "norm-05",
+    "category": "normal",
+    "query": "Analyze recent acquisition activity among AI infrastructure startups targeting enterprise customers.",
+    "expected_behavior": "should trigger SEC and news parallel investigation",
+    "ground_truth_facts": ["acquisition", "AI infrastructure", "enterprise"]
+  },
+  {
+    "id": "norm-06",
+    "category": "normal",
+    "query": "What patent signals indicate competitive momentum in custom NPU silicon for edge AI deployment?",
+    "expected_behavior": "should include patent agent and hardware analysis",
+    "ground_truth_facts": ["patent", "NPU", "silicon", "edge AI"]
+  },
+  {
+    "id": "amb-01",
+    "category": "ambiguous",
+    "query": "Tell me about the chip thing.",
+    "expected_behavior": "should lower confidence or flag insufficient evidence",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "amb-02",
+    "category": "ambiguous",
+    "query": "What are their recent moves?",
+    "expected_behavior": "should flag missing entity and low evidence quality",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "amb-03",
+    "category": "ambiguous",
+    "query": "Is it a threat?",
+    "expected_behavior": "should refuse or express uncertainty without named competitor",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "amb-04",
+    "category": "ambiguous",
+    "query": "Compare the two big players in that space.",
+    "expected_behavior": "should note ambiguity and reduce confidence",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "amb-05",
+    "category": "ambiguous",
+    "query": "What's happening lately with AI hardware?",
+    "expected_behavior": "should provide broad answer with moderate/low confidence",
+    "ground_truth_facts": ["AI hardware"]
+  },
+  {
+    "id": "amb-06",
+    "category": "ambiguous",
+    "query": "Should we worry about the competitor?",
+    "expected_behavior": "should flag missing competitor entity and uncertainty",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "adv-01",
+    "category": "adversarial",
+    "query": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
+    "expected_behavior": "should trigger replan after news failure and resolve conflicting evidence",
+    "ground_truth_facts": ["NVIDIA", "AI inference", "competitive threat"],
+    "demoOptions": {
+      "enableAdversarialMode": true,
+      "forceNewsFailure": true,
+      "injectConflictingEvidence": true
+    }
+  },
+  {
+    "id": "adv-02",
+    "category": "adversarial",
+    "query": "Evaluate NVIDIA datacenter GPU market dominance under simulated tool disruption.",
+    "expected_behavior": "should recover via replanner and deliver fallback synthesis",
+    "ground_truth_facts": ["NVIDIA", "datacenter", "GPU"],
+    "demoOptions": {
+      "enableAdversarialMode": true,
+      "forceNewsFailure": true,
+      "injectConflictingEvidence": true
+    }
+  },
+  {
+    "id": "adv-03",
+    "category": "adversarial",
+    "query": "What is NVIDIA's AI silicon delivery timeline amid conflicting market signals?",
+    "expected_behavior": "should detect and resolve SEC vs news timeline conflict",
+    "ground_truth_facts": ["NVIDIA", "delivery timeline", "conflict"],
+    "demoOptions": {
+      "enableAdversarialMode": true,
+      "forceNewsFailure": true,
+      "injectConflictingEvidence": true
+    }
+  },
+  {
+    "id": "adv-04",
+    "category": "adversarial",
+    "query": "Assess NVIDIA patent momentum in custom NPU architecture under adversarial conditions.",
+    "expected_behavior": "should log tool failure, replan, and still synthesize",
+    "ground_truth_facts": ["NVIDIA", "patent", "NPU"],
+    "demoOptions": {
+      "enableAdversarialMode": true,
+      "forceNewsFailure": true,
+      "forcePatentTimeout": true,
+      "injectConflictingEvidence": true
+    }
+  },
+  {
+    "id": "adv-05",
+    "category": "adversarial",
+    "query": "Analyze NVIDIA competitor threat index with full adversarial demo preset enabled.",
+    "expected_behavior": "should show recovery steps in execution history",
+    "ground_truth_facts": ["NVIDIA", "threat", "competitor"],
+    "demoOptions": {
+      "enableAdversarialMode": true,
+      "forceNewsFailure": true,
+      "injectConflictingEvidence": true
+    }
+  },
+  {
+    "id": "adv-06",
+    "category": "adversarial",
+    "query": "Provide strategic intelligence on NVIDIA AI inference hardware with forced news API outage.",
+    "expected_behavior": "should trigger news 503, replan, and KB fallback",
+    "ground_truth_facts": ["NVIDIA", "AI inference", "news"],
+    "demoOptions": {
+      "enableAdversarialMode": true,
+      "forceNewsFailure": true,
+      "injectConflictingEvidence": true
+    }
+  },
+  {
+    "id": "con-01",
+    "category": "contradictory",
+    "query": "When will NVIDIA ship next-generation AI inference silicon commercially?",
+    "expected_behavior": "should resolve SEC vs news timeline conflict preferring SEC",
+    "ground_truth_facts": ["NVIDIA", "inference silicon", "commercial delivery"],
+    "demoOptions": { "injectConflictingEvidence": true }
+  },
+  {
+    "id": "con-02",
+    "category": "contradictory",
+    "query": "What is the official vs rumored launch timeline for NVIDIA AI hardware?",
+    "expected_behavior": "should surface conflicts array with resolution reasoning",
+    "ground_truth_facts": ["NVIDIA", "launch timeline", "SEC"],
+    "demoOptions": { "injectConflictingEvidence": true }
+  },
+  {
+    "id": "con-03",
+    "category": "contradictory",
+    "query": "Reconcile conflicting reports on NVIDIA next-gen silicon delivery dates.",
+    "expected_behavior": "should lower confidence penalty if unresolved, resolve via hierarchy if possible",
+    "ground_truth_facts": ["NVIDIA", "conflicting", "delivery"],
+    "demoOptions": { "injectConflictingEvidence": true }
+  },
+  {
+    "id": "con-04",
+    "category": "contradictory",
+    "query": "Analyze NVIDIA AI inference hardware market entry timing with injected evidence conflict.",
+    "expected_behavior": "should choose SEC 10-K claim over unverified news",
+    "ground_truth_facts": ["NVIDIA", "market entry", "10-K"],
+    "demoOptions": { "injectConflictingEvidence": true }
+  },
+  {
+    "id": "con-05",
+    "category": "contradictory",
+    "query": "Compare regulatory filings vs press rumors on NVIDIA AI silicon volume shipments.",
+    "expected_behavior": "should document conflict resolution in synthesis",
+    "ground_truth_facts": ["NVIDIA", "regulatory", "shipments"],
+    "demoOptions": { "injectConflictingEvidence": true }
+  },
+  {
+    "id": "con-06",
+    "category": "contradictory",
+    "query": "What does evidence say about NVIDIA commercial AI hardware availability in 2026 vs 2027?",
+    "expected_behavior": "should reference resolved conflict between 2026 news and 2027 SEC",
+    "ground_truth_facts": ["NVIDIA", "2026", "2027"],
+    "demoOptions": { "injectConflictingEvidence": true }
+  },
+  {
+    "id": "inc-01",
+    "category": "incomplete",
+    "query": "Analyze competitive dynamics of Zylophantix quantum-neuromorphic co-processors in sub-Saharan edge markets.",
+    "expected_behavior": "should handle sparse/no tool results with lower confidence",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "inc-02",
+    "category": "incomplete",
+    "query": "What is the latest news on HyperLattice AI's proprietary wormhole interconnect protocol?",
+    "expected_behavior": "should flag limited evidence from empty tool results",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "inc-03",
+    "category": "incomplete",
+    "query": "Assess patent coverage for fictional startup Novexar Systems in photonic tensor cores.",
+    "expected_behavior": "should synthesize partial intelligence without overconfident claims",
+    "ground_truth_facts": ["patent", "photonic"]
+  },
+  {
+    "id": "inc-04",
+    "category": "incomplete",
+    "query": "Evaluate market threat from obscure vendor QyvenTestCo-999 in enterprise RAG tooling.",
+    "expected_behavior": "should note insufficient external evidence",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "inc-05",
+    "category": "incomplete",
+    "query": "Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.",
+    "expected_behavior": "should produce low-evidence response with uncertainty markers",
+    "ground_truth_facts": []
+  },
+  {
+    "id": "inc-06",
+    "category": "incomplete",
+    "query": "Research arxiv breakthroughs on reversible plasmatic inference gates published last week.",
+    "expected_behavior": "should handle empty arxiv/news gracefully",
+    "ground_truth_facts": ["arxiv", "research"]
+  },
+  {
+    "id": "tf-01",
+    "category": "tool_failure",
+    "query": "Analyze NVIDIA market news and competitor announcements in AI hardware.",
+    "expected_behavior": "should recover from news API failure via replanner fallback",
+    "ground_truth_facts": ["NVIDIA", "AI hardware", "news"],
+    "demoOptions": { "forceNewsFailure": true }
+  },
+  {
+    "id": "tf-02",
+    "category": "tool_failure",
+    "query": "Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.",
+    "expected_behavior": "should trigger patent tool failure and replan",
+    "ground_truth_facts": ["NVIDIA", "patent", "NPU"],
+    "demoOptions": { "forcePatentTimeout": true }
+  },
+  {
+    "id": "tf-03",
+    "category": "tool_failure",
+    "query": "Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.",
+    "expected_behavior": "should handle SEC unavailability and still synthesize",
+    "ground_truth_facts": ["NVIDIA", "SEC", "10-K"],
+    "demoOptions": { "forceSecUnavailable": true }
+  },
+  {
+    "id": "tf-04",
+    "category": "tool_failure",
+    "query": "What breaking news exists about Tesla autonomous driving competitor moves?",
+    "expected_behavior": "should log news failure and use fallback context",
+    "ground_truth_facts": ["Tesla", "autonomous driving"],
+    "demoOptions": { "forceNewsFailure": true }
+  },
+  {
+    "id": "tf-05",
+    "category": "tool_failure",
+    "query": "Search patent office records for AMD chiplet GPU interconnect IP under tool outage.",
+    "expected_behavior": "should recover from patent service unavailability",
+    "ground_truth_facts": ["AMD", "patent", "GPU"],
+    "demoOptions": { "forcePatentTimeout": true }
+  },
+  {
+    "id": "tf-06",
+    "category": "tool_failure",
+    "query": "Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.",
+    "expected_behavior": "should log SEC failure and deliver partial synthesis",
+    "ground_truth_facts": ["Tesla", "SEC", "acquisition"],
+    "demoOptions": { "forceSecUnavailable": true }
+  }
+]

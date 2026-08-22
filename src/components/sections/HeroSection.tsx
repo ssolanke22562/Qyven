@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { CanvasWrapper } from "@/components/3d/CanvasWrapper";
 import { BackgroundGraph } from "@/components/3d/BackgroundGraph";
-import { ArrowRight, Github, Sparkles, Terminal, ShieldCheck, Database, Zap, Cpu } from "lucide-react";
+import { ArrowRight, Github, Sparkles, Terminal, ShieldCheck, Database, Zap, Cpu, BarChart3 } from "lucide-react";
 import { MetricNote } from "@/components/ui/MetricNote";
 
 interface HeroSectionProps {
@@ -106,9 +107,17 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
             <ArrowRight className="w-4 h-4" />
           </a>
 
+          <Link
+            href="/eval-dashboard"
+            className="px-6 py-3.5 rounded-xl bg-cyan-950/80 hover:bg-cyan-900/90 border border-cyan-500/50 hover:border-cyan-400 text-cyan-300 font-mono font-bold text-sm flex items-center gap-2 backdrop-blur-xl shadow-cyan-glow transition-all scale-100 hover:scale-[1.03] active:scale-95"
+          >
+            <BarChart3 className="w-4 h-4 text-cyan-400" />
+            <span>Eval Scorecard</span>
+          </Link>
+
           <a
             href="#graph-demo"
-            className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-850 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 font-mono font-bold text-sm flex items-center gap-2 backdrop-blur-xl shadow-lg transition-all scale-100 hover:scale-[1.03] active:scale-95"
+            className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-850 border border-slate-700/60 hover:border-cyan-400 text-slate-300 hover:text-white font-mono font-bold text-sm flex items-center gap-2 backdrop-blur-xl shadow-lg transition-all scale-100 hover:scale-[1.03] active:scale-95"
           >
             <Sparkles className="w-4 h-4 text-cyan-400" />
             <span>Interactive 3D Graph</span>

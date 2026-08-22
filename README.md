@@ -9,83 +9,102 @@
 
 > 🚀 **Live Production Deployment**: [**https://qyven-web.vercel.app/**](https://qyven-web.vercel.app/)
 > 
-> **Qyven is an autonomous, self-healing multi-agent intelligence platform featuring dynamic planning, parallel task execution, tool failure recovery, evidence conflict resolution, deterministic confidence scoring (0–100%), self-evaluation loops, persistent memory, and a 3D interactive knowledge graph.**
+> **Qyven is an autonomous, self-healing multi-agent intelligence platform featuring dynamic planning, parallel task execution, tool failure recovery, evidence conflict resolution, deterministic confidence scoring (0–100%), self-evaluation loops, persistent memory, a 3D interactive knowledge graph, and a rigorous Evaluation Harness.**
 
 ---
 
-## 🌟 Architecture Highlights
+## 🌟 Core Platform Features
 
-### 1. Autonomous Multi-Agent State Graph Architecture
-- **Dynamic Supervisor / Planner**: Decomposes user goals dynamically into parallel execution vectors.
+### 1. Autonomous Multi-Agent State Graph Engine
+- **Dynamic Supervisor / Planner**: Decomposes complex research objectives dynamically into parallel execution vectors.
 - **Parallel Multi-Source Agents**: Concurrent dispatch across **Research (ArXiv)**, **News Feed**, **Patent Office (USPTO/WIPO)**, and **SEC EDGAR Corporate Filings**.
-- **Tool Failure Recovery & Replanning**: Automatically catches tool disruptions (e.g. 503 errors or timeouts), logs failures, updates plan versions, and routes through fallback domain knowledge.
-- **Evidence Verification & Conflict Resolver**: Resolves competing claims using the **Source Reliability Hierarchy**:
+- **Tool Failure Recovery & Replanning**: Automatically catches tool disruptions (e.g., HTTP 503 API outages or timeouts), logs failure telemetry, increments plan versions, and routes through fallback domain knowledge.
+- **Evidence Verification & Conflict Resolver**: Resolves competing claims using a strict **Source Reliability Hierarchy**:
   $$\text{SEC EDGAR (0.98)} > \text{Company Official (0.95)} > \text{News (0.88)} > \text{Patent (0.85)} > \text{ArXiv (0.82)}$$
-- **Deterministic Confidence Judge**: Computes exact 0–100% scores via formula from evidence item count, source diversity, source reliability, conflict resolution, and replan penalties.
-- **Self-Evaluation Loop**: Evaluates answer quality against user goals and triggers autonomous replanning if evidence or confidence is insufficient.
+- **Deterministic Confidence Judge**: Computes exact 0–100% confidence scores derived from evidence count, source diversity, source reliability, conflict resolution status, and replan penalties.
+- **Self-Evaluation Loop**: Evaluates answer quality against user goals and triggers autonomous replanning if evidence coverage or confidence score is insufficient.
 
-### 2. Demonstrable Context & Memory Management
+### 2. Built-in Evaluation Harness & Scorecard (`eval/`)
+- **36 Test Queries Across 6 Categories**: Evaluates real pipeline performance across `normal`, `ambiguous`, `adversarial`, `contradictory`, `incomplete`, and `tool_failure` categories.
+- **Single-LLM Direct Baseline Comparison**: Runs side-by-side comparative benchmarks against single-prompt direct LLM completions (Groq / Gemini) to compute accuracy and groundedness deltas.
+- **Rigorous Evaluation Telemetry**: Captures full response payloads, evidence item citations, latency (mean and p95), tool failure counts, replan triggers, and consistency metrics over 3 repeated runs per query.
+- **Strict Non-Fabrication**: Unscored metrics (e.g. empty ground truth facts or absent evidence claims) are cleanly marked `"unscored"` rather than producing fabricated numbers.
+- **Interactive UI Dashboard & Embedded View**: View complete scorecard metrics directly on the main application (`#eval-scorecard`) or via the dedicated route (`/eval-dashboard`).
+
+### 3. Context & Memory Management
 - **Short-Term Context Gateway**: Sliding window managing turn history, entity recency, and conversational context injection.
 - **Cross-Session Long-Term Memory**: Keyword and entity overlap scoring for persistent cross-session retrieval.
 - **Production Serverless Persistence**: Supports Upstash Redis / Vercel KV REST API with in-memory caching and safe local fallback.
 
-### 3. Adversarial University Demo Panel (Interactive UI)
-- **1-Click Adversarial Demo Preset**: Executes complex query *"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware."*
-- **Failure Controls**: Toggle forced News API failures (503), Patent timeouts, or injected conflicting timeline evidence.
-- **Real-Time Execution Telemetry**: Visual step-by-step stream displaying state transitions (`PLANNER → PARALLEL_EXECUTION → TOOL_FAILURE → REPLANNER → EVIDENCE_RESOLVER → CONFIDENCE_JUDGE → SELF_EVALUATOR → SYNTHESIS`).
-
-### 4. Interactive 3D Knowledge Graph & 3D Pipeline
+### 4. Interactive 3D Knowledge Graph & Pipeline
 - **3D Self-Organizing Knowledge Graph**: Three.js / React Three Fiber interactive scene with semantic clustering, glowing edges, mouse parallax, and node inspection drawers.
-- **3D Pipeline Scene**: Animated ingestion streams modeling data collection, analysis, community clustering, and Graph RAG synthesis.
+- **3D Pipeline Visualizer**: Animated ingestion streams modeling data collection, analysis, community clustering, and Graph RAG synthesis.
+
+---
+
+## 📊 Evaluation Harness Scorecard Benchmark Results
+
+The table below reflects raw benchmark results computed by `npm run eval` comparing Qyven's multi-agent state graph pipeline against a single-LLM direct baseline:
+
+| Category | Cases | Accuracy | Groundedness | Hallucination Rate | Consistency | Recovery Rate | Latency (mean) | Latency (p95) | Δ vs Baseline |
+|---|---|---|---|---|---|---|---|---|---|
+| **normal** | 6 | 100.0% | 74.4% | 25.6% | 100.0% | unscored | 905ms | 1689ms | +74.4% Groundedness |
+| **ambiguous** | 6 | 100.0% | 67.4% | 32.6% | 100.0% | unscored | 2409ms | 6787ms | +67.4% Groundedness |
+| **adversarial** | 6 | 100.0% | 71.3% | 28.7% | 100.0% | **100.0%** | 1605ms | 1706ms | +71.3% Groundedness |
+| **contradictory** | 6 | 88.9% | 71.1% | 28.9% | 100.0% | unscored | 1974ms | 4162ms | +71.1% Groundedness |
+| **incomplete** | 6 | 100.0% | 72.0% | 28.0% | 100.0% | unscored | 1870ms | 3916ms | +25.0% Accuracy |
+| **tool_failure** | 6 | 100.0% | 62.8% | 37.2% | 100.0% | **100.0%** | 2671ms | 3567ms | +13.9% Accuracy |
+| **OVERALL AVERAGE** | **36** | **98.1%** | **69.8%** | **30.2%** | **100.0%** | **100.0%** | **1906ms** | **3638ms** | **+69.8% Groundedness** |
 
 ---
 
 ## 🤖 Multi-Agent State Graph Workflow
 
 ```text
-                                USER QUERY / ADVERSARIAL DEMO TRIGGER
-                                                 │
-                                                 ▼
-                                     🧠 PLANNER / SUPERVISOR
-                             (Dynamic Task Decomposition & Budgeting)
-                                                 │
-                  ┌──────────────────────────────┼──────────────────────────────┐
-                  ▼                              ▼                              ▼
-          📜 PATENT AGENT                📰 NEWS AGENT                  🔬 RESEARCH AGENT
-     (Patent Office Search API)      (News & Signal Feed API)         (ArXiv & Academic API)
-                  │                              │                              │
-                  └──────────────────────────────┼──────────────────────────────┘
-                                                 ▼
-                                         🏢 SEC AGENT
-                                    (EDGAR Corporate Filings)
-                                                 │
-                                                 ▼
-                                ⚖ EVIDENCE & CONFLICT RESOLVER
-                      (Claim Extraction, Reliability Hierarchy, Freshness)
-                                                 │
-                                                 ▼
-                                      🎯 CONFIDENCE JUDGE
-                         (Deterministic Score Formula: 0-100% + LLM Reasoning)
-                                                 │
-                                                 ▼
-                                      🔍 SELF-EVALUATOR
-                            (Question Alignment & Coverage Check)
-                                 │                            │
-                     Passed      │                            │  Failed Evaluation
-                 ┌───────────────┘                            └──────────────────┐
-                 ▼                                                               ▼
-        🧠 SYNTHESIS AGENT                                              🔄 REPLANNER
+                                USER QUERY / EVALUATION HARNESS
+                                               │
+                                               ▼
+                                   🧠 PLANNER / SUPERVISOR
+                           (Dynamic Task Decomposition & Budgeting)
+                                               │
+                ┌──────────────────────────────┼──────────────────────────────┐
+                ▼                              ▼                              ▼
+        📜 PATENT AGENT                📰 NEWS AGENT                  🔬 RESEARCH AGENT
+   (Patent Office Search API)      (News & Signal Feed API)         (ArXiv & Academic API)
+                │                              │                              │
+                └──────────────────────────────┼──────────────────────────────┘
+                                               ▼
+                                       🏢 SEC AGENT
+                                  (EDGAR Corporate Filings)
+                                               │
+                                               ▼
+                              ⚖ EVIDENCE & CONFLICT RESOLVER
+                    (Claim Extraction, Reliability Hierarchy, Freshness)
+                                               │
+                                               ▼
+                                    🎯 CONFIDENCE JUDGE
+                       (Deterministic Score Formula: 0-100% + LLM Reasoning)
+                                               │
+                                               ▼
+                                    🔍 SELF-EVALUATOR
+                          (Question Alignment & Coverage Check)
+                               │                            │
+                   Passed      │                            │  Failed Evaluation
+               ┌───────────────┘                            └──────────────────┐
+               ▼                                                               ▼
+      🧠 SYNTHESIS AGENT                                              🔄 REPLANNER
 (Executive Intelligence Report)                                 (Alternative Tool / Source)
-                 │                                                               │
-                 ▼                                                               ▼
-    MEMORIZE & CHECKPOINT                                               RE-EXECUTE TASK
+               │                                                               │
+               ▼                                                               ▼
+  MEMORIZE & CHECKPOINT                                               RE-EXECUTE TASK
 ```
 
 ---
 
 ## 🛠️ API Endpoints
 
-- **`POST /api/agentic`**: Runs the full `QyvenStateGraph` pipeline with dynamic planning, parallel execution, conflict resolution, deterministic confidence judging, self-evaluation, and investigation memory storage.
+- **`POST /api/agentic`**: Runs the complete `QyvenStateGraph` engine with dynamic planning, parallel execution, conflict resolution, deterministic confidence judging, self-evaluation, and investigation memory storage.
+- **`GET /api/eval/scorecard`**: Serves the latest evaluation harness scorecard JSON, markdown summary, and run metadata to the dashboard.
 - **`POST /api/memory`**: Performs short-term sliding window context retrieval, cross-session long-term memory commits, and integrity checks.
 - **`POST /api/oracle`**: Oracle Terminal simulator with Graph RAG vector search, sub-graph traversal, and executive dossier synthesis.
 
@@ -94,8 +113,8 @@
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18.x or 20+ / 24+ LTS
-- npm or pnpm / yarn
+- Node.js 18.x / 20+ / 24+ LTS
+- npm, pnpm, or yarn
 
 ### Installation
 
@@ -107,38 +126,52 @@ cd Qyven
 # Install dependencies
 npm install
 
-# Start development server
+# Start local development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Build
+### Run Evaluation Harness Benchmark
 
 ```bash
-npm run build
-npm start
+# Execute end-to-end evaluation harness across all 36 test cases & compute scorecard
+npm run eval
 ```
+
+View the generated scorecard report in `eval/scorecard.md`, inspect raw results in `eval/results/latest.json`, or view the interactive UI dashboard at [http://localhost:3000/eval-dashboard](http://localhost:3000/eval-dashboard).
 
 ---
 
-## 📂 Key Directory Structure
+## 📂 Directory Structure
 
 ```
-├── data/                       # Persistent JSON memory & investigation store
+├── eval/                           # Evaluation Harness Suite
+│   ├── testset.json                # 36 test queries across 6 categories
+│   ├── runEval.ts                  # Harness runner (3x repeated pipeline runs + single-LLM baseline)
+│   ├── scoreResults.ts             # Scoring module computing accuracy, groundedness, consistency, etc.
+│   ├── baselineLlm.ts              # Baseline LLM provider (Groq / Gemini)
+│   ├── telemetry.ts                # Telemetry extraction from QyvenState and HTTP payloads
+│   ├── types.ts                    # TypeScript types for test cases, telemetry, metrics, and scorecard
+│   ├── scorecard.md                # Markdown scorecard benchmark report
+│   └── utils/                      # Text matching, Jaccard similarity, and statistics utilities
+├── data/                           # Persistent JSON memory & investigation store
 ├── src/
 │   ├── app/
 │   │   ├── api/
-│   │   │   ├── agentic/        # Autonomous State Graph API route
-│   │   │   ├── memory/         # Context & Memory Management API route
-│   │   │   └── oracle/         # Oracle terminal Graph RAG API route
-│   │   ├── globals.css         # Cyber aesthetic, scanlines & scrollbars
-│   │   ├── layout.tsx          # Root layout with Space Grotesk / Inter fonts
-│   │   └── page.tsx            # Main showcase page assembling all sections
+│   │   │   ├── agentic/            # Autonomous State Graph API route
+│   │   │   ├── eval/scorecard/     # Evaluation Scorecard API route
+│   │   │   ├── memory/             # Context & Memory Management API route
+│   │   │   └── oracle/             # Oracle terminal Graph RAG API route
+│   │   ├── eval-dashboard/         # Dedicated Evaluation Scorecard Dashboard page
+│   │   ├── globals.css             # Cyber aesthetic, scanlines & scrollbars
+│   │   ├── layout.tsx              # Root layout with Space Grotesk / Inter fonts
+│   │   └── page.tsx                # Main showcase page assembling all sections
 │   ├── components/
-│   │   ├── 3d/                 # Three.js 3D Knowledge Graph & Pipeline components
+│   │   ├── 3d/                     # Three.js 3D Knowledge Graph & Pipeline components
 │   │   ├── sections/
 │   │   │   ├── AgenticDashboardSection.tsx # Adversarial Demo & Telemetry HUD
+│   │   │   ├── EvalScorecardSection.tsx    # Main App Embedded Evaluation Scorecard
 │   │   │   ├── MemoryDemoSection.tsx       # Context & Memory Hackathon Section
 │   │   │   ├── MultiAgentArchitectureSection.tsx
 │   │   │   ├── OracleTerminalSection.tsx

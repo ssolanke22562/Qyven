@@ -17,6 +17,7 @@ import { AgentChatbot } from "@/components/ui/AgentChatbot";
 import { MultiAgentArchitectureSection } from "@/components/sections/MultiAgentArchitectureSection";
 import { MemoryDemoSection } from "@/components/sections/MemoryDemoSection";
 import { AgenticDashboardSection } from "@/components/sections/AgenticDashboardSection";
+import { EvalScorecardSection } from "@/components/sections/EvalScorecardSection";
 
 export default function Home() {
   const [architectureOpen, setArchitectureOpen] = useState(false);
@@ -52,6 +53,9 @@ export default function Home() {
       <AgenticDashboardSection
         onRunDemoQuery={(q) => setOracleQuery(q)}
       />
+
+      {/* Evaluation Harness & Scorecard Section */}
+      <EvalScorecardSection />
 
       {/* Real Context & Memory Management Hackathon Demonstration Section */}
       <MemoryDemoSection />

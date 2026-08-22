@@ -40,3 +40,9 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Eval raw results (scorecard.md and latest-scorecard.json are kept for demo)
+eval/results/*.json
+!eval/results/latest-scorecard.json
+!eval/results/latest.json
+!eval/results/.gitkeep

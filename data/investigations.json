@@ -1,41 +1,41 @@
 [
   {
-    "investigationId": "inv-mt4otuxy-7no9",
-    "userQuery": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
-    "timestamp": "2026-08-22T18:04:26.712Z",
-    "planObjective": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
-    "confidenceScore": 79,
-    "evidenceCount": 7,
-    "conflictsCount": 1,
-    "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.\".",
+    "investigationId": "inv-mt4t27nq-i5jy",
+    "userQuery": "Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.",
+    "timestamp": "2026-08-22T20:02:57.808Z",
+    "planObjective": "Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.",
+    "confidenceScore": 35,
+    "evidenceCount": 3,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\".",
     "threatAssessment": "MEDIUM (Threat Index: 65/100)",
     "executionHistory": [
       {
         "stepId": "step-1",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:54 am",
         "status": "INFO",
-        "message": "Creating dynamic investigation plan for \"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.\"..."
+        "message": "Creating dynamic investigation plan for \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\"..."
       },
       {
         "stepId": "step-2",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:54 am",
         "status": "SUCCESS",
-        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.\".)",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\".)",
         "details": {
           "tasksCount": 4
         },
-        "executionTimeMs": 10
+        "executionTimeMs": 0
       },
       {
         "stepId": "step-3",
         "nodeName": "Node: PARALLEL_EXECUTION",
         "agentRole": "PLANNER",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:54 am",
         "status": "INFO",
         "message": "Launching 4 investigation tasks in parallel..."
       },
@@ -43,7 +43,1291 @@
         "stepId": "step-4",
         "nodeName": "Node: TOOL_FAILURE_DETECTION",
         "agentRole": "PLANNER",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:56 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:56 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:56 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:56 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 41% (Calculated 41% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:56 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 41%, Evidence Count: 3, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:56 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:57 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:57 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:57 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:57 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 35% (Calculated 35% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:57 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 3 evidence items with 35% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:57 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:54.662Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:56.244Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:56.245Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:57.808Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:57.808Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:57.808Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 35
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t259k-4da2",
+    "userQuery": "Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.",
+    "timestamp": "2026-08-22T20:02:54.659Z",
+    "planObjective": "Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.",
+    "confidenceScore": 35,
+    "evidenceCount": 3,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:51 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:51 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:51 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:53 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:53 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:53 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:53 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 41% (Calculated 41% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:53 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 41%, Evidence Count: 3, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:53 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:54 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:54 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:54 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:54 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 35% (Calculated 35% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:54 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 3 evidence items with 35% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:54 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:51.561Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:53.119Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:53.119Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:54.658Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:54.658Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:54.659Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 35
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t22t4-3llz",
+    "userQuery": "Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.",
+    "timestamp": "2026-08-22T20:02:51.557Z",
+    "planObjective": "Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.",
+    "confidenceScore": 35,
+    "evidenceCount": 3,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:48 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:48 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Review Tesla SEC acquisition and market disclosure filings with EDGAR feed disabled.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:48 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:50 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:50 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:50 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:50 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 41% (Calculated 41% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:50 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 41%, Evidence Count: 3, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:50 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:51 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:51 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:51 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:51 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 35% (Calculated 35% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:51 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 3 evidence items with 35% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:51 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:48.376Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:50.022Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:50.023Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:51.556Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:51.557Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:51.557Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 35
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t1v1o-g4pe",
+    "userQuery": "Search patent office records for AMD chiplet GPU interconnect IP under tool outage.",
+    "timestamp": "2026-08-22T20:02:41.401Z",
+    "planObjective": "Search patent office records for AMD chiplet GPU interconnect IP under tool outage.",
+    "confidenceScore": 34,
+    "evidenceCount": 2,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:38 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:38 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:38 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:39 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:39 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:39 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:39 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 40% (Calculated 40% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:39 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 40%, Evidence Count: 2, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:39 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:41 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:41 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:41 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:41 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 34% (Calculated 34% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:41 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 2 evidence items with 34% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:41 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:38.316Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:39.845Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:39.845Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:41.400Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:41.401Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:41.401Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 34
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t1smu-zcys",
+    "userQuery": "Search patent office records for AMD chiplet GPU interconnect IP under tool outage.",
+    "timestamp": "2026-08-22T20:02:38.314Z",
+    "planObjective": "Search patent office records for AMD chiplet GPU interconnect IP under tool outage.",
+    "confidenceScore": 34,
+    "evidenceCount": 2,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:35 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:35 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:35 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:36 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:36 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:36 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:36 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 40% (Calculated 40% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:36 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 40%, Evidence Count: 2, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:36 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:38 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:38 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:38 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:38 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 34% (Calculated 34% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:38 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 2 evidence items with 34% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:38 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:35.190Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:36.770Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:36.771Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:38.313Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:38.314Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:38.314Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 34
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t1pvr-j9ub",
+    "userQuery": "Search patent office records for AMD chiplet GPU interconnect IP under tool outage.",
+    "timestamp": "2026-08-22T20:02:35.188Z",
+    "planObjective": "Search patent office records for AMD chiplet GPU interconnect IP under tool outage.",
+    "confidenceScore": 34,
+    "evidenceCount": 2,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:31 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:31 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Search patent office records for AMD chiplet GPU interconnect IP under tool outage.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:31 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:33 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:33 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:33 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:33 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 40% (Calculated 40% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:33 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 40%, Evidence Count: 2, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:33 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:35 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:35 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:35 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:35 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 34% (Calculated 34% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:35 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 2 evidence items with 34% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:35 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:31.623Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:33.209Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:33.209Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:35.187Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:35.188Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:35.188Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 34
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t1i5w-sog5",
+    "userQuery": "What breaking news exists about Tesla autonomous driving competitor moves?",
+    "timestamp": "2026-08-22T20:02:23.185Z",
+    "planObjective": "What breaking news exists about Tesla autonomous driving competitor moves?",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"What breaking news exists about Tesla autonomous driving competitor moves?\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:21 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"What breaking news exists about Tesla autonomous driving competitor moves?\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:21 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"What breaking news exists about Tesla autonomous driving competitor moves?\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:21 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:23 am",
         "status": "FAILURE",
         "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
         "details": {
@@ -56,7 +1340,7 @@
         "stepId": "step-5",
         "nodeName": "Node: REPLANNER",
         "agentRole": "REPLANNER",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:23 am",
         "status": "REPLAN",
         "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
       },
@@ -64,7 +1348,7 @@
         "stepId": "step-6",
         "nodeName": "Node: REPLANNER_FALLBACK",
         "agentRole": "NEWS_AGENT",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:23 am",
         "status": "RECOVERY",
         "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
       },
@@ -72,33 +1356,33 @@
         "stepId": "step-7",
         "nodeName": "Node: EVIDENCE_RESOLVER",
         "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:23 am",
         "status": "INFO",
-        "message": "Collected 7 evidence items. DETECTED 1 conflicting claim(s). RESOLVED 1 conflict(s) using Source Reliability Hierarchy (SEC > NEWS).",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
         "details": null,
-        "executionTimeMs": 1
+        "executionTimeMs": 0
       },
       {
         "stepId": "step-8",
         "nodeName": "Node: CONFIDENCE_JUDGE",
         "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:23 am",
         "status": "SUCCESS",
-        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 79% (Calculated 79% confidence deterministically: 7 evidence items across 3 distinct source categories (PATENT, SEC, NEWS). Avg Reliability: 91%. Resolved 1/1 conflicting claims. Applied 3% penalty for 1 replan iteration(s).)"
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
       },
       {
         "stepId": "step-9",
         "nodeName": "Node: SELF_EVALUATOR",
         "agentRole": "SELF_EVALUATOR",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:23 am",
         "status": "SUCCESS",
-        "message": "Self-Evaluation PASSED: Answer verified across 7 evidence items with 79% confidence score. All conflicts resolved."
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
       },
       {
         "stepId": "step-10",
         "nodeName": "Node: SYNTHESIS_AGENT",
         "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "11:34:26 pm",
+        "timestamp": "01:32:23 am",
         "status": "SUCCESS",
         "message": "Final Strategic Intelligence Dossier compiled successfully."
       }
@@ -107,7 +1391,7 @@
       {
         "checkpointId": "chk-1",
         "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T18:04:26.480Z",
+        "timestamp": "2026-08-22T20:02:21.620Z",
         "planVersion": 1,
         "completedTasksCount": 0,
         "evidenceCount": 0,
@@ -117,7 +1401,7 @@
       {
         "checkpointId": "chk-2",
         "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T18:04:26.710Z",
+        "timestamp": "2026-08-22T20:02:23.184Z",
         "planVersion": 1,
         "completedTasksCount": 3,
         "evidenceCount": 0,
@@ -127,37 +1411,2868 @@
       {
         "checkpointId": "chk-3",
         "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T18:04:26.711Z",
+        "timestamp": "2026-08-22T20:02:23.185Z",
         "planVersion": 2,
         "completedTasksCount": 0,
-        "evidenceCount": 7,
-        "conflictsCount": 1,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
         "confidenceScore": 50
       },
       {
         "checkpointId": "chk-4",
         "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T18:04:26.712Z",
+        "timestamp": "2026-08-22T20:02:23.185Z",
         "planVersion": 2,
         "completedTasksCount": 0,
-        "evidenceCount": 7,
-        "conflictsCount": 1,
-        "confidenceScore": 79
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
       }
     ]
   },
   {
-    "investigationId": "inv-seed-1",
-    "userQuery": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
-    "timestamp": "2026-08-22T18:04:26.468Z",
-    "planObjective": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
-    "confidenceScore": 79,
-    "evidenceCount": 7,
-    "conflictsCount": 1,
+    "investigationId": "inv-mt4t1gy3-1lkr",
+    "userQuery": "What breaking news exists about Tesla autonomous driving competitor moves?",
+    "timestamp": "2026-08-22T20:02:21.617Z",
+    "planObjective": "What breaking news exists about Tesla autonomous driving competitor moves?",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
     "replansCount": 1,
-    "summary": "Executive Briefing: Confirmed NVIDIA's strategic moves in custom AI inference silicon.",
-    "threatAssessment": "HIGH (Threat Index: 82/100)",
-    "executionHistory": [],
-    "checkpoints": []
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"What breaking news exists about Tesla autonomous driving competitor moves?\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:20 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"What breaking news exists about Tesla autonomous driving competitor moves?\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:20 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"What breaking news exists about Tesla autonomous driving competitor moves?\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:20 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:21 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:21 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "01:32:21 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:21 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:21 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:21 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:21 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:20.043Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:21.615Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:21.616Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:21.617Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t1fpo-ux3m",
+    "userQuery": "What breaking news exists about Tesla autonomous driving competitor moves?",
+    "timestamp": "2026-08-22T20:02:20.041Z",
+    "planObjective": "What breaking news exists about Tesla autonomous driving competitor moves?",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"What breaking news exists about Tesla autonomous driving competitor moves?\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:18 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"What breaking news exists about Tesla autonomous driving competitor moves?\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:18 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"What breaking news exists about Tesla autonomous driving competitor moves?\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:18 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:20 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:20 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "01:32:20 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:20 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:20 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:20 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:20 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:18.445Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:20.040Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:20.041Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:20.041Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t1ahn-2al8",
+    "userQuery": "Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.",
+    "timestamp": "2026-08-22T20:02:14.830Z",
+    "planObjective": "Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.",
+    "confidenceScore": 35,
+    "evidenceCount": 3,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:11 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:11 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:11 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:13 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:13 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:13 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:13 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 41% (Calculated 41% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:13 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 41%, Evidence Count: 3, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:13 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:14 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:14 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:14 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:14 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 35% (Calculated 35% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:14 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 3 evidence items with 35% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:14 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:11.675Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:13.241Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:13.242Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:14.829Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:14.829Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:14.830Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 35
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t182w-xdh3",
+    "userQuery": "Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.",
+    "timestamp": "2026-08-22T20:02:11.674Z",
+    "planObjective": "Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.",
+    "confidenceScore": 35,
+    "evidenceCount": 3,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:08 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:08 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:08 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:10 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:10 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:10 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:10 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 41% (Calculated 41% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:10 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 41%, Evidence Count: 3, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:10 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:11 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:11 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:11 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:11 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 35% (Calculated 35% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:11 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 3 evidence items with 35% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:11 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:08.553Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:10.116Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:10.117Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:11.673Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:11.673Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:11.674Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 35
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t15o2-q10l",
+    "userQuery": "Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.",
+    "timestamp": "2026-08-22T20:02:08.551Z",
+    "planObjective": "Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.",
+    "confidenceScore": 35,
+    "evidenceCount": 3,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:05 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:05 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Audit NVIDIA SEC EDGAR 10-K and 8-K filings for AI datacenter capital allocation.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:05 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:07 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:07 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:07 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:07 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 41% (Calculated 41% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:07 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 41%, Evidence Count: 3, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:07 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:08 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "SEC_AGENT: SEC EDGAR Financial Data Feed API down (500 Internal Server Error)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:08 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:08 am",
+        "status": "INFO",
+        "message": "Collected 3 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:08 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 35% (Calculated 35% confidence deterministically: 3 evidence items across 1 distinct source categories (PATENT). Avg Reliability: 85%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:08 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 3 evidence items with 35% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:08 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:02:05.426Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:07.006Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:07.007Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:08.550Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:08.550Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 41
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:08.551Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 3,
+        "conflictsCount": 0,
+        "confidenceScore": 35
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t10fg-qz70",
+    "userQuery": "Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.",
+    "timestamp": "2026-08-22T20:02:01.769Z",
+    "planObjective": "Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.",
+    "confidenceScore": 34,
+    "evidenceCount": 2,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:58 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:58 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:58 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:00 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:00 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:00 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:00 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 40% (Calculated 40% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:00 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 40%, Evidence Count: 2, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:00 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:32:01 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:32:01 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:32:01 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:32:01 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 34% (Calculated 34% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:32:01 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 2 evidence items with 34% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:32:01 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:58.636Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:00.198Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:00.199Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:02:01.768Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:02:01.769Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:02:01.769Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 34
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0y0h-fkzz",
+    "userQuery": "Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.",
+    "timestamp": "2026-08-22T20:01:58.634Z",
+    "planObjective": "Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.",
+    "confidenceScore": 34,
+    "evidenceCount": 2,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:55 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:55 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:55 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:57 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:31:57 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:57 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:57 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 40% (Calculated 40% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:57 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 40%, Evidence Count: 2, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:57 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:58 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:31:58 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:58 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:58 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 34% (Calculated 34% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:58 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 2 evidence items with 34% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:58 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:55.505Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:57.104Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:57.104Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:58.633Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:58.634Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:58.634Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 34
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0vm5-hvq9",
+    "userQuery": "Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.",
+    "timestamp": "2026-08-22T20:01:55.503Z",
+    "planObjective": "Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.",
+    "confidenceScore": 34,
+    "evidenceCount": 2,
+    "conflictsCount": 0,
+    "replansCount": 3,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:52 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:52 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Investigate NVIDIA custom NPU patent filings and silicon architecture IP assignments.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:52 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:53 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:31:53 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:53 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:53 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 40% (Calculated 40% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:53 am",
+        "status": "WARNING",
+        "message": "Self-Evaluation REJECTED (Confidence: 40%, Evidence Count: 2, Unresolved Conflicts: 0). Replanner required to gather alternate vector evidence."
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:53 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:55 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "PATENT_AGENT: Patent Intelligence Search Service temporarily unavailable (503 Service Unavailable)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-11",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:31:55 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 3/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-12",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:55 am",
+        "status": "INFO",
+        "message": "Collected 2 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-13",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:55 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 34% (Calculated 34% confidence deterministically: 2 evidence items across 1 distinct source categories (SEC). Avg Reliability: 98%. 0 conflicts. Applied 9% penalty for 3 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-14",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:55 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 2 evidence items with 34% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-15",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:55 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:52.398Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:53.952Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:53.953Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:55.503Z",
+        "planVersion": 3,
+        "completedTasksCount": 3,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-5",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:55.503Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 40
+      },
+      {
+        "checkpointId": "chk-6",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:55.503Z",
+        "planVersion": 4,
+        "completedTasksCount": 0,
+        "evidenceCount": 2,
+        "conflictsCount": 0,
+        "confidenceScore": 34
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0rtl-us23",
+    "userQuery": "Analyze NVIDIA market news and competitor announcements in AI hardware.",
+    "timestamp": "2026-08-22T20:01:49.221Z",
+    "planObjective": "Analyze NVIDIA market news and competitor announcements in AI hardware.",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze NVIDIA market news and competitor announcements in AI hardware.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:47 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze NVIDIA market news and competitor announcements in AI hardware.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:47 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze NVIDIA market news and competitor announcements in AI hardware.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:47 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:49 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:31:49 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "01:31:49 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:49 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:49 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:49 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:49 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:47.481Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:49.219Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:49.220Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:49.221Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0qeq-kssx",
+    "userQuery": "Analyze NVIDIA market news and competitor announcements in AI hardware.",
+    "timestamp": "2026-08-22T20:01:47.479Z",
+    "planObjective": "Analyze NVIDIA market news and competitor announcements in AI hardware.",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze NVIDIA market news and competitor announcements in AI hardware.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:45 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze NVIDIA market news and competitor announcements in AI hardware.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:45 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze NVIDIA market news and competitor announcements in AI hardware.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:45 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:47 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:31:47 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "01:31:47 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:47 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:47 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:47 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:47 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:45.650Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:47.478Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:47.479Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:47.479Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0p1l-t8i1",
+    "userQuery": "Analyze NVIDIA market news and competitor announcements in AI hardware.",
+    "timestamp": "2026-08-22T20:01:45.649Z",
+    "planObjective": "Analyze NVIDIA market news and competitor announcements in AI hardware.",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze NVIDIA market news and competitor announcements in AI hardware.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:43 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze NVIDIA market news and competitor announcements in AI hardware.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:43 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze NVIDIA market news and competitor announcements in AI hardware.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:43 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:45 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "01:31:45 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "01:31:45 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:45 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:45 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:45 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:45 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:43.882Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:45.648Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:45.649Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:45.649Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0hdt-cwac",
+    "userQuery": "Research arxiv breakthroughs on reversible plasmatic inference gates published last week.",
+    "timestamp": "2026-08-22T20:01:35.501Z",
+    "planObjective": "Research arxiv breakthroughs on reversible plasmatic inference gates published last week.",
+    "confidenceScore": 64,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 0,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:33 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:33 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:33 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:35 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:35 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 64% (Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. )"
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:35 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:35 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:33.954Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:35.500Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:35.500Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:35.501Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 64
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0g62-em2w",
+    "userQuery": "Research arxiv breakthroughs on reversible plasmatic inference gates published last week.",
+    "timestamp": "2026-08-22T20:01:33.950Z",
+    "planObjective": "Research arxiv breakthroughs on reversible plasmatic inference gates published last week.",
+    "confidenceScore": 64,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 0,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:32 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:32 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:32 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:33 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:33 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 64% (Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. )"
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:33 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:33 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:32.379Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:33.948Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:33.949Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:33.950Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 64
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0exm-oadm",
+    "userQuery": "Research arxiv breakthroughs on reversible plasmatic inference gates published last week.",
+    "timestamp": "2026-08-22T20:01:32.377Z",
+    "planObjective": "Research arxiv breakthroughs on reversible plasmatic inference gates published last week.",
+    "confidenceScore": 64,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 0,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:30 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:30 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Research arxiv breakthroughs on reversible plasmatic inference gates published last week.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:30 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:32 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:32 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 64% (Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. )"
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:32 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:32 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:30.779Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:32.376Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:32.376Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:32.377Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 64
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0bbl-3iyi",
+    "userQuery": "Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.",
+    "timestamp": "2026-08-22T20:01:27.739Z",
+    "planObjective": "Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.",
+    "confidenceScore": 64,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 0,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:26 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:26 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:26 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:27 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:27 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 64% (Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. )"
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:27 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:27 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:26.097Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:27.737Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:27.738Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:27.739Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 64
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t0a40-7jbh",
+    "userQuery": "Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.",
+    "timestamp": "2026-08-22T20:01:26.096Z",
+    "planObjective": "Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.",
+    "confidenceScore": 64,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 0,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:24 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:24 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:24 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:26 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:26 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 64% (Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. )"
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:26 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:26 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:24.528Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:26.095Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:26.095Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:26.096Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 64
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t08k3-m4s5",
+    "userQuery": "Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.",
+    "timestamp": "2026-08-22T20:01:24.527Z",
+    "planObjective": "Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.",
+    "confidenceScore": 64,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 0,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:22 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:22 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Summarize SEC filings for nonexistent entity AcmeQuantumDynamics LLC.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:22 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:24 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:24 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 64% (Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. )"
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:24 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:24 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:22.515Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:24.527Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:24.527Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:24.527Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 64
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4t04rs-lpb5",
+    "userQuery": "Evaluate market threat from obscure vendor QyvenTestCo-999 in enterprise RAG tooling.",
+    "timestamp": "2026-08-22T20:01:19.349Z",
+    "planObjective": "Evaluate market threat from obscure vendor QyvenTestCo-999 in enterprise RAG tooling.",
+    "confidenceScore": 64,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 0,
+    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Evaluate market threat from obscure vendor QyvenTestCo-999 in enterprise RAG tooling.\".",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:17 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Evaluate market threat from obscure vendor QyvenTestCo-999 in enterprise RAG tooling.\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:17 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Evaluate market threat from obscure vendor QyvenTestCo-999 in enterprise RAG tooling.\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "01:31:17 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "01:31:19 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "01:31:19 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 64% (Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. )"
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "01:31:19 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "01:31:19 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T20:01:17.609Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T20:01:19.347Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T20:01:19.348Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T20:01:19.349Z",
+        "planVersion": 1,
+        "completedTasksCount": 4,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 64
+      }
+    ]
   }
 ]
