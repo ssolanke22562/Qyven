@@ -15,6 +15,7 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AgentChatbot } from "@/components/ui/AgentChatbot";
 
 import { MultiAgentArchitectureSection } from "@/components/sections/MultiAgentArchitectureSection";
+import { MemoryDemoSection } from "@/components/sections/MemoryDemoSection";
 
 export default function Home() {
   const [architectureOpen, setArchitectureOpen] = useState(false);
@@ -45,6 +46,9 @@ export default function Home() {
 
       {/* Problem / Solution Framing Section */}
       <ProblemSection />
+
+      {/* Real Context & Memory Management Hackathon Demonstration Section */}
+      <MemoryDemoSection />
 
       {/* 2. Multi-Agent Architecture Section (3 Specialized Agents & Orchestrator) */}
       <MultiAgentArchitectureSection

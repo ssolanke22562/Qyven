@@ -13,6 +13,7 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useScrollSpy([
     "hero",
+    "memory-demo",
     "multi-agent-architecture",
     "pipeline",
     "graph-demo",
@@ -26,6 +27,7 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
 
   const navItems = [
     { label: "Overview", href: "#hero", id: "hero" },
+    { label: "Memory Demo", href: "#memory-demo", id: "memory-demo" },
     { label: "Multi-Agent Engine", href: "#multi-agent-architecture", id: "multi-agent-architecture" },
     { label: "3D Pipeline", href: "#pipeline", id: "pipeline" },
     { label: "Live Graph", href: "#graph-demo", id: "graph-demo" },
