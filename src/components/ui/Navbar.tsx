@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { Shield, Sparkles, Github, Terminal, Menu, X, Activity } from "lucide-react";
+import { Shield, Sparkles, Github, Terminal, Menu, X } from "lucide-react";
 
 interface NavbarProps {
   onOpenTerminal?: () => void;
@@ -19,6 +19,9 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
     "safeguards",
     "oracle-simulator"
   ]);
+
+  const githubUrl = process.env.NEXT_PUBLIC_GITHUB_URL || "";
+  const archDocUrl = process.env.NEXT_PUBLIC_ARCHITECTURE_DOC_URL || "";
 
   const navItems = [
     { label: "Overview", href: "#hero", id: "hero" },
@@ -41,18 +44,13 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-white">
-                AGENT<span className="text-cyan-400">X</span>
-              </span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-300 border border-violet-500/30 font-mono hidden sm:inline-block">
-                InsightScout v2.4
-              </span>
-            </div>
+            <span className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-white">
+              AGENT<span className="text-cyan-400">X</span>
+            </span>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[9px] font-mono text-emerald-400 tracking-wider uppercase font-semibold">
-                Autonomous Mode Active
+                Autonomous Intelligence Active
               </span>
             </div>
           </div>
@@ -80,13 +78,25 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
 
         {/* Action Buttons */}
         <div className="hidden sm:flex items-center gap-2.5">
-          <button
-            onClick={onOpenArchitecture}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-700/60 hover:border-violet-500/50 text-xs font-mono text-slate-300 hover:text-white transition-all shadow-sm"
-          >
-            <Shield className="w-3.5 h-3.5 text-violet-400" />
-            <span>Architecture Doc</span>
-          </button>
+          {archDocUrl ? (
+            <a
+              href={archDocUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-700/60 hover:border-violet-500/50 text-xs font-mono text-slate-300 hover:text-white transition-all shadow-sm"
+            >
+              <Shield className="w-3.5 h-3.5 text-violet-400" />
+              <span>Architecture Doc</span>
+            </a>
+          ) : (
+            <button
+              onClick={onOpenArchitecture}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-slate-700/60 hover:border-violet-500/50 text-xs font-mono text-slate-300 hover:text-white transition-all shadow-sm"
+            >
+              <Shield className="w-3.5 h-3.5 text-violet-400" />
+              <span>Architecture Doc</span>
+            </button>
+          )}
 
           <a
             href="#oracle-simulator"
@@ -96,15 +106,17 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
             <span>Launch Oracle</span>
           </a>
 
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer"
-            className="p-2 rounded-lg bg-slate-900/80 border border-slate-700/60 hover:border-slate-500 text-slate-400 hover:text-white transition-all"
-            aria-label="GitHub Repository"
-          >
-            <Github className="w-4 h-4" />
-          </a>
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 rounded-lg bg-slate-900/80 border border-slate-700/60 hover:border-slate-500 text-slate-400 hover:text-white transition-all"
+              aria-label="GitHub Repository"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          )}
         </div>
 
         {/* Mobile menu toggle */}
@@ -134,7 +146,11 @@ export function Navbar({ onOpenTerminal, onOpenArchitecture }: NavbarProps) {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenArchitecture?.();
+                if (archDocUrl) {
+                  window.open(archDocUrl, "_blank");
+                } else {
+                  onOpenArchitecture?.();
+                }
               }}
               className="w-full py-2 px-4 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono text-left text-slate-300"
             >
