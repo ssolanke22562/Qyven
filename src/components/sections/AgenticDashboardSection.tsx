@@ -68,7 +68,7 @@ export function AgenticDashboardSection({ onRunDemoQuery }: AgenticDashboardSect
       }
     } catch (err) {
       console.error("Agentic Graph execution error:", err);
-    } fontFinally: {
+    } finally {
       setIsExecuting(false);
     }
   };
