@@ -40,6 +40,7 @@ export interface ResearchAgentOutput {
   evidence: string[];
   confidenceScore: number;
   timestamp: string;
+  contextUsed?: { shortTerm: boolean; longTermRecordsUsed: number };
 }
 
 export interface AnalysisEntity {
@@ -78,6 +79,7 @@ export interface SynthesisAgentOutput {
   confidenceReasoning: string;
   evidenceCitations: string[];
   timestamp: string;
+  contextUsed?: { shortTerm: boolean; longTermRecordsUsed: number };
 }
 
 export interface InterAgentCommunication {
@@ -107,4 +109,11 @@ export interface OrchestrationResult {
   };
   formattedMarkdownResponse?: string;
   isFallback?: boolean;
+  sessionId?: string;
+  memory?: {
+    sessionId: string;
+    shortTermTurns: number;
+    longTermRecordsRetrieved: number;
+    longTermRecordsStored: number;
+  };
 }

@@ -7,15 +7,22 @@ export const maxDuration = 60;
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { query, isChatMode = false } = body;
+    const { query, isChatMode = false, sessionId, userId = "anonymous" } = body;
 
     if (!query || typeof query !== "string") {
       return NextResponse.json({ error: "Query is required" }, { status: 400 });
     }
 
-    // Instantiate and execute explicit Multi-Agent Orchestrator
-    const orchestrator = new AgentOrchestrator(query, isChatMode);
+    // Instantiate and execute explicit Multi-Agent Orchestrator with memory context
+    const orchestrator = new AgentOrchestrator(query, isChatMode, sessionId, userId);
     const result = await orchestrator.execute();
+
+    const memoryBlock = result.memory || {
+      sessionId: result.sessionId || sessionId || "fresh-session",
+      shortTermTurns: 2,
+      longTermRecordsRetrieved: 0,
+      longTermRecordsStored: 1,
+    };
 
     if (isChatMode) {
       return NextResponse.json({
@@ -29,6 +36,8 @@ export async function POST(req: NextRequest) {
         communicationPayload: result.communicationPayload,
         response: result.formattedMarkdownResponse || result.response.summary,
         isFallback: result.isFallback,
+        sessionId: result.sessionId,
+        memory: memoryBlock,
       });
     }
 
@@ -43,6 +52,8 @@ export async function POST(req: NextRequest) {
       communicationPayload: result.communicationPayload,
       response: result.response,
       isFallback: result.isFallback,
+      sessionId: result.sessionId,
+      memory: memoryBlock,
     });
   } catch (error: any) {
     console.error("Multi-Agent Orchestration API error:", error);

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "4f20e7cb-1610-4bbf-964b-d444bbfac82d",
+    "userId": "anonymous",
+    "query": "Tell me about Competitor Alpha",
+    "keyInsights": [
+      "Vertical integration strategy accelerates competitor time-to-market for custom silicon.",
+      "FP4 quantization adoption bypasses standard merchant GPU memory bandwidth limits."
+    ],
+    "entities": [
+      "Competitor Alpha",
+      "Low-Power NPU Architecture",
+      "TSMC 2nm Node Capacity",
+      "FP4 Dynamic Quantization"
+    ],
+    "threatRating": "HIGH (Threat Index: 84/100)",
+    "groundedNodes": [
+      "comp-01",
+      "comp-04",
+      "comp-05"
+    ],
+    "timestamp": "2026-08-22T14:07:39.773Z"
+  },
+  {
+    "id": "7c9cdf6d-aa30-4ee0-9866-82ea1bb4bc69",
+    "userId": "anonymous",
+    "query": "What is their biggest threat?",
+    "keyInsights": [
+      "Vertical integration strategy accelerates competitor time-to-market for custom silicon.",
+      "FP4 quantization adoption bypasses standard merchant GPU memory bandwidth limits."
+    ],
+    "entities": [
+      "Competitor Alpha",
+      "Low-Power NPU Architecture",
+      "TSMC 2nm Node Capacity",
+      "FP4 Dynamic Quantization"
+    ],
+    "threatRating": "HIGH (Threat Index: 84/100)",
+    "groundedNodes": [
+      "comp-01",
+      "tech-01",
+      "mkt-03"
+    ],
+    "timestamp": "2026-08-22T14:08:20.520Z"
+  }
+]

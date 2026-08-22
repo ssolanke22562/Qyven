@@ -1,6 +1,7 @@
 import { searchArxiv, ArxivPaper } from "@/lib/tools/arxiv";
 import { searchNews, NewsArticle } from "@/lib/tools/news";
 import { ResearchAgentOutput, ResearchAgentSource } from "./types";
+import { LongTermMemoryRecord } from "@/lib/memory/types";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const GROQ_API_KEY = process.env.GROQ_API_KEY || "";
@@ -13,7 +14,13 @@ Your responsibility:
 3. Assess evidence strength and provide a confidence score (0-100%).
 4. Output structured JSON matching the requested schema strictly.`;
 
-export async function runResearchAgent(query: string): Promise<{
+export async function runResearchAgent(
+  query: string,
+  memoryOptions?: {
+    shortTermPrompt?: string;
+    relevantPastMemory?: LongTermMemoryRecord[];
+  }
+): Promise<{
   output: ResearchAgentOutput;
   sources: ResearchAgentSource[];
   toolsUsed: string[];
@@ -55,8 +62,17 @@ export async function runResearchAgent(query: string): Promise<{
     })),
   ];
 
-  const userPrompt = `User Query: "${query}"
+  let memoryContextPrompt = "";
+  if (memoryOptions?.shortTermPrompt) {
+    memoryContextPrompt += `\n${memoryOptions.shortTermPrompt}\n`;
+  }
+  if (memoryOptions?.relevantPastMemory && memoryOptions.relevantPastMemory.length > 0) {
+    memoryContextPrompt += `\n[RELEVANT CROSS-SESSION LONG-TERM MEMORY RECORDS]:\n` +
+      memoryOptions.relevantPastMemory.map((r, i) => `[Record ${i + 1}] Query: "${r.query}" | Insights: ${r.keyInsights.join("; ")} | Grounded Nodes: ${r.groundedNodes.join(", ")}`).join("\n") + `\n`;
+  }
 
+  const userPrompt = `User Query: "${query}"
+${memoryContextPrompt}
 Raw Retrieved News (${newsResults.length} items):
 ${newsResults.length > 0 ? newsResults.map((n, i) => `[News ${i + 1}] "${n.title}" (${n.source}, ${n.publishedAt}): ${n.description}`).join("\n") : "No live news data found."}
 
@@ -189,6 +205,10 @@ Return a valid JSON object with exact keys:
     evidence,
     confidenceScore,
     timestamp: new Date().toISOString(),
+    contextUsed: {
+      shortTerm: Boolean(memoryOptions?.shortTermPrompt),
+      longTermRecordsUsed: memoryOptions?.relevantPastMemory?.length || 0,
+    },
   };
 
   return {

@@ -21,6 +21,7 @@ import {
   Layers,
   ChevronRight,
   Braces,
+  Brain,
 } from "lucide-react";
 import { RESEARCH_AGENT_SYSTEM_PROMPT } from "@/lib/agents/researchAgent";
 import { ANALYSIS_AGENT_SYSTEM_PROMPT } from "@/lib/agents/analysisAgent";
@@ -35,7 +36,7 @@ export function MultiAgentArchitectureSection({
   lastExecutionData,
   onRunDemoQuery,
 }: MultiAgentArchitectureSectionProps) {
-  const [activeTab, setActiveTab] = useState<"flow" | "logs" | "payload" | "prompts">("flow");
+  const [activeTab, setActiveTab] = useState<"flow" | "logs" | "payload" | "prompts" | "memory">("flow");
   const [customQuery, setCustomQuery] = useState("Analyze competitor silicon fab acquisition and TSMC 2nm allocation");
   const [isExecuting, setIsExecuting] = useState(false);
   const [executionResult, setExecutionResult] = useState<any>(lastExecutionData || null);
@@ -62,6 +63,14 @@ export function MultiAgentArchitectureSection({
 
   const currentResult = executionResult || lastExecutionData;
   const agentStates = currentResult?.agentStates || {
+    memoryManager: {
+      name: "Memory Manager",
+      role: "Short-Term & Long-Term Context Gateway",
+      status: "COMPLETED",
+      currentTask: "Context retrieved & 1 turn committed",
+      executionTimeMs: 32,
+      outputSummary: "Short-term 8-turn sliding window + Long-term persistent store active",
+    },
     researchAgent: {
       name: "Research Agent",
       role: "Retrieval & Source Validation Specialist",
@@ -93,13 +102,17 @@ export function MultiAgentArchitectureSection({
 
   const logs = currentResult?.logs || [
     { timestamp: "18:22:01", agent: "ORCHESTRATOR", message: `Task received: "${customQuery}"`, type: "info" },
+    { timestamp: "18:22:01", agent: "ORCHESTRATOR", message: "Step 0: MEMORY_RETRIEVAL - Accessing short-term sliding window & long-term memory", type: "info" },
+    { timestamp: "18:22:01", agent: "ORCHESTRATOR", message: "Memory retrieval complete (2 short-term turns, 1 long-term record retrieved)", type: "success" },
     { timestamp: "18:22:01", agent: "RESEARCH AGENT", message: "Searching sources (ArXiv API & News API)...", type: "info" },
     { timestamp: "18:22:01", agent: "RESEARCH AGENT", message: "12 relevant documents retrieved (94% confidence)", type: "success" },
     { timestamp: "18:22:01", agent: "ANALYSIS AGENT", message: "Extracting entities and discovering relationships...", type: "info" },
     { timestamp: "18:22:02", agent: "ANALYSIS AGENT", message: "34 entities / 18 relationships identified across 4 graph nodes", type: "success" },
     { timestamp: "18:22:02", agent: "SYNTHESIS AGENT", message: "Generating strategic intelligence briefing...", type: "info" },
     { timestamp: "18:22:02", agent: "SYNTHESIS AGENT", message: "Final intelligence report & recommendations generated", type: "success" },
-    { timestamp: "18:22:02", agent: "ORCHESTRATOR", message: "Final response generated in 546ms across 3 specialized agents", type: "success" },
+    { timestamp: "18:22:02", agent: "ORCHESTRATOR", message: "Step 4: MEMORY_COMMIT - Committing turn to short-term & long-term memory stores", type: "info" },
+    { timestamp: "18:22:02", agent: "ORCHESTRATOR", message: "Memory update complete (turn stored in short-term window & persistent record committed)", type: "success" },
+    { timestamp: "18:22:02", agent: "ORCHESTRATOR", message: "Final response generated in 546ms across 3 specialized agents + Memory Manager", type: "success" },
   ];
 
   const payload = currentResult?.communicationPayload || {
@@ -180,7 +193,7 @@ export function MultiAgentArchitectureSection({
           3-Agent Autonomous <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400">Collaboration Pipeline</span>
         </h2>
         <p className="mt-3 text-slate-400 max-w-3xl mx-auto text-sm sm:text-base font-sans">
-          AgentX implements an explicit backend <strong>Agent Orchestrator</strong> coordinating 3 specialized AI agents with distinct roles, custom system prompts, real JSON payload communication, and live execution telemetry.
+          AgentX implements an explicit backend <strong>Agent Orchestrator</strong> coordinating 3 specialized AI agents with distinct roles, custom system prompts, context & memory management, real JSON payload communication, and live execution telemetry.
         </p>
       </div>
 
@@ -202,7 +215,7 @@ export function MultiAgentArchitectureSection({
                   </span>
                 )}
               </h3>
-              <p className="text-xs text-slate-400">Execute query to inspect real-time agent-to-agent collaboration</p>
+              <p className="text-xs text-slate-400">Execute query to inspect real-time agent-to-agent collaboration & memory steps</p>
             </div>
           </div>
 
@@ -245,7 +258,19 @@ export function MultiAgentArchitectureSection({
             }`}
           >
             <GitBranch className="w-4 h-4" />
-            <span>Multi-Agent Architecture Flow</span>
+            <span>Architecture Flow</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab("memory")}
+            className={`px-4 py-2.5 rounded-t-xl font-mono text-xs font-bold transition-all flex items-center gap-2 border-b-2 ${
+              activeTab === "memory"
+                ? "bg-slate-950 text-cyan-400 border-cyan-400"
+                : "text-slate-400 hover:text-white border-transparent"
+            }`}
+          >
+            <Brain className="w-4 h-4" />
+            <span>Memory & Context Layer</span>
           </button>
 
           <button
@@ -281,7 +306,7 @@ export function MultiAgentArchitectureSection({
             }`}
           >
             <FileText className="w-4 h-4" />
-            <span>Role-Specific System Prompts</span>
+            <span>System Prompts</span>
           </button>
         </div>
 
@@ -298,7 +323,7 @@ export function MultiAgentArchitectureSection({
                   Live Agent Execution Topology
                 </div>
 
-                {/* ASCII / Visual Node Flowchart */}
+                {/* Visual Node Flowchart */}
                 <div className="flex flex-col items-center justify-center space-y-4 py-2">
                   
                   {/* User Query Node */}
@@ -314,7 +339,7 @@ export function MultiAgentArchitectureSection({
                     <Cpu className="w-5 h-5 text-cyan-400 animate-spin-slow" />
                     <span>AGENT ORCHESTRATOR</span>
                     <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                      Sequential & Context Master
+                      Step 0: Retrieval ↔ Step 4: Commit
                     </span>
                   </div>
 
@@ -415,7 +440,7 @@ export function MultiAgentArchitectureSection({
                   {/* Final Intelligence Result */}
                   <div className="px-6 py-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-bold shadow-emerald-glow flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                    <span>FINAL INTELLIGENCE BRIEFING GENERATED</span>
+                    <span>FINAL INTELLIGENCE BRIEFING GENERATED & COMMITTED TO MEMORY</span>
                   </div>
                 </div>
               </div>
@@ -424,7 +449,7 @@ export function MultiAgentArchitectureSection({
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-center">
                   <span className="text-[10px] font-mono text-slate-400 block uppercase">Orchestrated Agents</span>
-                  <strong className="text-xl font-heading font-extrabold text-white mt-1 block">3 Active</strong>
+                  <strong className="text-xl font-heading font-extrabold text-white mt-1 block">3 + Memory Manager</strong>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-center">
                   <span className="text-[10px] font-mono text-slate-400 block uppercase">Total Latency</span>
@@ -433,26 +458,127 @@ export function MultiAgentArchitectureSection({
                   </strong>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-center">
-                  <span className="text-[10px] font-mono text-slate-400 block uppercase">Sources Ingested</span>
+                  <span className="text-[10px] font-mono text-slate-400 block uppercase">Short-Term Turns</span>
                   <strong className="text-xl font-heading font-extrabold text-emerald-400 mt-1 block">
-                    {agentStates.researchAgent.sourcesProcessed || 12}
+                    {currentResult?.memory?.shortTermTurns || 2} Turns
                   </strong>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-center">
-                  <span className="text-[10px] font-mono text-slate-400 block uppercase">Entities & Rels</span>
+                  <span className="text-[10px] font-mono text-slate-400 block uppercase">Long-Term Memory</span>
                   <strong className="text-xl font-heading font-extrabold text-violet-400 mt-1 block">
-                    {(agentStates.analysisAgent.entitiesExtracted || 34) + (agentStates.analysisAgent.relationshipsIdentified || 18)}
+                    {currentResult?.memory?.longTermRecordsRetrieved || 1} Retrieved
                   </strong>
                 </div>
               </div>
             </div>
           )}
 
-          {/* TAB 2: LIVE EXECUTION LOGS */}
+          {/* TAB 2: MEMORY & CONTEXT LAYER */}
+          {activeTab === "memory" && (
+            <div className="space-y-6">
+              <div className="flex flex-col md:flex-row gap-4">
+                {/* Short-Term Memory Window Card */}
+                <div className="flex-1 p-5 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <Brain className="w-4 h-4" /> Short-Term Memory (Session Store)
+                    </span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                      Sliding Window: Max 8 Turns
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Maintains per-session conversational state in server-side memory & client sessionStorage to resolve pronouns (&quot;they&quot;, &quot;their&quot;, &quot;it&quot;) across sequential turns.
+                  </p>
+                  <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 font-mono text-xs space-y-2">
+                    <div className="flex justify-between text-slate-400 text-[11px]">
+                      <span>Active Session ID:</span>
+                      <span className="text-cyan-300 font-bold">{currentResult?.sessionId?.slice(0, 16) || "sess-demo-active"}...</span>
+                    </div>
+                    <div className="flex justify-between text-slate-400 text-[11px]">
+                      <span>Stored Turns Count:</span>
+                      <span className="text-emerald-300 font-bold">{currentResult?.memory?.shortTermTurns || 2} / 8 turns</span>
+                    </div>
+                    <div className="pt-2 border-t border-slate-850">
+                      <span className="text-[10px] text-slate-500 block uppercase mb-1">Active Entity References:</span>
+                      <div className="flex flex-wrap gap-1">
+                        {["Competitor Alpha", "NPU Fab", "2nm Foundry", "FP4 Quantization"].map((ent, i) => (
+                          <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-cyan-300 border border-slate-700">
+                            {ent}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Long-Term Persistent Memory Card */}
+                <div className="flex-1 p-5 rounded-xl bg-slate-950 border border-purple-500/30 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <Database className="w-4 h-4" /> Long-Term Persistent Memory
+                    </span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                      FileAdapter / Upstash KV
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Cross-session persistent knowledge repository. Uses keyword &amp; entity overlap scoring (dependency-free) to retrieve relevant past findings across queries.
+                  </p>
+                  <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 font-mono text-xs space-y-2">
+                    <div className="flex justify-between text-slate-400 text-[11px]">
+                      <span>Persistence Engine:</span>
+                      <span className="text-purple-300 font-bold">Node FileAdapter (data/longTermMemory.json)</span>
+                    </div>
+                    <div className="flex justify-between text-slate-400 text-[11px]">
+                      <span>Retrieved Past Records:</span>
+                      <span className="text-emerald-300 font-bold">{currentResult?.memory?.longTermRecordsRetrieved || 1} relevant records</span>
+                    </div>
+                    <div className="pt-2 border-t border-slate-850 space-y-1">
+                      <span className="text-[10px] text-slate-500 block uppercase">Top Retrieved Memory Record:</span>
+                      <div className="p-2 rounded bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
+                        <div className="text-cyan-400 font-bold">Query: &quot;Competitor silicon fab acquisition&quot;</div>
+                        <div className="text-slate-400 text-[10px]">Insights: Competitor Alpha acquired NPU Fab; 2nm foundry booked</div>
+                        <div className="text-emerald-400 text-[10px]">Grounded Nodes: [#comp-01, #tech-01]</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Architecture Flow Diagram */}
+              <div className="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+                <span className="text-xs font-mono uppercase text-slate-400 font-bold block">
+                  Memory Manager Architecture &amp; Data Flow Topology:
+                </span>
+                <div className="p-4 rounded-lg bg-slate-900 border border-slate-800 font-mono text-xs text-slate-300 flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+                  <div className="p-3 rounded-lg bg-slate-950 border border-cyan-500/40 text-cyan-300 w-full md:w-1/3">
+                    <strong className="block text-white mb-1">Session Store</strong>
+                    <span className="text-[11px] text-slate-400 block">Module Map &amp; sessionStorage</span>
+                    <span className="text-[10px] text-cyan-400 font-bold">Short-Term 8-Turn Window</span>
+                  </div>
+                  <div className="text-cyan-400 font-bold">↔</div>
+                  <div className="p-3 rounded-lg bg-slate-950 border border-purple-500/40 text-purple-300 w-full md:w-1/3">
+                    <strong className="block text-white mb-1">Memory Manager Facade</strong>
+                    <span className="text-[11px] text-slate-400 block">getContext() &amp; commit()</span>
+                    <span className="text-[10px] text-purple-400 font-bold">Step 0 &amp; Step 4 Telemetry</span>
+                  </div>
+                  <div className="text-purple-400 font-bold">↔</div>
+                  <div className="p-3 rounded-lg bg-slate-950 border border-emerald-500/40 text-emerald-300 w-full md:w-1/3">
+                    <strong className="block text-white mb-1">Persistent Store</strong>
+                    <span className="text-[11px] text-slate-400 block">data/longTermMemory.json</span>
+                    <span className="text-[10px] text-emerald-400 font-bold">Keyword/Entity Overlap Scoring</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: LIVE EXECUTION LOGS */}
           {activeTab === "logs" && (
             <div className="rounded-xl bg-slate-950 border border-slate-800 p-4 font-mono text-xs space-y-2 max-h-[460px] overflow-y-auto">
               <div className="text-[10px] text-slate-500 uppercase tracking-widest pb-2 border-b border-slate-900 flex justify-between">
-                <span>Timestamp & Agent Identifier</span>
+                <span>Timestamp &amp; Agent Identifier</span>
                 <span>Telemetry Status</span>
               </div>
               {logs.map((log: any, idx: number) => (
@@ -486,7 +612,7 @@ export function MultiAgentArchitectureSection({
             </div>
           )}
 
-          {/* TAB 3: INTER-AGENT PAYLOAD JSON */}
+          {/* TAB 4: INTER-AGENT PAYLOAD JSON */}
           {activeTab === "payload" && (
             <div className="space-y-4">
               <p className="text-xs text-slate-400 font-sans">
@@ -498,7 +624,7 @@ export function MultiAgentArchitectureSection({
             </div>
           )}
 
-          {/* TAB 4: ROLE-SPECIFIC SYSTEM PROMPTS */}
+          {/* TAB 5: ROLE-SPECIFIC SYSTEM PROMPTS */}
           {activeTab === "prompts" && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 rounded-xl bg-slate-950 border border-cyan-500/30 space-y-2">

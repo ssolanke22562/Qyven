@@ -1,6 +1,8 @@
-import { runResearchAgent, RESEARCH_AGENT_SYSTEM_PROMPT } from "./researchAgent";
-import { runAnalysisAgent, ANALYSIS_AGENT_SYSTEM_PROMPT } from "./analysisAgent";
-import { runSynthesisAgent, SYNTHESIS_AGENT_SYSTEM_PROMPT } from "./synthesisAgent";
+import { runResearchAgent } from "./researchAgent";
+import { runAnalysisAgent } from "./analysisAgent";
+import { runSynthesisAgent } from "./synthesisAgent";
+import { memoryManager } from "@/lib/memory/memoryManager";
+import { MemoryContextResult } from "@/lib/memory/types";
 import {
   AgentLog,
   AgentState,
@@ -14,15 +16,26 @@ import {
 export class AgentOrchestrator {
   private query: string;
   private isChatMode: boolean;
+  private sessionId: string;
+  private userId: string;
   private logs: AgentLog[] = [];
   private agentStates: Record<string, AgentState> = {};
   private startTime: number = 0;
 
-  constructor(query: string, isChatMode = false) {
+  constructor(query: string, isChatMode = false, sessionId?: string, userId: string = "anonymous") {
     this.query = query;
     this.isChatMode = isChatMode;
+    this.sessionId = sessionId || (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : `session-${Date.now()}`);
+    this.userId = userId || "anonymous";
 
     this.agentStates = {
+      memoryManager: {
+        name: "Memory Manager",
+        role: "Short-Term & Long-Term Context Gateway",
+        status: "WAITING",
+        currentTask: "Waiting for pipeline initiation",
+        executionTimeMs: 0,
+      },
       researchAgent: {
         name: "Research Agent",
         role: "Data & Source Retrieval Specialist",
@@ -58,7 +71,7 @@ export class AgentOrchestrator {
 
   public async execute(): Promise<OrchestrationResult> {
     this.startTime = Date.now();
-    this.addLog("ORCHESTRATOR", `Task received: "${this.query}"`, "info");
+    this.addLog("ORCHESTRATOR", `Task received: "${this.query}" (Session ID: ${this.sessionId})`, "info");
 
     let researchOutput!: ResearchAgentOutput;
     let analysisOutput!: AnalysisAgentOutput;
@@ -68,14 +81,44 @@ export class AgentOrchestrator {
     let modelUsed = "Google Gemini 2.5 Flash / Groq LPU";
     let isFallback = false;
 
+    // STEP 0: MEMORY RETRIEVAL
+    const tMemoryStart = Date.now();
+    this.agentStates.memoryManager.status = "RUNNING";
+    this.agentStates.memoryManager.currentTask = "Retrieving short-term turns & long-term memory...";
+    this.addLog("ORCHESTRATOR", "Step 0: MEMORY_RETRIEVAL - Accessing short-term sliding window & long-term memory", "info");
+
+    let memoryContext!: MemoryContextResult;
+    try {
+      memoryContext = await memoryManager.getContext(this.sessionId, this.userId, this.query);
+      const tMemoryEnd = Date.now();
+      this.agentStates.memoryManager.executionTimeMs = tMemoryEnd - tMemoryStart;
+      this.agentStates.memoryManager.inputSummary = `Session: ${this.sessionId}, Query: "${this.query}"`;
+      this.agentStates.memoryManager.outputSummary = `${memoryContext.shortTermContext.turns.length} short-term turns, ${memoryContext.relevantPastMemory.length} long-term records retrieved`;
+      this.addLog(
+        "ORCHESTRATOR",
+        `Memory retrieval complete (${memoryContext.shortTermContext.turns.length} short-term turns, ${memoryContext.relevantPastMemory.length} long-term records retrieved)`,
+        "success"
+      );
+    } catch (err: any) {
+      console.warn("Memory retrieval error:", err);
+      memoryContext = {
+        shortTermContext: { sessionId: this.sessionId, turns: [], activeEntities: [], lastUpdated: new Date().toISOString() },
+        shortTermPrompt: "",
+        relevantPastMemory: [],
+      };
+    }
+
     // STEP 1: RESEARCH AGENT
     const tResearchStart = Date.now();
     this.agentStates.researchAgent.status = "RUNNING";
-    this.agentStates.researchAgent.currentTask = "Searching live news & ArXiv papers...";
+    this.agentStates.researchAgent.currentTask = "Searching live news & ArXiv papers with context injection...";
     this.addLog("RESEARCH AGENT", "Searching sources (ArXiv API & News API)...", "info");
 
     try {
-      const researchRes = await runResearchAgent(this.query);
+      const researchRes = await runResearchAgent(this.query, {
+        shortTermPrompt: memoryContext.shortTermPrompt,
+        relevantPastMemory: memoryContext.relevantPastMemory,
+      });
       researchOutput = researchRes.output;
       toolsUsed = researchRes.toolsUsed;
       if (researchRes.modelUsed) modelUsed = researchRes.modelUsed;
@@ -84,7 +127,7 @@ export class AgentOrchestrator {
       this.agentStates.researchAgent.status = "COMPLETED";
       this.agentStates.researchAgent.executionTimeMs = tResearchEnd - tResearchStart;
       this.agentStates.researchAgent.sourcesProcessed = researchOutput.sources.length;
-      this.agentStates.researchAgent.inputSummary = `User Query: "${this.query}"`;
+      this.agentStates.researchAgent.inputSummary = `User Query: "${this.query}" (+ Context Injected)`;
       this.agentStates.researchAgent.outputSummary = `${researchOutput.sources.length} sources retrieved, ${researchOutput.keyFindings.length} findings, confidence: ${researchOutput.confidenceScore}%`;
       this.agentStates.researchAgent.currentTask = "Research completed successfully";
 
@@ -161,7 +204,10 @@ export class AgentOrchestrator {
     this.addLog("SYNTHESIS AGENT", "Generating strategic intelligence briefing...", "info");
 
     try {
-      const synthesisRes = await runSynthesisAgent(researchOutput, analysisOutput, this.isChatMode);
+      const synthesisRes = await runSynthesisAgent(researchOutput, analysisOutput, this.isChatMode, {
+        shortTermPrompt: memoryContext.shortTermPrompt,
+        relevantPastMemory: memoryContext.relevantPastMemory,
+      });
       synthesisOutput = synthesisRes.output;
       formattedMarkdown = synthesisRes.formattedMarkdown;
 
@@ -193,8 +239,30 @@ export class AgentOrchestrator {
       isFallback = true;
     }
 
+    // STEP 4: MEMORY COMMIT
+    const tCommitStart = Date.now();
+    this.addLog("ORCHESTRATOR", "Step 4: MEMORY_COMMIT - Committing turn to short-term & long-term memory stores", "info");
+
+    try {
+      await memoryManager.commit(this.sessionId, this.userId, {
+        query: this.query,
+        summary: synthesisOutput.summary,
+        keyEntities: analysisOutput.extractedEntities.map((e) => e.name),
+        threatRating: synthesisOutput.threatAssessment,
+        groundedNodes: analysisOutput.groundedNodes,
+        keyInsights: analysisOutput.keyInsights,
+      });
+
+      this.agentStates.memoryManager.status = "COMPLETED";
+      this.agentStates.memoryManager.executionTimeMs += Date.now() - tCommitStart;
+      this.agentStates.memoryManager.currentTask = "Context retrieval & turn commit completed";
+      this.addLog("ORCHESTRATOR", "Memory update complete (turn stored in short-term window & persistent record committed)", "success");
+    } catch (err: any) {
+      console.warn("Memory commit error:", err);
+    }
+
     const latencyMs = Date.now() - this.startTime;
-    this.addLog("ORCHESTRATOR", `Final response generated in ${latencyMs}ms across 3 specialized agents`, "success");
+    this.addLog("ORCHESTRATOR", `Final response generated in ${latencyMs}ms across 3 specialized agents + Memory Manager`, "success");
 
     const communicationPayload: InterAgentCommunication = {
       task: this.query,
@@ -202,6 +270,8 @@ export class AgentOrchestrator {
       analysisResults: analysisOutput,
       synthesisIntelligence: synthesisOutput,
     };
+
+    const finalShortTermTurns = memoryContext.shortTermContext.turns.length + 2;
 
     return {
       success: true,
@@ -223,6 +293,13 @@ export class AgentOrchestrator {
       },
       formattedMarkdownResponse: formattedMarkdown,
       isFallback,
+      sessionId: this.sessionId,
+      memory: {
+        sessionId: this.sessionId,
+        shortTermTurns: finalShortTermTurns,
+        longTermRecordsRetrieved: memoryContext.relevantPastMemory.length,
+        longTermRecordsStored: 1,
+      },
     };
   }
 }

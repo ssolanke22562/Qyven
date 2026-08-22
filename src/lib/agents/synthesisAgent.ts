@@ -1,4 +1,5 @@
 import { ResearchAgentOutput, AnalysisAgentOutput, SynthesisAgentOutput } from "./types";
+import { LongTermMemoryRecord } from "@/lib/memory/types";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const GROQ_API_KEY = process.env.GROQ_API_KEY || "";
@@ -18,7 +19,11 @@ Your responsibility:
 export async function runSynthesisAgent(
   research: ResearchAgentOutput,
   analysis: AnalysisAgentOutput,
-  isChatMode = false
+  isChatMode = false,
+  memoryOptions?: {
+    shortTermPrompt?: string;
+    relevantPastMemory?: LongTermMemoryRecord[];
+  }
 ): Promise<{
   output: SynthesisAgentOutput;
   formattedMarkdown?: string;
@@ -35,8 +40,17 @@ export async function runSynthesisAgent(
     .map((r) => `${r.source} --[${r.relationType}]--> ${r.target}`)
     .join("; ");
 
-  const userPrompt = `User Query: "${research.query}"
+  let memoryContextPrompt = "";
+  if (memoryOptions?.shortTermPrompt) {
+    memoryContextPrompt += `\n[SHORT-TERM CONVERSATIONAL HISTORY]:\n${memoryOptions.shortTermPrompt}\n`;
+  }
+  if (memoryOptions?.relevantPastMemory && memoryOptions.relevantPastMemory.length > 0) {
+    memoryContextPrompt += `\n[RETRIEVED CROSS-SESSION LONG-TERM MEMORY]:\n` +
+      memoryOptions.relevantPastMemory.map((r, i) => `• Past Query: "${r.query}" => Insights: ${r.keyInsights.join("; ")} (Grounded: ${r.groundedNodes.join(", ")})`).join("\n") + `\n`;
+  }
 
+  const userPrompt = `User Query: "${research.query}"
+${memoryContextPrompt}
 [RESEARCH AGENT INPUT]
 Confidence: ${research.confidenceScore}%
 Key Findings: ${research.keyFindings.join(" | ")}
@@ -58,7 +72,7 @@ ${isChatMode ? `Format as elegant markdown strictly following:
 (Summarize live signals, breaking news, recent competitor moves FIRST.)
 
 ### 📜 PAST CONTEXT & HISTORICAL BACKGROUND
-(Synthesize historical knowledge graph background, precedent models SECOND.)
+(Synthesize historical knowledge graph background, precedent models, and cross-session past memory SECOND.)
 
 ### 🎯 STRATEGIC TAKEAWAY & THREAT INDEX
 (Provide threat rating and 2-3 actionable executive recommendations.)` : `Return a JSON object with this exact schema:
@@ -142,6 +156,13 @@ ${isChatMode ? `Format as elegant markdown strictly following:
   let summary = `Executive Synthesis: Recent breaking news indicates accelerated competitor moves. Internal historical knowledge graph grounds this against past compute architectures.`;
   let recentNews: string[] = research.sources.map((s) => `• [${s.source || s.type.toUpperCase()}] ${s.title}`);
   let pastContext: string[] = analysis.keyInsights.map((k) => `• ${k}`);
+
+  if (memoryOptions?.relevantPastMemory && memoryOptions.relevantPastMemory.length > 0) {
+    memoryOptions.relevantPastMemory.forEach((rec) => {
+      pastContext.push(`• [Past Session Record] Query: "${rec.query}" - ${rec.keyInsights.join("; ")}`);
+    });
+  }
+
   let threatAssessment = analysis.threatRating || "HIGH (Index: 85/100)";
   let recommendedActions: string[] = [
     "Accelerate internal FP4 dynamic quantization benchmark",
@@ -178,6 +199,10 @@ ${isChatMode ? `Format as elegant markdown strictly following:
     confidenceReasoning,
     evidenceCitations,
     timestamp: new Date().toISOString(),
+    contextUsed: {
+      shortTerm: Boolean(memoryOptions?.shortTermPrompt),
+      longTermRecordsUsed: memoryOptions?.relevantPastMemory?.length || 0,
+    },
   };
 
   const formattedMarkdown = isChatMode
