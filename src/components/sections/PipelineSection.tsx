@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { CanvasWrapper } from "@/components/3d/CanvasWrapper";
@@ -6,7 +6,7 @@ import { Pipeline3DScene } from "@/components/3d/Pipeline3DScene";
 import { PipelineDetailDrawer } from "@/components/ui/PipelineDetailDrawer";
 import { PIPELINE_STAGES } from "@/data/pipelineStages";
 import { PipelineStage } from "@/types";
-import { Radar, BrainCircuit, Network, Sparkles, ArrowRight, Layers, Code, Play, CheckCircle2 } from "lucide-react";
+import { Radar, BrainCircuit, Network, Sparkles, Layers } from "lucide-react";
 
 export function PipelineSection() {
   const [selectedStage, setSelectedStage] = useState<PipelineStage | null>(null);
@@ -33,7 +33,7 @@ export function PipelineSection() {
           From Raw Noise to <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-rose-400">Actionable Intelligence</span>
         </h2>
         <p className="mt-3 text-slate-400 max-w-2xl mx-auto text-sm sm:text-base font-sans">
-          InsightScout operates in an asynchronous 4-phase architecture: multi-stream monitoring, taxonomic vector extraction, topological graph synthesis, and conversational Graph RAG.
+          AgentX operates in an asynchronous 4-phase architecture — powered by the InsightScout Engine: multi-stream monitoring, taxonomic vector extraction, topological graph synthesis, and conversational Graph RAG.
         </p>
 
         {/* View Mode Toggle */}

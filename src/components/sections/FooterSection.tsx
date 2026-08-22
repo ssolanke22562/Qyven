@@ -1,13 +1,16 @@
-﻿"use client";
+"use client";
 
 import React from "react";
-import { Sparkles, Github, FileText, Shield, Terminal, ArrowUp, Heart } from "lucide-react";
+import { Sparkles, Github, Shield, ArrowUp } from "lucide-react";
 
 interface FooterSectionProps {
   onOpenArchitecture?: () => void;
 }
 
 export function FooterSection({ onOpenArchitecture }: FooterSectionProps) {
+  const githubUrl = process.env.NEXT_PUBLIC_GITHUB_URL || "";
+  const archDocUrl = process.env.NEXT_PUBLIC_ARCHITECTURE_DOC_URL || "";
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -31,54 +34,59 @@ export function FooterSection({ onOpenArchitecture }: FooterSectionProps) {
               AGENT<span className="text-cyan-400">X</span>
             </span>
             <span className="text-xs px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 border border-violet-500/30 font-mono">
-              InsightScout Core
+              powered by the InsightScout Engine
             </span>
           </div>
           <p className="text-xs text-slate-400 max-w-sm font-sans leading-relaxed">
-            Autonomous competitor intelligence & research agent built with Next.js, React Three Fiber, Groq LPU, and multi-relational knowledge graphs.
+            Autonomous competitor intelligence & research agent built with Next.js, React Three Fiber, Groq LPU, Google Gemini API, and multi-relational knowledge graphs.
           </p>
         </div>
 
         {/* Quick Links */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-400">
-          <button
-            onClick={onOpenArchitecture}
-            className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
-          >
-            <Shield className="w-3.5 h-3.5 text-violet-400" />
-            <span>Architecture Whitepaper</span>
-          </button>
+          {archDocUrl ? (
+            <a
+              href={archDocUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
+            >
+              <Shield className="w-3.5 h-3.5 text-violet-400" />
+              <span>Architecture Whitepaper</span>
+            </a>
+          ) : (
+            <button
+              onClick={onOpenArchitecture}
+              className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
+            >
+              <Shield className="w-3.5 h-3.5 text-violet-400" />
+              <span>Architecture Whitepaper</span>
+            </button>
+          )}
 
-          <a
-            href="#pipeline"
-            className="hover:text-cyan-400 transition-colors"
-          >
-            Pipeline Flow
+          <a href="#pipeline" className="hover:text-cyan-400 transition-colors">
+            3D Pipeline Flow
           </a>
 
-          <a
-            href="#graph-demo"
-            className="hover:text-cyan-400 transition-colors"
-          >
+          <a href="#graph-demo" className="hover:text-cyan-400 transition-colors">
             3D Graph Demo
           </a>
 
-          <a
-            href="#oracle-simulator"
-            className="hover:text-cyan-400 transition-colors"
-          >
+          <a href="#oracle-simulator" className="hover:text-cyan-400 transition-colors">
             Ask Oracle
           </a>
 
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
-          >
-            <Github className="w-3.5 h-3.5" />
-            <span>GitHub Repository</span>
-          </a>
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
+            >
+              <Github className="w-3.5 h-3.5" />
+              <span>GitHub Repository</span>
+            </a>
+          )}
         </div>
 
         {/* Back to top button */}
@@ -96,7 +104,7 @@ export function FooterSection({ onOpenArchitecture }: FooterSectionProps) {
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span>System Status: All Ingestion & Graph Nodes Operational</span>
         </div>
-        <span>Hackathon Project Showcase 2026 // AgentX / InsightScout</span>
+        <span>Hackathon Project Showcase 2026 // AgentX</span>
       </div>
     </footer>
   );

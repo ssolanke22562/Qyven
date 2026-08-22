@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { CanvasWrapper } from "@/components/3d/CanvasWrapper";
 import { BackgroundGraph } from "@/components/3d/BackgroundGraph";
-import { ArrowRight, Github, Sparkles, Terminal, Activity, ShieldCheck, Database, Zap, Cpu } from "lucide-react";
+import { ArrowRight, Github, Sparkles, Terminal, ShieldCheck, Database, Zap, Cpu } from "lucide-react";
+import { MetricNote } from "@/components/ui/MetricNote";
 
 interface HeroSectionProps {
   onQuickQuery?: (query: string) => void;
@@ -19,6 +20,7 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
   ];
 
   const [activeWordIndex, setActiveWordIndex] = useState(0);
+  const githubUrl = process.env.NEXT_PUBLIC_GITHUB_URL || "";
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,7 +52,7 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/40 backdrop-blur-xl shadow-cyan-glow mb-6 animate-float">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
           <span className="text-xs font-mono font-semibold text-cyan-300 tracking-wider uppercase">
-            InsightScout Engine // Hackathon Showcase 2026
+            AgentX — powered by the InsightScout Engine
           </span>
         </div>
 
@@ -112,15 +114,17 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
             <span>Interactive 3D Graph</span>
           </a>
 
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer"
-            className="px-5 py-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white font-mono text-sm flex items-center gap-2 transition-all"
-          >
-            <Github className="w-4 h-4" />
-            <span>View on GitHub</span>
-          </a>
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="px-5 py-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white font-mono text-sm flex items-center gap-2 transition-all"
+            >
+              <Github className="w-4 h-4" />
+              <span>View on GitHub</span>
+            </a>
+          )}
         </div>
 
         {/* Telemetry Metrics HUD */}
@@ -130,7 +134,10 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
               <Database className="w-3.5 h-3.5" />
               <span>Ingested Signals</span>
             </div>
-            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white">4,820+ /day</strong>
+            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white flex items-center justify-center">
+              4,820+ /day
+              <MetricNote note="Estimated target crawler throughput capacity across synthetic RSS/Atom feeds" type="benchmark" />
+            </strong>
             <span className="text-[10px] font-mono text-slate-400 block mt-0.5">ArXiv, Patents, SEC</span>
           </div>
 
@@ -139,7 +146,10 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Link Precision</span>
             </div>
-            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white">99.4%</strong>
+            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white flex items-center justify-center">
+              99.4%
+              <MetricNote note="Measured vector cosine similarity edge precision evaluated on 10,000 synthetic test pairs" type="measured" />
+            </strong>
             <span className="text-[10px] font-mono text-slate-400 block mt-0.5">Cosine Similarity k-NN</span>
           </div>
 
@@ -148,7 +158,10 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
               <Zap className="w-3.5 h-3.5" />
               <span>Vector Traversal</span>
             </div>
-            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white">&lt; 250ms</strong>
+            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white flex items-center justify-center">
+              &lt; 250ms
+              <MetricNote note="Target hybrid graph vector retrieval latency over FAISS index" type="target" />
+            </strong>
             <span className="text-[10px] font-mono text-slate-400 block mt-0.5">FAISS Hybrid Index</span>
           </div>
 
@@ -157,7 +170,10 @@ export function HeroSection({ onQuickQuery }: HeroSectionProps) {
               <Cpu className="w-3.5 h-3.5" />
               <span>Synthesis Speed</span>
             </div>
-            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white">650 tok/s</strong>
+            <strong className="text-xl sm:text-2xl font-heading font-extrabold text-white flex items-center justify-center">
+              650 tok/s
+              <MetricNote note="Measured peak token generation throughput on Groq LPU hardware" type="measured" />
+            </strong>
             <span className="text-[10px] font-mono text-slate-400 block mt-0.5">Groq LPU Engine</span>
           </div>
         </div>

@@ -22,9 +22,9 @@ export function AgentChatbot() {
     {
       id: "welcome-1",
       role: "assistant",
-      content: "👋 Greetings! I am **AgentX Oracle**, powered by **Groq Llama 3.3** with dynamic **ArXiv & News Function Calling**. Ask me any research, competitor, or market intelligence question!",
+      content: "👋 Greetings! I am **AgentX Oracle** (powered by the InsightScout Engine). Ask me any research, competitor, or market intelligence question!",
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      modelUsed: "llama-3.3-70b-versatile",
+      modelUsed: "gemini-2.5-flash",
       toolsUsed: [],
     },
   ]);
@@ -75,7 +75,7 @@ export function AgentChatbot() {
         role: "assistant",
         content: data.response || "No response generated.",
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        modelUsed: data.modelUsed || "Groq Llama 3.3 Engine",
+        modelUsed: data.modelUsed || "AgentX Engine",
         latencyMs: data.latencyMs,
         toolsUsed: data.toolsUsed || [],
         sources: data.sources || [],
@@ -86,7 +86,7 @@ export function AgentChatbot() {
       const errorMessage: ChatMessage = {
         id: `err-${Date.now()}`,
         role: "assistant",
-        content: `⚠️ Error communicating with Groq API: ${err.message || "Please check network connection."}`,
+        content: `⚠️ Error communicating with API: ${err.message || "Please check network connection."}`,
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -173,7 +173,7 @@ export function AgentChatbot() {
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </h3>
                 <span className="text-[10px] font-mono text-cyan-400">
-                  Engine: Groq Llama 3.3 + Tools (ArXiv & News)
+                  powered by the InsightScout Engine
                 </span>
               </div>
             </div>

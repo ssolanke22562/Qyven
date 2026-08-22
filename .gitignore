@@ -18,6 +18,11 @@
 # Misc
 .DS_Store
 *.pem
+*.png
+*.jpeg
+*.jpg
+*.pdf
+scratch/
 
 # Debug
 npm-debug.log*
@@ -25,10 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Local env files
+# Local env files (NEVER PUSH SECRET KEYS)
 .env*.local
 .env
-scratch/
 
 # Vercel
 .vercel

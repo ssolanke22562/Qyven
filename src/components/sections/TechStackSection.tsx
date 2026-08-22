@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { TECH_STACK_ITEMS } from "@/data/techStackData";
-import { Terminal, Zap, Layers, Share2, Box, GitBranch, Globe, Database, Activity, Cpu } from "lucide-react";
+import { Terminal, Zap, Layers, Share2, Box, GitBranch, Globe, Database, Cpu } from "lucide-react";
+import { MetricNote } from "@/components/ui/MetricNote";
 
 export function TechStackSection() {
   const iconMap: Record<string, any> = {
@@ -34,7 +35,7 @@ export function TechStackSection() {
           Engineered for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-rose-400">Sub-Second Execution</span>
         </h2>
         <p className="mt-3 text-slate-400 max-w-2xl mx-auto text-sm sm:text-base font-sans">
-          Combining asynchronous Python crawling, ultra-fast Groq LPU inference, dense sentence-transformers embeddings, and WebGL 3D hardware acceleration.
+          Combining asynchronous Python crawling, ultra-fast Groq & Gemini inference, dense sentence-transformers embeddings, and WebGL 3D hardware acceleration.
         </p>
       </div>
 
@@ -83,7 +84,10 @@ export function TechStackSection() {
               <div className="pt-4 border-t border-slate-800/80 space-y-2">
                 <div className="flex items-center justify-between text-[11px] font-mono">
                   <span className="text-slate-400">Benchmark:</span>
-                  <strong className="text-cyan-400 font-semibold">{item.latency}</strong>
+                  <div className="flex items-center">
+                    <strong className="text-cyan-400 font-semibold">{item.latency}</strong>
+                    <MetricNote note={`Engine benchmark measurement for ${item.name}`} type="benchmark" />
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap gap-1">

@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { SAFEGUARDS_DATA } from "@/data/safeguardsData";
 import { ShieldCheck, Cpu, Layers, Filter, Zap, ChevronDown, ChevronUp, Code2, CheckCircle2 } from "lucide-react";
+import { MetricNote } from "@/components/ui/MetricNote";
 
 export function SafeguardsSection() {
   const [expandedId, setExpandedId] = useState<number | null>(1);
@@ -109,12 +110,15 @@ export function SafeguardsSection() {
                     </div>
                   </div>
 
-                  {/* Impact Metric Banner */}
-                  <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span className="text-xs font-mono text-emerald-300">
-                      <strong>Measured Impact:</strong> {item.impact}
-                    </span>
+                  {/* Impact Metric Banner with MetricNote */}
+                  <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 flex items-center justify-between gap-2.5">
+                    <div className="flex items-center gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span className="text-xs font-mono text-emerald-300">
+                        <strong>Measured Impact:</strong> {item.impact}
+                      </span>
+                    </div>
+                    <MetricNote note={`Benchmark estimate for Safeguard 0${item.id} evaluated on synthetic pipeline test suite`} type="measured" />
                   </div>
 
                   {/* Code Implementation Sample */}

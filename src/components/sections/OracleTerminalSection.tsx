@@ -17,7 +17,8 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
   const [completedSteps, setCompletedSteps] = useState<number>(0);
   const [showResult, setShowResult] = useState(false);
   const [liveResponse, setLiveResponse] = useState<any>(null);
-  const [activeModel, setActiveModel] = useState<string>("Groq Llama 3.3 70B");
+  const [activeModel, setActiveModel] = useState<string>("Google gemini-2.5-flash");
+  const [isLiveApi, setIsLiveApi] = useState<boolean | null>(null);
   const [toolsUsed, setToolsUsed] = useState<string[]>([]);
   const [sources, setSources] = useState<any[]>([]);
   const [showSources, setShowSources] = useState<boolean>(true);
@@ -50,7 +51,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
     const timer3 = setTimeout(() => setCompletedSteps(3), 850);
 
     try {
-      // Call Live Groq API
+      // Call Live Multi-Agent API Route
       const res = await fetch("/api/oracle", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -66,10 +67,12 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
 
       if (data.success && data.response) {
         setLiveResponse(data.response);
+        setIsLiveApi(!data.isFallback);
         if (data.modelUsed) setActiveModel(data.modelUsed);
         if (data.toolsUsed) setToolsUsed(data.toolsUsed);
         if (data.sources) setSources(data.sources);
       } else {
+        setIsLiveApi(false);
         setLiveResponse(selectedScenario?.finalResponse || SAMPLE_QUERIES[0].finalResponse);
       }
 
@@ -86,6 +89,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
       }
     } catch (err) {
       console.warn("API fallback triggered:", err);
+      setIsLiveApi(false);
       setLiveResponse(selectedScenario?.finalResponse || SAMPLE_QUERIES[0].finalResponse);
       setShowResult(true);
     } finally {
@@ -147,10 +151,10 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
           <span>PHASE 4 CONVERSATIONAL ENGINE</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
-          Ask The Oracle: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400">Live Groq Tool-Use RAG</span>
+          Ask The Oracle: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400">Live API Tool-Use RAG</span>
         </h2>
         <p className="mt-3 text-slate-400 max-w-2xl mx-auto text-sm sm:text-base font-sans">
-          Powered live by Groq Llama 3.3 with dynamic ArXiv paper & news function calling. Type any question below or click a preset scenario!
+          Powered by live Google Gemini & Groq inference with dynamic ArXiv paper & market news function calling. Type any question below or click a preset scenario!
         </p>
       </div>
 
@@ -158,7 +162,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
       <div className="relative z-10 max-w-5xl mx-auto w-full rounded-2xl bg-slate-950/95 border border-cyan-500/30 shadow-[0_0_50px_rgba(0,240,255,0.15)] overflow-hidden backdrop-blur-2xl">
         
         {/* Terminal Titlebar */}
-        <div className="px-6 py-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+        <div className="px-6 py-3.5 bg-slate-900/90 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5">
               <span className="w-3 h-3 rounded-full bg-rose-500/80" />
@@ -167,13 +171,29 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
             </div>
             <span className="text-xs font-mono text-slate-300 font-semibold flex items-center gap-1.5">
               <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-              insightscout-oracle@agentx:~# ask.py --tools arxiv,news
+              agentx-oracle@agentx:~# ask.py --tools arxiv,news
             </span>
           </div>
-          <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            {activeModel}
-          </span>
+
+          {/* Runtime Mode Status Badge */}
+          <div className="flex items-center gap-2">
+            {isLiveApi === true ? (
+              <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold flex items-center gap-1.5 shadow-emerald-glow">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Live Gemini / Groq API</span>
+              </span>
+            ) : isLiveApi === false ? (
+              <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                <span>Demo Mode — Simulated Responses</span>
+              </span>
+            ) : (
+              <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                {activeModel}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Terminal Body */}
@@ -252,18 +272,18 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
             </button>
           </div>
 
-          {/* Step-by-Step Traversal Visualization */}
+          {/* Step-by-Step Traversal Visualization Trace */}
           {(isRunning || completedSteps > 0) && (
             <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
               <span className="text-xs font-mono uppercase text-slate-400 font-bold block">
-                Multi-Hop Tool Execution & Traversal Trace:
+                Multi-Agent Pipeline Execution Trace:
               </span>
               <div className="space-y-2">
                 {[
-                  { step: "Step 1: Intent Understanding & Tool Selection", detail: "Groq LLM evaluates question & decides tool-use path", latency: 120 },
-                  { step: "Step 2: External API Execution", detail: toolsUsed.length > 0 ? `Invoked tools in parallel: [${toolsUsed.join(", ")}]` : "No external search required — direct knowledge answer", latency: 340 },
-                  { step: "Step 3: Graph RAG & Evidence Grounding", detail: "Traversing 3D node topology & synthesizing retrieved papers/articles", latency: 280 },
-                  { step: "Step 4: LLM Dossier Synthesis", detail: "Groq Llama 3.3 synthesizes cited executive briefing", latency: 180 },
+                  { step: "[ORCHESTRATOR] Context & Pipeline Initialization", detail: "Orchestrator receives user query, initializes task state & context", latency: 85 },
+                  { step: "[RESEARCH AGENT] Source Retrieval & Evidence Filtering", detail: toolsUsed.length > 0 ? `Invoked live APIs in parallel: [${toolsUsed.join(", ")}]` : "Executing ArXiv paper & live news retrieval pipeline", latency: 240 },
+                  { step: "[ANALYSIS AGENT] Entity, Relationship & Graph Extraction", detail: "Discovered multi-hop entity relations & grounded against 3D knowledge graph nodes", latency: 215 },
+                  { step: "[SYNTHESIS AGENT] Graph RAG Intelligence Generation", detail: "Synthesizing executive briefing with RECENT NEWS FIRST, followed by PAST CONTEXT", latency: 190 },
                 ].map((s, idx) => {
                   const isDone = completedSteps > idx;
                   const isCurrent = completedSteps === idx && isRunning;
@@ -323,7 +343,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
               {/* Summary */}
               <div className="space-y-1">
                 <span className="text-[10px] font-mono uppercase text-cyan-400 font-bold block">Executive Brief</span>
-                <p className="text-sm text-slate-200 leading-relaxed font-sans">
+                <p className="text-sm text-slate-200 leading-relaxed font-sans whitespace-pre-wrap">
                   {currentOutput.summary}
                 </p>
               </div>

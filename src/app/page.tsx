@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/ui/Navbar";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ProblemSection } from "@/components/sections/ProblemSection";
 import { PipelineSection } from "@/components/sections/PipelineSection";
 import { GraphDemoSection } from "@/components/sections/GraphDemoSection";
 import { TechStackSection } from "@/components/sections/TechStackSection";
@@ -12,6 +13,8 @@ import { FooterSection } from "@/components/sections/FooterSection";
 import { ArchitectureModal } from "@/components/ui/ArchitectureModal";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AgentChatbot } from "@/components/ui/AgentChatbot";
+
+import { MultiAgentArchitectureSection } from "@/components/sections/MultiAgentArchitectureSection";
 
 export default function Home() {
   const [architectureOpen, setArchitectureOpen] = useState(false);
@@ -40,10 +43,18 @@ export default function Home() {
         }}
       />
 
-      {/* 2. Pipeline Flow (3D Interactive Diagram) */}
+      {/* Problem / Solution Framing Section */}
+      <ProblemSection />
+
+      {/* 2. Multi-Agent Architecture Section (3 Specialized Agents & Orchestrator) */}
+      <MultiAgentArchitectureSection
+        onRunDemoQuery={(q) => setOracleQuery(q)}
+      />
+
+      {/* 3. Pipeline Flow (3D Interactive Diagram) */}
       <PipelineSection />
 
-      {/* 3. Live Knowledge Graph Demo (Interactive 3D Sandbox) */}
+      {/* 4. Live Knowledge Graph Demo (Interactive 3D Sandbox) */}
       <GraphDemoSection
         onAskOracle={handleAskOracleFromGraph}
       />
@@ -54,7 +65,7 @@ export default function Home() {
       {/* 5. Strategic Safeguards & Architecture Principles */}
       <SafeguardsSection />
 
-      {/* 6. Live "Ask Oracle" Interactive Simulator (Live Groq LPU) */}
+      {/* 6. Live "Ask Oracle" Interactive Simulator */}
       <OracleTerminalSection
         initialQuery={oracleQuery}
       />
@@ -70,7 +81,7 @@ export default function Home() {
         onClose={() => setArchitectureOpen(false)}
       />
 
-      {/* Live AI Chatbot Widget (Groq LPU Powered) */}
+      {/* Live AI Chatbot Widget */}
       <AgentChatbot />
     </main>
   );
