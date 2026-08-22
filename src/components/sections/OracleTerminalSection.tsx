@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { SAMPLE_QUERIES } from "@/data/sampleQueries";
 import { SampleQuery } from "@/types";
-import { Terminal, Play, Sparkles, CheckCircle2, ArrowRight, ShieldAlert, Cpu, Layers, RefreshCw, Send } from "lucide-react";
+import { Terminal, Play, Sparkles, CheckCircle2, ArrowRight, ShieldAlert, RefreshCw, BookOpen, Newspaper, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import confetti from "canvas-confetti";
 
 interface OracleTerminalSectionProps {
@@ -17,7 +17,10 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
   const [completedSteps, setCompletedSteps] = useState<number>(0);
   const [showResult, setShowResult] = useState(false);
   const [liveResponse, setLiveResponse] = useState<any>(null);
-  const [activeModel, setActiveModel] = useState<string>("Groq LPU (openai/gpt-oss-120b)");
+  const [activeModel, setActiveModel] = useState<string>("Groq Llama 3.3 70B");
+  const [toolsUsed, setToolsUsed] = useState<string[]>([]);
+  const [sources, setSources] = useState<any[]>([]);
+  const [showSources, setShowSources] = useState<boolean>(true);
 
   useEffect(() => {
     if (initialQuery) {
@@ -38,6 +41,8 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
     setCompletedSteps(0);
     setShowResult(false);
     setLiveResponse(null);
+    setToolsUsed([]);
+    setSources([]);
 
     // Step-by-step UI animation
     const timer1 = setTimeout(() => setCompletedSteps(1), 250);
@@ -53,7 +58,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
       });
 
       const data = await res.json();
-      
+
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
@@ -62,6 +67,8 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
       if (data.success && data.response) {
         setLiveResponse(data.response);
         if (data.modelUsed) setActiveModel(data.modelUsed);
+        if (data.toolsUsed) setToolsUsed(data.toolsUsed);
+        if (data.sources) setSources(data.sources);
       } else {
         setLiveResponse(selectedScenario?.finalResponse || SAMPLE_QUERIES[0].finalResponse);
       }
@@ -88,6 +95,42 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
 
   const currentOutput = liveResponse || selectedScenario?.finalResponse || SAMPLE_QUERIES[0].finalResponse;
 
+  const renderToolBadge = () => {
+    const hasArxiv = toolsUsed.includes("arxiv");
+    const hasNews = toolsUsed.includes("news");
+
+    if (hasArxiv && hasNews) {
+      return (
+        <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 font-bold flex items-center gap-1.5 shadow-purple-glow">
+          <span>🔬📰</span>
+          <span>Both (ArXiv + News)</span>
+        </span>
+      );
+    }
+    if (hasArxiv) {
+      return (
+        <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold flex items-center gap-1.5 shadow-cyan-glow">
+          <span>🔬</span>
+          <span>ArXiv Research</span>
+        </span>
+      );
+    }
+    if (hasNews) {
+      return (
+        <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold flex items-center gap-1.5">
+          <span>📰</span>
+          <span>Market News</span>
+        </span>
+      );
+    }
+    return (
+      <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold flex items-center gap-1.5">
+        <span>🧠</span>
+        <span>Direct LLM</span>
+      </span>
+    );
+  };
+
   return (
     <section
       id="oracle-simulator"
@@ -104,10 +147,10 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
           <span>PHASE 4 CONVERSATIONAL ENGINE</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
-          Ask The Oracle: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400">Live Groq Graph RAG</span>
+          Ask The Oracle: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-emerald-400">Live Groq Tool-Use RAG</span>
         </h2>
         <p className="mt-3 text-slate-400 max-w-2xl mx-auto text-sm sm:text-base font-sans">
-          Powered live by Groq LPU inference and dynamic knowledge graph retrieval. Type any question below or click a preset scenario!
+          Powered live by Groq Llama 3.3 with dynamic ArXiv paper & news function calling. Type any question below or click a preset scenario!
         </p>
       </div>
 
@@ -124,7 +167,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
             </div>
             <span className="text-xs font-mono text-slate-300 font-semibold flex items-center gap-1.5">
               <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-              insightscout-oracle@agentx:~# ask.py --live-groq
+              insightscout-oracle@agentx:~# ask.py --tools arxiv,news
             </span>
           </div>
           <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
@@ -176,7 +219,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
             </div>
           </div>
 
-          {/* Interactive Input Bar - Completely clean and empty by default */}
+          {/* Interactive Input Bar */}
           <div className="relative flex items-center gap-2">
             <div className="relative flex-1">
               <input
@@ -186,7 +229,7 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleRunExecution();
                 }}
-                placeholder="Ask Oracle any competitor intelligence question..."
+                placeholder="Ask Oracle any research paper, competitor news, or strategy question..."
                 className="w-full pl-4 pr-10 py-3 bg-slate-900/90 border border-slate-700 rounded-xl text-sm font-mono text-cyan-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors shadow-inner"
               />
             </div>
@@ -198,12 +241,12 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
               {isRunning ? (
                 <>
                   <RefreshCw className="w-4 h-4 animate-spin" />
-                  <span>Traversing...</span>
+                  <span>Evaluating Tools...</span>
                 </>
               ) : (
                 <>
                   <Play className="w-4 h-4" />
-                  <span>Execute RAG</span>
+                  <span>Execute Agent</span>
                 </>
               )}
             </button>
@@ -213,10 +256,15 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
           {(isRunning || completedSteps > 0) && (
             <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
               <span className="text-xs font-mono uppercase text-slate-400 font-bold block">
-                Multi-Hop Traversal Execution Trace:
+                Multi-Hop Tool Execution & Traversal Trace:
               </span>
               <div className="space-y-2">
-                {(selectedScenario?.simulatedSteps || SAMPLE_QUERIES[0].simulatedSteps).map((s, idx) => {
+                {[
+                  { step: "Step 1: Intent Understanding & Tool Selection", detail: "Groq LLM evaluates question & decides tool-use path", latency: 120 },
+                  { step: "Step 2: External API Execution", detail: toolsUsed.length > 0 ? `Invoked tools in parallel: [${toolsUsed.join(", ")}]` : "No external search required — direct knowledge answer", latency: 340 },
+                  { step: "Step 3: Graph RAG & Evidence Grounding", detail: "Traversing 3D node topology & synthesizing retrieved papers/articles", latency: 280 },
+                  { step: "Step 4: LLM Dossier Synthesis", detail: "Groq Llama 3.3 synthesizes cited executive briefing", latency: 180 },
+                ].map((s, idx) => {
                   const isDone = completedSteps > idx;
                   const isCurrent = completedSteps === idx && isRunning;
 
@@ -257,25 +305,94 @@ export function OracleTerminalSection({ initialQuery }: OracleTerminalSectionPro
           {/* Synthesized Output Result Brief */}
           {showResult && (
             <div className="p-6 rounded-xl bg-slate-900/90 border border-cyan-400/50 shadow-cyan-glow space-y-5 animate-in fade-in zoom-in-95 duration-300">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div className="flex flex-wrap items-center justify-between border-b border-slate-800 pb-3 gap-2">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-cyan-400" />
                   <h4 className="text-sm font-mono uppercase font-bold text-white tracking-wider">
-                    Executive Intelligence Dossier (Live Groq Output)
+                    Executive Intelligence Dossier
                   </h4>
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold">
-                  100% Grounded
-                </span>
+                
+                {/* Tool-Use Badge */}
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-slate-400 uppercase">Routing Path:</span>
+                  {renderToolBadge()}
+                </div>
               </div>
 
               {/* Summary */}
               <div className="space-y-1">
-                <span className="text-[10px] font-mono uppercase text-cyan-400 font-bold">Executive Brief</span>
+                <span className="text-[10px] font-mono uppercase text-cyan-400 font-bold block">Executive Brief</span>
                 <p className="text-sm text-slate-200 leading-relaxed font-sans">
                   {currentOutput.summary}
                 </p>
               </div>
+
+              {/* Retrieved Sources Section */}
+              {sources.length > 0 && (
+                <div className="rounded-xl bg-slate-950/80 border border-slate-800 p-4 space-y-3">
+                  <button
+                    onClick={() => setShowSources(!showSources)}
+                    className="w-full flex items-center justify-between text-xs font-mono font-bold text-cyan-300 hover:text-cyan-200 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-4 h-4 text-cyan-400" />
+                      <span>Retrieved External Evidence & Literature ({sources.length})</span>
+                    </div>
+                    {showSources ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  </button>
+
+                  {showSources && (
+                    <div className="space-y-2.5 pt-2 border-t border-slate-800/80">
+                      {sources.map((src, i) => (
+                        <div
+                          key={i}
+                          className="p-3 rounded-lg bg-slate-900/70 border border-slate-800 hover:border-cyan-500/30 transition-colors text-xs font-sans space-y-1 group"
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="flex items-center gap-1.5 font-mono text-[11px]">
+                              {src.type === "arxiv" ? (
+                                <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold flex items-center gap-1">
+                                  <BookOpen className="w-3 h-3" /> ArXiv Paper
+                                </span>
+                              ) : (
+                                <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold flex items-center gap-1">
+                                  <Newspaper className="w-3 h-3" /> {src.source || "News"}
+                                </span>
+                              )}
+                              {src.published && <span className="text-slate-400">• {src.published}</span>}
+                            </div>
+                            {src.link && src.link !== "#" && (
+                              <a
+                                href={src.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-cyan-400 hover:text-cyan-300 flex items-center gap-1 text-[11px] font-mono shrink-0 group-hover:underline"
+                              >
+                                <span>View</span>
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            )}
+                          </div>
+                          <h5 className="font-semibold text-slate-100 text-xs leading-snug">
+                            {src.title}
+                          </h5>
+                          {src.authors && src.authors.length > 0 && (
+                            <p className="text-[11px] text-slate-400 font-mono">
+                              Authors: {src.authors.join(", ")}
+                            </p>
+                          )}
+                          {src.summary && (
+                            <p className="text-slate-300 text-[11px] leading-relaxed line-clamp-2">
+                              {src.summary}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Threat Assessment */}
               {currentOutput.threatAssessment && (

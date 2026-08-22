@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { MessageSquare, X, Send, Sparkles, Bot, User, RefreshCw, Trash2, ChevronDown, Minimize2 } from "lucide-react";
+import { MessageSquare, X, Send, Sparkles, Bot, User, RefreshCw, Trash2, ChevronDown, Minimize2, ExternalLink, BookOpen, Newspaper } from "lucide-react";
 
 interface ChatMessage {
   id: string;
@@ -10,6 +10,8 @@ interface ChatMessage {
   timestamp: string;
   modelUsed?: string;
   latencyMs?: number;
+  toolsUsed?: string[];
+  sources?: any[];
 }
 
 export function AgentChatbot() {
@@ -20,9 +22,10 @@ export function AgentChatbot() {
     {
       id: "welcome-1",
       role: "assistant",
-      content: "👋 Greetings! I am **AgentX Oracle**, powered by **Groq LPU Inference**. Ask me anything about competitor strategies, patent filings, research trends, or topological knowledge graph synthesis!",
+      content: "👋 Greetings! I am **AgentX Oracle**, powered by **Groq Llama 3.3** with dynamic **ArXiv & News Function Calling**. Ask me any research, competitor, or market intelligence question!",
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      modelUsed: "openai/gpt-oss-120b",
+      modelUsed: "llama-3.3-70b-versatile",
+      toolsUsed: [],
     },
   ]);
 
@@ -72,8 +75,10 @@ export function AgentChatbot() {
         role: "assistant",
         content: data.response || "No response generated.",
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        modelUsed: data.modelUsed || "Groq LPU Engine",
+        modelUsed: data.modelUsed || "Groq Llama 3.3 Engine",
         latencyMs: data.latencyMs,
+        toolsUsed: data.toolsUsed || [],
+        sources: data.sources || [],
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -91,11 +96,42 @@ export function AgentChatbot() {
   };
 
   const quickPrompts = [
+    "ArXiv papers on test-time reasoning compute",
+    "Latest news on AI chip manufacturing",
     "Summarize top competitor threats",
     "Explain 3nm custom NPU acquisition",
-    "What is the EU AI Act risk?",
-    "How does Graph RAG work?",
   ];
+
+  const renderBadge = (tools?: string[]) => {
+    if (!tools || tools.length === 0) {
+      return (
+        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+          🧠 Direct
+        </span>
+      );
+    }
+    const hasArXiv = tools.includes("arxiv");
+    const hasNews = tools.includes("news");
+    if (hasArXiv && hasNews) {
+      return (
+        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30 font-bold">
+          🔬📰 Both
+        </span>
+      );
+    }
+    if (hasArXiv) {
+      return (
+        <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold">
+          🔬 ArXiv
+        </span>
+      );
+    }
+    return (
+      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">
+        📰 News
+      </span>
+    );
+  };
 
   return (
     <>
@@ -115,7 +151,7 @@ export function AgentChatbot() {
               AgentX Oracle AI
             </span>
             <span className="text-[10px] font-mono text-slate-900 font-semibold">
-              Live Groq Chat • Online
+              Tool Calling RAG • Online
             </span>
           </div>
         </button>
@@ -137,7 +173,7 @@ export function AgentChatbot() {
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </h3>
                 <span className="text-[10px] font-mono text-cyan-400">
-                  Engine: Groq LPU (Llama / GPT-OSS)
+                  Engine: Groq Llama 3.3 + Tools (ArXiv & News)
                 </span>
               </div>
             </div>
@@ -176,15 +212,37 @@ export function AgentChatbot() {
                   )}
 
                   <div
-                    className={`p-3 rounded-2xl max-w-[82%] leading-relaxed ${
+                    className={`p-3 rounded-2xl max-w-[85%] leading-relaxed ${
                       isUser
                         ? "bg-cyan-500 text-slate-950 font-medium rounded-tr-none shadow-cyan-glow"
-                        : "bg-slate-900/80 border border-slate-800 text-slate-200 rounded-tl-none"
+                        : "bg-slate-900/80 border border-slate-800 text-slate-200 rounded-tl-none space-y-2"
                     }`}
                   >
                     <div className="whitespace-pre-wrap">{msg.content}</div>
+
+                    {!isUser && msg.sources && msg.sources.length > 0 && (
+                      <div className="mt-2 pt-2 border-t border-slate-800/80 space-y-1 font-mono text-[10px]">
+                        <span className="text-slate-400 block font-bold">Retrieved Sources:</span>
+                        {msg.sources.map((s, idx) => (
+                          <a
+                            key={idx}
+                            href={s.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block truncate text-cyan-400 hover:underline flex items-center gap-1"
+                          >
+                            <span>• {s.title}</span>
+                            <ExternalLink className="w-2.5 h-2.5 shrink-0" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="mt-1 flex items-center justify-between text-[9px] opacity-70 font-mono">
-                      <span>{msg.timestamp}</span>
+                      <div className="flex items-center gap-1.5">
+                        <span>{msg.timestamp}</span>
+                        {!isUser && renderBadge(msg.toolsUsed)}
+                      </div>
                       {msg.latencyMs && <span>{msg.latencyMs}ms</span>}
                     </div>
                   </div>
@@ -201,7 +259,7 @@ export function AgentChatbot() {
             {isLoading && (
               <div className="flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-cyan-400 w-fit">
                 <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                <span className="text-[11px] font-mono">Synthesizing intelligence via Groq LPU...</span>
+                <span className="text-[11px] font-mono">Evaluating tool execution & synthesizing...</span>
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -232,7 +290,7 @@ export function AgentChatbot() {
                   handleSendMessage();
                 }
               }}
-              placeholder="Ask Oracle any competitor question..."
+              placeholder="Ask Oracle any research or competitor question..."
               className="flex-1 px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono text-cyan-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors"
             />
             <button
