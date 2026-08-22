@@ -1,5 +1,5 @@
 import { QyvenState } from "@/lib/agents/qyvenState";
-import { PipelineTelemetry } from "../types";
+import { PipelineTelemetry } from "./types";
 
 function extractKeyFindings(state: QyvenState): string[] {
   const research = state.agentOutputs["RESEARCH_AGENT"];

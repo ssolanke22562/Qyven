@@ -31,13 +31,6 @@
 - **Strict Non-Fabrication**: Unscored metrics (e.g. empty ground truth facts or absent evidence claims) are cleanly marked `"unscored"` rather than producing fabricated numbers.
 - **Interactive UI Dashboard & Embedded View**: View complete scorecard metrics directly on the main application (`#eval-scorecard`) or via the dedicated route (`/eval-dashboard`).
 
-### 3. Context & Memory Management
-- **Short-Term Context Gateway**: Sliding window managing turn history, entity recency, and conversational context injection.
-- **Cross-Session Long-Term Memory**: Keyword and entity overlap scoring for persistent cross-session retrieval.
-- **Production Serverless Persistence**: Supports Upstash Redis / Vercel KV REST API with in-memory caching and safe local fallback.
-
-### 4. Interactive 3D Knowledge Graph & Pipeline
-- **3D Self-Organizing Knowledge Graph**: Three.js / React Three Fiber interactive scene with semantic clustering, glowing edges, mouse parallax, and node inspection drawers.
 - **3D Pipeline Visualizer**: Animated ingestion streams modeling data collection, analysis, community clustering, and Graph RAG synthesis.
 
 ---

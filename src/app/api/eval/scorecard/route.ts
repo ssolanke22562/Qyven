@@ -1,12 +1,17 @@
 import { NextResponse } from "next/server";
 import * as fs from "fs";
 import * as path from "path";
+import { buildScorecard } from "../../../../../eval/scoreResults";
 
 export const dynamic = "force-dynamic";
 
 function readJsonIfExists(filePath: string) {
   if (!fs.existsSync(filePath)) return null;
-  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  } catch {
+    return null;
+  }
 }
 
 export async function GET() {
@@ -16,19 +21,28 @@ export async function GET() {
     const resultsPath = path.join(root, "eval", "results", "latest.json");
     const markdownPath = path.join(root, "eval", "scorecard.md");
 
-    const scorecard = readJsonIfExists(scorecardPath);
+    let scorecard = readJsonIfExists(scorecardPath);
     const manifest = readJsonIfExists(resultsPath);
     const markdown = fs.existsSync(markdownPath)
       ? fs.readFileSync(markdownPath, "utf-8")
       : null;
 
+    if (!scorecard && manifest) {
+      try {
+        scorecard = buildScorecard(manifest, resultsPath);
+      } catch (err) {
+        console.warn("Failed to build scorecard from manifest:", err);
+      }
+    }
+
     if (!scorecard && !manifest) {
-      return NextResponse.json(
-        {
-          error: "No evaluation results found. Run `npm run eval` first.",
-        },
-        { status: 404 }
-      );
+      return NextResponse.json({
+        scorecard: null,
+        manifest: null,
+        markdown: null,
+        notMeasured: true,
+        message: "Awaiting evaluation data. Click 'RUN FULL EVALUATION' to execute tests.",
+      });
     }
 
     return NextResponse.json({
@@ -44,6 +58,7 @@ export async function GET() {
           }
         : null,
       markdown,
+      notMeasured: false,
     });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Failed to load scorecard";

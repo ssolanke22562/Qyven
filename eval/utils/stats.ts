@@ -21,8 +21,10 @@ export function jaccardSimilarity(a: string[], b: string[]): number {
   const setA = new Set(a.map((s) => s.toLowerCase()));
   const setB = new Set(b.map((s) => s.toLowerCase()));
   if (setA.size === 0 && setB.size === 0) return 1;
-  const intersection = [...setA].filter((x) => setB.has(x)).length;
-  const union = new Set([...setA, ...setB]).size;
+  const arrA = Array.from(setA);
+  const arrB = Array.from(setB);
+  const intersection = arrA.filter((x) => setB.has(x)).length;
+  const union = new Set(arrA.concat(arrB)).size;
   return union === 0 ? 0 : intersection / union;
 }
 
