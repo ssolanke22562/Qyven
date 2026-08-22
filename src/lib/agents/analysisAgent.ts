@@ -57,7 +57,9 @@ Analyze these research findings and return a JSON object with this exact schema:
   "confidenceScore": 91
 }`;
 
+  let modelUsed = "Groq Engine (groq/compound)";
   let llmText: string | null = null;
+  let tokens: { promptTokens: number; completionTokens: number; totalTokens: number; isEstimated: boolean } | null = null;
 
   // Try Groq API first
   if (GROQ_API_KEY) {
@@ -85,6 +87,15 @@ Analyze these research findings and return a JSON object with this exact schema:
           const text = data.choices?.[0]?.message?.content;
           if (text) {
             llmText = text;
+            modelUsed = `Groq (${model})`;
+            if (data.usage) {
+              tokens = {
+                promptTokens: data.usage.prompt_tokens || 0,
+                completionTokens: data.usage.completion_tokens || 0,
+                totalTokens: data.usage.total_tokens || 0,
+                isEstimated: false,
+              };
+            }
             break;
           }
         }
@@ -120,6 +131,15 @@ Analyze these research findings and return a JSON object with this exact schema:
           const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
           if (text) {
             llmText = text;
+            modelUsed = `Google ${model}`;
+            if (data.usageMetadata) {
+              tokens = {
+                promptTokens: data.usageMetadata.promptTokenCount || 0,
+                completionTokens: data.usageMetadata.candidatesTokenCount || 0,
+                totalTokens: data.usageMetadata.totalTokenCount || 0,
+                isEstimated: false,
+              };
+            }
             break;
           }
         }
@@ -127,6 +147,17 @@ Analyze these research findings and return a JSON object with this exact schema:
         console.warn(`AnalysisAgent Gemini ${model} error:`, e);
       }
     }
+  }
+
+  if (!tokens) {
+    const pTokens = Math.max(1, Math.ceil((ANALYSIS_AGENT_SYSTEM_PROMPT.length + userPrompt.length) / 4));
+    const cTokens = Math.max(1, Math.ceil((llmText || "").length / 4));
+    tokens = {
+      promptTokens: pTokens,
+      completionTokens: cTokens,
+      totalTokens: pTokens + cTokens,
+      isEstimated: true,
+    };
   }
 
   let extractedEntities: AnalysisEntity[] = [];
@@ -215,6 +246,21 @@ Analyze these research findings and return a JSON object with this exact schema:
     threatRating,
     confidenceScore,
     timestamp: new Date().toISOString(),
+    modelUsed,
+    tokenUsage: {
+      promptTokens: tokens.promptTokens,
+      completionTokens: tokens.completionTokens,
+      totalTokens: tokens.totalTokens,
+      isEstimated: tokens.isEstimated,
+      modelName: modelUsed,
+      estimatedCostUsd: (tokens.promptTokens / 1_000_000) * 0.8 + (tokens.completionTokens / 1_000_000) * 0.8,
+    },
+    promptMetadata: {
+      systemPromptSnippet: ANALYSIS_AGENT_SYSTEM_PROMPT.slice(0, 150),
+      userPromptSnippet: userPrompt.slice(0, 200),
+      templateName: "AnalysisAgentPromptV1",
+    },
   };
 }
+
 

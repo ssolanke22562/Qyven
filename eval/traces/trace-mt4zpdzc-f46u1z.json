@@ -1,0 +1,492 @@
+{
+  "traceId": "trace-mt4zpdzc-f46u1z",
+  "runId": "run-mt4zpdzc-88ce",
+  "investigationId": "inv-mt4zpdzc-qfg6",
+  "sessionId": "exp-imp-1-1787440133640",
+  "query": "Analyze competitor AI accelerator wafer allocation",
+  "status": "COMPLETED",
+  "startTimeMs": 1787440133640,
+  "endTimeMs": 1787440134318,
+  "totalDurationMs": 678,
+  "spanCount": 19,
+  "errorSpanCount": 0,
+  "totalPromptTokens": "[REDACTED]",
+  "totalCompletionTokens": "[REDACTED]",
+  "totalTokens": "[REDACTED]",
+  "estimatedTotalCostUsd": 0.0033216,
+  "agentBreakdown": [
+    {
+      "agentRole": "RESEARCH_AGENT",
+      "promptTokens": "[REDACTED]",
+      "completionTokens": "[REDACTED]",
+      "totalTokens": "[REDACTED]",
+      "estimatedCostUsd": 0.0004984000000000001,
+      "callCount": 1
+    },
+    {
+      "agentRole": "ANALYSIS_AGENT",
+      "promptTokens": "[REDACTED]",
+      "completionTokens": "[REDACTED]",
+      "totalTokens": "[REDACTED]",
+      "estimatedCostUsd": 0.0017408,
+      "callCount": 1
+    },
+    {
+      "agentRole": "SYNTHESIS_AGENT",
+      "promptTokens": "[REDACTED]",
+      "completionTokens": "[REDACTED]",
+      "totalTokens": "[REDACTED]",
+      "estimatedCostUsd": 0.0010824,
+      "callCount": 1
+    }
+  ],
+  "spans": [
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpdzc-bmeasa",
+      "name": "pipeline.run",
+      "agentRole": "ORCHESTRATOR",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440133640,
+      "endTimeMs": 1787440134318,
+      "durationMs": 678,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Analyze competitor AI accelerator wafer allocation",
+        "scenario": "news_503",
+        "outputSummary": "Pipeline COMPLETED in 678ms",
+        "confidenceScore": 64,
+        "isFallback": false
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpdzc-z4rggb",
+      "parentSpanId": "span-mt4zpdzc-bmeasa",
+      "name": "node.PLANNER",
+      "agentRole": "PLANNER",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440133640,
+      "endTimeMs": 1787440133641,
+      "durationMs": 1,
+      "status": "ok",
+      "promptMetadata": {
+        "systemPromptSnippet": "Dynamic Supervisor / Planner decomposing research objective into parallel vectors.",
+        "userPromptSnippet": "Analyze competitor AI accelerator wafer allocation",
+        "templateName": "PlannerSupervisorV1"
+      },
+      "attributes": {
+        "outputSummary": "4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor AI accelerator wafer allocation\".)"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "decision-mt4zpdzd-szmms3",
+      "parentSpanId": "span-mt4zpdzc-z4rggb",
+      "name": "decision [ROUTING_DECISION]",
+      "agentRole": "PLANNER",
+      "eventType": "ROUTING_DECISION",
+      "startTimeMs": 1787440133641,
+      "endTimeMs": 1787440133641,
+      "durationMs": 0,
+      "status": "ok",
+      "decision": {
+        "decisionType": "ROUTING_DECISION",
+        "selectedOption": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "alternatives": [
+          "SINGLE_AGENT_FALLBACK",
+          "SEQUENTIAL_PIPELINE"
+        ],
+        "reasonSummary": "Decomposed into 4 parallel investigation vectors: Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor AI accelerator wafer allocation\".",
+        "confidence": 95
+      },
+      "attributes": {
+        "decision": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "decisionType": "ROUTING_DECISION",
+        "reasoning": "Decomposed into 4 parallel investigation vectors: Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor AI accelerator wafer allocation\".",
+        "confidence": 95
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpdzd-ut6sbf",
+      "parentSpanId": "span-mt4zpdzc-bmeasa",
+      "name": "node.PARALLEL_EXECUTION",
+      "agentRole": "PLANNER",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440133641,
+      "endTimeMs": 1787440134313,
+      "durationMs": 672,
+      "status": "ok",
+      "attributes": {
+        "outputSummary": "All tasks completed"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "decision-mt4zpdzd-4gxh8s",
+      "parentSpanId": "span-mt4zpdzd-ut6sbf",
+      "name": "decision [TOOL_SELECTION]",
+      "agentRole": "PLANNER",
+      "eventType": "TOOL_SELECTION",
+      "startTimeMs": 1787440133641,
+      "endTimeMs": 1787440133641,
+      "durationMs": 0,
+      "status": "ok",
+      "decision": {
+        "decisionType": "TOOL_SELECTION",
+        "selectedOption": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "alternatives": [
+          "DEFER_EXECUTION",
+          "SEQUENTIAL_EXECUTION"
+        ],
+        "reasonSummary": "Executing 4 tools concurrently for latency optimization.",
+        "confidence": 90
+      },
+      "attributes": {
+        "decision": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "decisionType": "TOOL_SELECTION",
+        "reasoning": "Executing 4 tools concurrently for latency optimization.",
+        "confidence": 90
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpdzd-1i2z0j",
+      "parentSpanId": "span-mt4zpdzd-ut6sbf",
+      "name": "task.RESEARCH_AGENT",
+      "agentRole": "RESEARCH_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440133641,
+      "endTimeMs": 1787440134313,
+      "durationMs": 672,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Extract published scientific literature & pre-prints regarding \"Analyze competitor AI accelerator wafer allocation\"",
+        "outputSummary": "Retrieved 5 sources (88% confidence)",
+        "sourcesRetrieved": 5,
+        "confidenceScore": 88,
+        "model": "Groq Engine (groq/compound)",
+        "promptTokens": "[REDACTED]",
+        "completionTokens": "[REDACTED]",
+        "totalTokens": "[REDACTED]",
+        "isEstimatedTokens": "[REDACTED]",
+        "estimatedCostUsd": 0.0004984000000000001
+      },
+      "tokenUsage": "[REDACTED]"
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpdzh-8geplf",
+      "parentSpanId": "span-mt4zpdzd-ut6sbf",
+      "name": "task.NEWS_AGENT",
+      "agentRole": "NEWS_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440133646,
+      "endTimeMs": 1787440133646,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Retrieve breaking news & market announcements for \"Analyze competitor AI accelerator wafer allocation\"",
+        "outputSummary": "Bypassed by Runtime Policy (repaired state): context loaded directly from Knowledge Base.",
+        "isFallback": true
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "decision-mt4zpdzi-xd1q6e",
+      "parentSpanId": "span-mt4zpdzh-8geplf",
+      "name": "decision [FALLBACK_DECISION]",
+      "agentRole": "NEWS_AGENT",
+      "eventType": "FALLBACK_DECISION",
+      "startTimeMs": 1787440133646,
+      "endTimeMs": 1787440133646,
+      "durationMs": 0,
+      "status": "ok",
+      "decision": {
+        "decisionType": "FALLBACK_DECISION",
+        "selectedOption": "DIRECT_KB_ROUTING",
+        "alternatives": [
+          "NEWS_AGENT"
+        ],
+        "reasonSummary": "Runtime Policy active: bypassed known unavailable provider NEWS_AGENT.",
+        "confidence": 98
+      },
+      "attributes": {
+        "decision": "DIRECT_KB_ROUTING",
+        "decisionType": "FALLBACK_DECISION",
+        "reasoning": "Runtime Policy active: bypassed known unavailable provider NEWS_AGENT.",
+        "confidence": 98
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpdzi-xkf4ty",
+      "parentSpanId": "span-mt4zpdzd-ut6sbf",
+      "name": "task.PATENT_AGENT",
+      "agentRole": "PATENT_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440133646,
+      "endTimeMs": 1787440133661,
+      "durationMs": 15,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Investigate USPTO/WIPO filings & IP assignments related to \"Analyze competitor AI accelerator wafer allocation\"",
+        "outputSummary": "Retrieved 3 patent specifications"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpdzi-6vcf6w",
+      "parentSpanId": "span-mt4zpdzd-ut6sbf",
+      "name": "task.SEC_AGENT",
+      "agentRole": "SEC_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440133647,
+      "endTimeMs": 1787440133647,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Audit official SEC 10-K, 10-Q & 8-K financial disclosure filings",
+        "outputSummary": "Retrieved 2 SEC EDGAR filings"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "tool-mt4zpdzj-a3210c",
+      "parentSpanId": "span-mt4zpdzi-6vcf6w",
+      "name": "tool.call [searchSecFilings]",
+      "agentRole": "TOOL",
+      "eventType": "TOOL_CALL",
+      "startTimeMs": 1787440133647,
+      "endTimeMs": 1787440133647,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchSecFilings",
+        "toolArgs": "{\"query\":\"Analyze competitor AI accelerator wafer allocation\"}",
+        "toolResult": "2 filings retrieved",
+        "toolLatencyMs": 0,
+        "retryCount": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "tool-mt4zpdzx-l3at2f",
+      "parentSpanId": "span-mt4zpdzi-xkf4ty",
+      "name": "tool.call [searchPatents]",
+      "agentRole": "TOOL",
+      "eventType": "TOOL_CALL",
+      "startTimeMs": 1787440133646,
+      "endTimeMs": 1787440133661,
+      "durationMs": 15,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchPatents",
+        "toolArgs": "{\"query\":\"Analyze competitor AI accelerator wafer allocation\"}",
+        "toolResult": "3 patents retrieved",
+        "toolLatencyMs": 15,
+        "retryCount": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "tool-mt4zpei1-2if6q3",
+      "parentSpanId": "span-mt4zpdzd-1i2z0j",
+      "name": "tool.call [searchArxiv+searchNews]",
+      "agentRole": "TOOL",
+      "eventType": "TOOL_CALL",
+      "startTimeMs": 1787440133641,
+      "endTimeMs": 1787440134313,
+      "durationMs": 672,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchArxiv+searchNews",
+        "toolArgs": "{\"query\":\"Analyze competitor AI accelerator wafer allocation\"}",
+        "toolResult": "5 sources retrieved",
+        "toolLatencyMs": 672,
+        "retryCount": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpei1-uuas8b",
+      "parentSpanId": "span-mt4zpdzc-bmeasa",
+      "name": "node.EVIDENCE_RESOLVER",
+      "agentRole": "EVIDENCE_RESOLVER",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440134313,
+      "endTimeMs": 1787440134313,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "outputSummary": "5 evidence items, 0 conflicts"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpei2-tpv6h2",
+      "parentSpanId": "span-mt4zpdzc-bmeasa",
+      "name": "node.CONFIDENCE_JUDGE",
+      "agentRole": "CONFIDENCE_JUDGE",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440134314,
+      "endTimeMs": 1787440134314,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "confidenceScore": 64,
+        "outputSummary": "Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. "
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpei2-ckmdvg",
+      "parentSpanId": "span-mt4zpdzc-bmeasa",
+      "name": "node.SELF_EVALUATOR",
+      "agentRole": "SELF_EVALUATOR",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440134314,
+      "endTimeMs": 1787440134315,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "decision": "PASSED",
+        "reasoning": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "decision-mt4zpei2-g8m758",
+      "parentSpanId": "span-mt4zpei2-ckmdvg",
+      "name": "decision [SELF_EVAL_DECISION]",
+      "agentRole": "SELF_EVALUATOR",
+      "eventType": "SELF_EVAL_DECISION",
+      "startTimeMs": 1787440134314,
+      "endTimeMs": 1787440134314,
+      "durationMs": 0,
+      "status": "ok",
+      "decision": {
+        "decisionType": "SELF_EVAL_DECISION",
+        "selectedOption": "PASS_QUALITY_GATE",
+        "alternatives": [
+          "TRIGGER_REPLAN"
+        ],
+        "reasonSummary": "Self-evaluator verified answer answers goal with sufficient evidence. Feedback: Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved.",
+        "confidence": 94
+      },
+      "attributes": {
+        "decision": "PASS_QUALITY_GATE",
+        "decisionType": "SELF_EVAL_DECISION",
+        "reasoning": "Self-evaluator verified answer answers goal with sufficient evidence. Feedback: Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved.",
+        "confidence": 94
+      }
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpei3-tj017r",
+      "parentSpanId": "span-mt4zpdzc-bmeasa",
+      "name": "node.ANALYSIS_AGENT",
+      "agentRole": "ANALYSIS_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440134315,
+      "endTimeMs": 1787440134315,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "entitiesExtracted": 5,
+        "outputSummary": "5 entities, 1 relationships",
+        "model": "Groq Engine (groq/compound)",
+        "promptTokens": "[REDACTED]",
+        "completionTokens": "[REDACTED]",
+        "totalTokens": "[REDACTED]",
+        "isEstimatedTokens": "[REDACTED]",
+        "estimatedCostUsd": 0.0017408
+      },
+      "tokenUsage": "[REDACTED]"
+    },
+    {
+      "traceId": "trace-mt4zpdzc-f46u1z",
+      "runId": "run-mt4zpdzc-88ce",
+      "spanId": "span-mt4zpei3-hq8r3z",
+      "parentSpanId": "span-mt4zpdzc-bmeasa",
+      "name": "node.SYNTHESIS_AGENT",
+      "agentRole": "SYNTHESIS_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440134315,
+      "endTimeMs": 1787440134315,
+      "durationMs": 1,
+      "status": "ok",
+      "promptMetadata": {
+        "systemPromptSnippet": "Strategic intelligence synthesis placing Recent News first, Past Context second, Threat Takeaways third.",
+        "userPromptSnippet": "Analyze competitor AI accelerator wafer allocation",
+        "templateName": "SynthesisAgentDossierV1"
+      },
+      "attributes": {
+        "sourcesRetrieved": 5,
+        "inputSummary": "5 sources, 5 entities",
+        "outputSummary": "Synthesis complete. Threat: MEDIUM (Threat Index: 65/100)",
+        "confidenceScore": 64,
+        "model": "Groq Engine (groq/compound)",
+        "promptTokens": "[REDACTED]",
+        "completionTokens": "[REDACTED]",
+        "totalTokens": "[REDACTED]",
+        "isEstimatedTokens": "[REDACTED]",
+        "estimatedCostUsd": 0.0010824
+      },
+      "tokenUsage": "[REDACTED]"
+    }
+  ],
+  "runtimePolicy": {
+    "id": "repaired-policy-1787440133640",
+    "version": 2,
+    "name": "Auto-Repaired Policy for [NEWS_AGENT]",
+    "description": "Activate safe runtime policy: re-route News Agent through cached domain Knowledge Base context and bypass repeated failing API calls.",
+    "retryPolicy": {
+      "maxRetries": 1,
+      "backoffMs": 250,
+      "avoidFailingTools": []
+    },
+    "toolRouting": {
+      "enableNewsFallbackKB": true,
+      "newsTimeoutMs": 5000,
+      "patentTimeoutMs": 6000,
+      "secTimeoutMs": 5000,
+      "bypassUnavailableTools": [
+        "NEWS_AGENT"
+      ],
+      "useDirectKnowledgeFallback": true
+    },
+    "conflictResolutionStrategy": "strict_hierarchy",
+    "confidenceBonusForRecovery": 5,
+    "allowPartialSynthesis": true,
+    "updatedAt": "2026-08-22T23:08:53.640Z"
+  },
+  "demoOptions": {
+    "enableAdversarialMode": false,
+    "scenario": "news_503",
+    "forceNewsFailure": true,
+    "forcePatentTimeout": false,
+    "forceSecUnavailable": false,
+    "forceToolError": false,
+    "injectConflictingEvidence": false
+  }
+}

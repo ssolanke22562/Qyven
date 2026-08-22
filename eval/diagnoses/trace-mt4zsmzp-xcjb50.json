@@ -1,7 +1,7 @@
 {
-  "traceId": "trace-mt4zspnm-52d9ni",
-  "runId": "run-mt4zspnm-jbn0",
-  "diagnosedAt": "2026-08-22T23:11:29.666Z",
+  "traceId": "trace-mt4zsmzp-xcjb50",
+  "runId": "run-mt4zsmzp-7gdy",
+  "diagnosedAt": "2026-08-22T23:11:25.999Z",
   "severityLevel": "HIGH",
   "failedComponent": "NEWS_AGENT",
   "failedTool": "searchNews",
@@ -15,19 +15,19 @@
   ],
   "retryBehavior": "No retries attempted.",
   "fallbackBehavior": "Autonomous replanner activated fallback knowledge context.",
-  "rootCause": "News API tool call failed with \"News API 503 Service Unavailable (Simulated Tool Disruption)\". Span: task.NEWS_AGENT (span-mt4zspnq-bdl8xt). The News Agent was unable to retrieve live market signals, causing Synthesis Agent to proceed with zero news sources unless fallback domain knowledge is configured.",
+  "rootCause": "News API tool call failed with \"News API 503 Service Unavailable (Simulated Tool Disruption)\". Span: task.NEWS_AGENT (span-mt4zsmzt-62e2hv). The News Agent was unable to retrieve live market signals, causing Synthesis Agent to proceed with zero news sources unless fallback domain knowledge is configured.",
   "confidenceScore": 96,
   "failedSpan": {
-    "spanId": "span-mt4zspnq-bdl8xt",
+    "spanId": "span-mt4zsmzt-62e2hv",
     "name": "task.NEWS_AGENT",
     "agentRole": "NEWS_AGENT",
     "errorMessage": "News API 503 Service Unavailable (Simulated Tool Disruption)"
   },
   "suggestedFix": "Activate safe runtime policy: re-route News Agent through cached domain Knowledge Base context and bypass repeated failing API calls.",
   "repairPlan": {
-    "planId": "repair-1787440289666",
-    "traceId": "trace-mt4zspnm-52d9ni",
-    "timestamp": "2026-08-22T23:11:29.666Z",
+    "planId": "repair-1787440285999",
+    "traceId": "trace-mt4zsmzp-xcjb50",
+    "timestamp": "2026-08-22T23:11:25.999Z",
     "triggeringError": "News API 503 Service Unavailable (Simulated Tool Disruption)",
     "failedComponent": "NEWS_AGENT",
     "actions": [

@@ -15,7 +15,6 @@ import {
 } from "@/lib/tracing/tracer";
 import { diagnoseTrace, writeDiagnosis, readTraceFile } from "@/lib/tracing/diagnose";
 
-
 export class QyvenStateGraphEngine {
   private addLog(
     state: QyvenState,
@@ -56,22 +55,40 @@ export class QyvenStateGraphEngine {
     const state = { ...initialState };
     state.status = "PLANNING";
 
+    const scenario = state.demoOptions.scenario || "normal";
+    const isAdversarial = state.demoOptions.enableAdversarialMode;
+
     // Root trace span — wraps entire pipeline
-    const rootSpanId = startSpan(state, "pipeline.run", "ORCHESTRATOR", undefined, {
+    const rootSpanId = startSpan(state, "pipeline.run", "ORCHESTRATOR", undefined, "SPAN_START", undefined, {
       inputSummary: state.userQuery.slice(0, 200),
+      scenario,
     });
 
     // 1. NODE: PLANNER
     const tPlanStart = Date.now();
-    const plannerSpanId = startSpan(state, "node.PLANNER", "PLANNER", rootSpanId);
+    const plannerSpanId = startSpan(state, "node.PLANNER", "PLANNER", rootSpanId, "SPAN_START", {
+      systemPromptSnippet: "Dynamic Supervisor / Planner decomposing research objective into parallel vectors.",
+      userPromptSnippet: state.userQuery,
+      templateName: "PlannerSupervisorV1",
+    });
     this.addLog(state, "Node: PLANNER", "PLANNER", "INFO", `Creating dynamic investigation plan for "${state.userQuery}"...`);
 
     state.currentPlan = await createDynamicPlan(state);
     state.budget.usedLlmCalls += 1;
     this.saveCheckpoint(state, "PLANNER");
+
+    recordDecisionSpan(state, plannerSpanId, "PLANNER", {
+      decisionType: "ROUTING_DECISION",
+      selectedOption: state.currentPlan.tasks.map((t) => t.agent).join(", "),
+      alternatives: ["SINGLE_AGENT_FALLBACK", "SEQUENTIAL_PIPELINE"],
+      reasonSummary: `Decomposed into ${state.currentPlan.tasks.length} parallel investigation vectors: ${state.currentPlan.rationale}`,
+      confidence: 95,
+    });
+
     endSpan(state, plannerSpanId, "ok", {
       outputSummary: `${state.currentPlan.tasks.length} tasks scheduled (${state.currentPlan.rationale})`,
     });
+
     this.addLog(
       state,
       "Node: PLANNER",
@@ -81,7 +98,6 @@ export class QyvenStateGraphEngine {
       { tasksCount: state.currentPlan.tasks.length },
       Date.now() - tPlanStart
     );
-
 
     // 2. NODE: PARALLEL EXECUTION & FAILURE RECOVERY LOOP
     let continueLoop = true;
@@ -106,23 +122,56 @@ export class QyvenStateGraphEngine {
 
       state.status = "EXECUTING";
       const tExecStart = Date.now();
-      const execSpanId = startSpan(state, "node.PARALLEL_EXECUTION", "PLANNER", rootSpanId);
+      const execSpanId = startSpan(state, "node.PARALLEL_EXECUTION", "PLANNER", rootSpanId, "SPAN_START");
 
       // Filter tasks ready for execution in current parallel group
       const pendingTasks = state.currentPlan.tasks.filter((t) => t.status === "PENDING");
       this.addLog(state, "Node: PARALLEL_EXECUTION", "PLANNER", "INFO", `Launching ${pendingTasks.length} investigation tasks in parallel...`);
+
+      recordDecisionSpan(state, execSpanId, "PLANNER", {
+        decisionType: "TOOL_SELECTION",
+        selectedOption: pendingTasks.map((t) => t.agent).join(", "),
+        alternatives: ["DEFER_EXECUTION", "SEQUENTIAL_EXECUTION"],
+        reasonSummary: `Executing ${pendingTasks.length} tools concurrently for latency optimization.`,
+        confidence: 90,
+      });
 
       // Execute all pending tasks concurrently via Promise.all
       const taskResults = await Promise.all(
         pendingTasks.map(async (task) => {
           const taskStart = Date.now();
           task.status = "RUNNING";
-          const taskSpanId = startSpan(state, `task.${task.agent}`, task.agent, execSpanId, {
+          const taskSpanId = startSpan(state, `task.${task.agent}`, task.agent, execSpanId, "SPAN_START", undefined, {
             inputSummary: task.description,
           });
 
-          try {
+          // Check if runtime policy directs to bypass this tool
+          if (state.runtimePolicy?.toolRouting?.bypassUnavailableTools?.includes(task.agent)) {
+            task.status = "COMPLETED";
+            task.executionTimeMs = 15;
+            task.outputSummary = `Bypassed by Runtime Policy (repaired state): context loaded directly from Knowledge Base.`;
+            endSpan(state, taskSpanId, "ok", {
+              outputSummary: task.outputSummary,
+              isFallback: true,
+            });
+            recordDecisionSpan(state, taskSpanId, task.agent, {
+              decisionType: "FALLBACK_DECISION",
+              selectedOption: "DIRECT_KB_ROUTING",
+              alternatives: [task.agent],
+              reasonSummary: `Runtime Policy active: bypassed known unavailable provider ${task.agent}.`,
+              confidence: 98,
+            });
+            return {
+              agent: task.agent,
+              success: true,
+              fallbackUsed: true,
+              articles: [],
+              data: [],
+              summary: `Loaded market domain context for "${state.userQuery}" from internal graph cache.`,
+            };
+          }
 
+          try {
             if (task.agent === "RESEARCH_AGENT") {
               state.budget.usedSearchCalls += 2;
               const toolStart = Date.now();
@@ -135,7 +184,8 @@ export class QyvenStateGraphEngine {
                 outputSummary: task.outputSummary,
                 sourcesRetrieved: res.sources.length,
                 confidenceScore: res.output.confidenceScore,
-              });
+                model: res.modelUsed,
+              }, res.tokenUsage);
               recordToolSpan(state, taskSpanId, "searchArxiv+searchNews", { query: state.userQuery }, toolLatency,
                 `${res.sources.length} sources retrieved`);
               return { agent: task.agent, success: true, data: res.output, sources: res.sources };
@@ -143,7 +193,7 @@ export class QyvenStateGraphEngine {
 
             if (task.agent === "NEWS_AGENT") {
               state.budget.usedSearchCalls += 1;
-              const forceFail = state.demoOptions.forceNewsFailure || state.demoOptions.enableAdversarialMode;
+              const forceFail = state.demoOptions.forceNewsFailure || scenario === "news_503" || isAdversarial;
               const toolStart = Date.now();
               if (forceFail) {
                 await new Promise((r) => setTimeout(r, 200));
@@ -151,7 +201,7 @@ export class QyvenStateGraphEngine {
                 task.status = "FAILED";
                 task.error = errMsg;
                 endSpan(state, taskSpanId, "error", { errorMessage: errMsg, errorType: "HTTP_503" });
-                recordToolSpan(state, taskSpanId, "searchNews", { query: state.userQuery }, 200, undefined, errMsg);
+                recordToolSpan(state, taskSpanId, "searchNews", { query: state.userQuery }, 200, undefined, errMsg, 2);
                 return { agent: task.agent, success: false, error: task.error };
               }
 
@@ -168,16 +218,17 @@ export class QyvenStateGraphEngine {
 
             if (task.agent === "PATENT_AGENT") {
               state.budget.usedSearchCalls += 1;
+              const forceTimeout = state.demoOptions.forcePatentTimeout || scenario === "patent_timeout";
               const toolStart = Date.now();
               const res = await searchPatents(state.userQuery, {
-                forceFailure: state.demoOptions.forcePatentTimeout,
+                forceFailure: forceTimeout,
               });
               const toolLatency = Date.now() - toolStart;
               if (!res.success) {
                 task.status = "FAILED";
                 task.error = res.error?.message;
-                endSpan(state, taskSpanId, "error", { errorMessage: res.error?.message, errorType: "PatentToolFailure" });
-                recordToolSpan(state, taskSpanId, "searchPatents", { query: state.userQuery }, toolLatency, undefined, res.error?.message);
+                endSpan(state, taskSpanId, "error", { errorMessage: res.error?.message, errorType: "PatentToolTimeout" });
+                recordToolSpan(state, taskSpanId, "searchPatents", { query: state.userQuery }, toolLatency, undefined, res.error?.message, 1);
                 return { agent: task.agent, success: false, error: res.error?.message };
               }
               task.status = "COMPLETED";
@@ -191,15 +242,16 @@ export class QyvenStateGraphEngine {
 
             if (task.agent === "SEC_AGENT") {
               state.budget.usedSearchCalls += 1;
+              const forceUnavailable = state.demoOptions.forceSecUnavailable || scenario === "tool_unavailable";
               const toolStart = Date.now();
               const res = await searchSecFilings(state.userQuery, {
-                forceFailure: state.demoOptions.forceSecUnavailable,
+                forceFailure: forceUnavailable,
               });
               const toolLatency = Date.now() - toolStart;
               if (!res.success) {
                 task.status = "FAILED";
                 task.error = res.error?.message;
-                endSpan(state, taskSpanId, "error", { errorMessage: res.error?.message });
+                endSpan(state, taskSpanId, "error", { errorMessage: res.error?.message, errorType: "SecEndpointUnavailable" });
                 recordToolSpan(state, taskSpanId, "searchSecFilings", { query: state.userQuery }, toolLatency, undefined, res.error?.message);
                 return { agent: task.agent, success: false, error: res.error?.message };
               }
@@ -260,9 +312,14 @@ export class QyvenStateGraphEngine {
           state.status = "REPLANNING";
           state.budget.usedReplans += 1;
 
-          recordDecisionSpan(state, rootSpanId, "REPLANNER",
-            "AUTONOMOUS_REPLAN",
-            `Failures detected: [${failureDetails.join("; ")}]. Creating alternate strategy.`);
+          recordDecisionSpan(state, rootSpanId, "REPLANNER", {
+            decisionType: "REPLANNING_DECISION",
+            selectedOption: "CONFIGURE_DOMAIN_KB_FALLBACK",
+            alternatives: ["ABORT_EXECUTION", "RETRY_FAILED_ENDPOINTS_DIRECTLY"],
+            reasonSummary: `Failures detected [${failureDetails.join("; ")}]. Reconfiguring routing through internal domain knowledge base.`,
+            confidence: 90,
+            trigger: failureDetails[0],
+          });
 
           this.addLog(
             state,
@@ -280,6 +337,14 @@ export class QyvenStateGraphEngine {
               summary: `Retrieved market signal context from cached domain knowledge base for "${state.userQuery}".`,
               articles: [],
             };
+            recordDecisionSpan(state, rootSpanId, "NEWS_AGENT", {
+              decisionType: "FALLBACK_DECISION",
+              selectedOption: "CACHED_KNOWLEDGE_BASE",
+              alternatives: ["LIVE_NEWS_API"],
+              reasonSummary: "News API failed with 503; fallback knowledge context activated.",
+              confidence: 88,
+              trigger: "HTTP_503",
+            });
             this.addLog(
               state,
               "Node: REPLANNER_FALLBACK",
@@ -287,6 +352,23 @@ export class QyvenStateGraphEngine {
               "RECOVERY",
               `RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context.`
             );
+          }
+
+          if (state.agentOutputs["PATENT_AGENT"] && !state.agentOutputs["PATENT_AGENT"].success) {
+            state.agentOutputs["PATENT_AGENT"] = {
+              success: true,
+              fallbackUsed: true,
+              summary: `Retrieved patent context from local IP database for "${state.userQuery}".`,
+              data: [],
+            };
+            recordDecisionSpan(state, rootSpanId, "PATENT_AGENT", {
+              decisionType: "FALLBACK_DECISION",
+              selectedOption: "LOCAL_IP_INDEX",
+              alternatives: ["USPTO_API"],
+              reasonSummary: "Patent API timed out; routed to local IP index.",
+              confidence: 85,
+              trigger: "PATENT_TIMEOUT",
+            });
           }
 
           state.currentPlan = await createDynamicPlan(state, {
@@ -298,7 +380,7 @@ export class QyvenStateGraphEngine {
 
       // 4. NODE: EVIDENCE & CONFLICT RESOLUTION AGENT
       const tEvStart = Date.now();
-      const evSpanId = startSpan(state, "node.EVIDENCE_RESOLVER", "EVIDENCE_RESOLVER", rootSpanId);
+      const evSpanId = startSpan(state, "node.EVIDENCE_RESOLVER", "EVIDENCE_RESOLVER", rootSpanId, "SPAN_START");
       const evResult = await processEvidenceAndConflicts(state);
       state.evidenceTable = evResult.evidenceTable;
       state.conflicts = evResult.conflicts;
@@ -309,7 +391,7 @@ export class QyvenStateGraphEngine {
       this.saveCheckpoint(state, "EVIDENCE_RESOLVER");
 
       // 5. NODE: CONFIDENCE JUDGE
-      const confSpanId = startSpan(state, "node.CONFIDENCE_JUDGE", "CONFIDENCE_JUDGE", rootSpanId);
+      const confSpanId = startSpan(state, "node.CONFIDENCE_JUDGE", "CONFIDENCE_JUDGE", rootSpanId, "SPAN_START");
       const conf = calculateDeterministicConfidence(state);
       state.confidence = conf;
       endSpan(state, confSpanId, "ok", { confidenceScore: conf.score, outputSummary: conf.reasoning });
@@ -323,20 +405,33 @@ export class QyvenStateGraphEngine {
 
       // 6. NODE: SELF EVALUATOR
       state.status = "EVALUATING";
-      const selfEvalSpanId = startSpan(state, "node.SELF_EVALUATOR", "SELF_EVALUATOR", rootSpanId);
+      const selfEvalSpanId = startSpan(state, "node.SELF_EVALUATOR", "SELF_EVALUATOR", rootSpanId, "SPAN_START");
       const evalRes = await evaluateInvestigationQuality(state);
       state.selfEvaluation = evalRes;
 
       if (evalRes.passed) {
+        recordDecisionSpan(state, selfEvalSpanId, "SELF_EVALUATOR", {
+          decisionType: "SELF_EVAL_DECISION",
+          selectedOption: "PASS_QUALITY_GATE",
+          alternatives: ["TRIGGER_REPLAN"],
+          reasonSummary: `Self-evaluator verified answer answers goal with sufficient evidence. Feedback: ${evalRes.feedback}`,
+          confidence: 94,
+        });
         endSpan(state, selfEvalSpanId, "ok", { decision: "PASSED", reasoning: evalRes.feedback });
         this.addLog(state, "Node: SELF_EVALUATOR", "SELF_EVALUATOR", "SUCCESS", evalRes.feedback);
         continueLoop = false;
       } else {
+        recordDecisionSpan(state, selfEvalSpanId, "SELF_EVALUATOR", {
+          decisionType: "SELF_EVAL_DECISION",
+          selectedOption: "FAIL_QUALITY_GATE",
+          alternatives: ["PASS_QUALITY_GATE"],
+          reasonSummary: `Quality gate not met: ${evalRes.feedback}`,
+          confidence: 70,
+        });
         endSpan(state, selfEvalSpanId, "error", { decision: "FAILED", reasoning: evalRes.feedback });
         this.addLog(state, "Node: SELF_EVALUATOR", "SELF_EVALUATOR", "WARNING", evalRes.feedback);
         if (state.budget.usedReplans < state.budget.maxReplans) {
           state.budget.usedReplans += 1;
-          recordDecisionSpan(state, rootSpanId, "REPLANNER", "SELF_EVAL_REPLAN", evalRes.feedback);
           state.currentPlan = await createDynamicPlan(state, { isReplan: true, failureContext: evalRes.feedback });
         } else {
           this.addLog(state, "Node: SELF_EVALUATOR", "SELF_EVALUATOR", "INFO", "Max replans budget reached. Finalizing best available output.");
@@ -348,7 +443,7 @@ export class QyvenStateGraphEngine {
     }
 
     // 7. NODE: ANALYSIS & GRAPH GROUNDING
-    const analysisSpanId = startSpan(state, "node.ANALYSIS_AGENT", "EVIDENCE_RESOLVER", rootSpanId);
+    const analysisSpanId = startSpan(state, "node.ANALYSIS_AGENT", "ANALYSIS_AGENT", rootSpanId, "SPAN_START");
     try {
       const researchOutput = state.agentOutputs["RESEARCH_AGENT"]?.data || {
         query: state.userQuery,
@@ -366,13 +461,19 @@ export class QyvenStateGraphEngine {
       endSpan(state, analysisSpanId, "ok", {
         entitiesExtracted: analysisOutput.extractedEntities.length,
         outputSummary: `${analysisOutput.extractedEntities.length} entities, ${analysisOutput.relationships.length} relationships`,
-      });
+        model: analysisOutput.modelUsed,
+      }, analysisOutput.tokenUsage);
 
       // 8. NODE: SYNTHESIS AGENT (Final Intelligence Dossier)
-      const synthesisSpanId = startSpan(state, "node.SYNTHESIS_AGENT", "SYNTHESIS_AGENT", rootSpanId, {
+      const synthesisSpanId = startSpan(state, "node.SYNTHESIS_AGENT", "SYNTHESIS_AGENT", rootSpanId, "SPAN_START", {
+        systemPromptSnippet: "Strategic intelligence synthesis placing Recent News first, Past Context second, Threat Takeaways third.",
+        userPromptSnippet: state.userQuery,
+        templateName: "SynthesisAgentDossierV1",
+      }, {
         sourcesRetrieved: state.sources.length,
         inputSummary: `${state.sources.length} sources, ${analysisOutput.extractedEntities.length} entities`,
       });
+
       const synthesisRes = await runSynthesisAgent(researchOutput, analysisOutput, true);
       state.agentOutputs["SYNTHESIS_AGENT"] = synthesisRes;
 
@@ -391,7 +492,9 @@ export class QyvenStateGraphEngine {
       endSpan(state, synthesisSpanId, "ok", {
         outputSummary: `Synthesis complete. Threat: ${synthesisRes.output.threatAssessment}`,
         confidenceScore: state.confidence.score,
-      });
+        model: synthesisRes.modelUsed,
+      }, synthesisRes.tokenUsage);
+
       this.addLog(state, "Node: SYNTHESIS_AGENT", "SYNTHESIS_AGENT", "SUCCESS", "Final Strategic Intelligence Dossier compiled successfully.");
       this.saveCheckpoint(state, "COMPLETED");
 
@@ -431,7 +534,5 @@ export class QyvenStateGraphEngine {
     return state;
   }
 }
-
-
 
 export const qyvenEngine = new QyvenStateGraphEngine();

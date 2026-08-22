@@ -30,6 +30,8 @@ function extractKeywordsFromQuery(query: string): string[] {
   return words.filter((w) => w.length > 2 && !stopwords.has(w.toLowerCase()));
 }
 
+import { TokenUsage, PromptMetadata } from "../../../eval/types";
+
 export async function runResearchAgent(
   query: string,
   memoryOptions?: {
@@ -41,6 +43,8 @@ export async function runResearchAgent(
   sources: ResearchAgentSource[];
   toolsUsed: string[];
   modelUsed: string;
+  tokenUsage?: TokenUsage;
+  promptMetadata?: PromptMetadata;
 }> {
   const startTime = Date.now();
   const lowerQ = query.toLowerCase();
@@ -105,6 +109,7 @@ Return a valid JSON object with exact keys:
 
   let modelUsed = "Groq Engine (groq/compound)";
   let llmText: string | null = null;
+  let tokens: { promptTokens: number; completionTokens: number; totalTokens: number; isEstimated: boolean } | null = null;
 
   // Try Groq API first (since Groq models are verified active)
   if (GROQ_API_KEY) {
@@ -133,6 +138,14 @@ Return a valid JSON object with exact keys:
           if (text) {
             llmText = text;
             modelUsed = `Groq (${model})`;
+            if (data.usage) {
+              tokens = {
+                promptTokens: data.usage.prompt_tokens || 0,
+                completionTokens: data.usage.completion_tokens || 0,
+                totalTokens: data.usage.total_tokens || 0,
+                isEstimated: false,
+              };
+            }
             break;
           }
         }
@@ -169,6 +182,14 @@ Return a valid JSON object with exact keys:
           if (text) {
             llmText = text;
             modelUsed = `Google ${model}`;
+            if (data.usageMetadata) {
+              tokens = {
+                promptTokens: data.usageMetadata.promptTokenCount || 0,
+                completionTokens: data.usageMetadata.candidatesTokenCount || 0,
+                totalTokens: data.usageMetadata.totalTokenCount || 0,
+                isEstimated: false,
+              };
+            }
             break;
           }
         }
@@ -176,6 +197,18 @@ Return a valid JSON object with exact keys:
         console.warn(`ResearchAgent Gemini ${model} error:`, e);
       }
     }
+  }
+
+  // If no usage header provided, compute estimation
+  if (!tokens) {
+    const pTokens = Math.max(1, Math.ceil((RESEARCH_AGENT_SYSTEM_PROMPT.length + userPrompt.length) / 4));
+    const cTokens = Math.max(1, Math.ceil((llmText || "").length / 4));
+    tokens = {
+      promptTokens: pTokens,
+      completionTokens: cTokens,
+      totalTokens: pTokens + cTokens,
+      isEstimated: true,
+    };
   }
 
   let keyFindings: string[] = [];
@@ -251,6 +284,20 @@ Return a valid JSON object with exact keys:
     sources,
     toolsUsed,
     modelUsed,
+    tokenUsage: {
+      promptTokens: tokens.promptTokens,
+      completionTokens: tokens.completionTokens,
+      totalTokens: tokens.totalTokens,
+      isEstimated: tokens.isEstimated,
+      modelName: modelUsed,
+      estimatedCostUsd: (tokens.promptTokens / 1_000_000) * 0.8 + (tokens.completionTokens / 1_000_000) * 0.8,
+    },
+    promptMetadata: {
+      systemPromptSnippet: RESEARCH_AGENT_SYSTEM_PROMPT.slice(0, 150),
+      userPromptSnippet: userPrompt.slice(0, 200),
+      templateName: "ResearchAgentPromptV1",
+    },
   };
 }
+
 

@@ -32,6 +32,8 @@ export interface ResearchAgentSource {
   relevanceScore?: number;
 }
 
+import { TokenUsage, PromptMetadata } from "../../../eval/types";
+
 export interface ResearchAgentOutput {
   query: string;
   sources: ResearchAgentSource[];
@@ -41,6 +43,8 @@ export interface ResearchAgentOutput {
   confidenceScore: number;
   timestamp: string;
   contextUsed?: { shortTerm: boolean; longTermRecordsUsed: number };
+  tokenUsage?: TokenUsage;
+  promptMetadata?: PromptMetadata;
 }
 
 export interface AnalysisEntity {
@@ -67,6 +71,9 @@ export interface AnalysisAgentOutput {
   threatRating: string;
   confidenceScore: number;
   timestamp: string;
+  modelUsed?: string;
+  tokenUsage?: TokenUsage;
+  promptMetadata?: PromptMetadata;
 }
 
 export interface SynthesisAgentOutput {
@@ -80,6 +87,9 @@ export interface SynthesisAgentOutput {
   evidenceCitations: string[];
   timestamp: string;
   contextUsed?: { shortTerm: boolean; longTermRecordsUsed: number };
+  modelUsed?: string;
+  tokenUsage?: TokenUsage;
+  promptMetadata?: PromptMetadata;
 }
 
 export interface InterAgentCommunication {

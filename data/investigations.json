@@ -1,21 +1,21 @@
 [
   {
-    "investigationId": "inv-mt4za03l-0yvu",
+    "investigationId": "inv-mt4zspnm-b57t",
     "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:56.472Z",
+    "timestamp": "2026-08-22T23:11:29.657Z",
     "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
     "confidenceScore": 61,
     "evidenceCount": 5,
     "conflictsCount": 0,
     "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
     "threatAssessment": "MEDIUM (Threat Index: 65/100)",
     "executionHistory": [
       {
         "stepId": "step-1",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
+        "timestamp": "04:41:28 am",
         "status": "INFO",
         "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
       },
@@ -23,7 +23,7 @@
         "stepId": "step-2",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
+        "timestamp": "04:41:28 am",
         "status": "SUCCESS",
         "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
         "details": {
@@ -35,7 +35,7 @@
         "stepId": "step-3",
         "nodeName": "Node: PARALLEL_EXECUTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
+        "timestamp": "04:41:28 am",
         "status": "INFO",
         "message": "Launching 4 investigation tasks in parallel..."
       },
@@ -43,7 +43,7 @@
         "stepId": "step-4",
         "nodeName": "Node: TOOL_FAILURE_DETECTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:56 am",
+        "timestamp": "04:41:29 am",
         "status": "FAILURE",
         "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
         "details": {
@@ -56,7 +56,7 @@
         "stepId": "step-5",
         "nodeName": "Node: REPLANNER",
         "agentRole": "REPLANNER",
-        "timestamp": "04:26:56 am",
+        "timestamp": "04:41:29 am",
         "status": "REPLAN",
         "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
       },
@@ -64,7 +64,7 @@
         "stepId": "step-6",
         "nodeName": "Node: REPLANNER_FALLBACK",
         "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:56 am",
+        "timestamp": "04:41:29 am",
         "status": "RECOVERY",
         "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
       },
@@ -72,7 +72,7 @@
         "stepId": "step-7",
         "nodeName": "Node: EVIDENCE_RESOLVER",
         "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:56 am",
+        "timestamp": "04:41:29 am",
         "status": "INFO",
         "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
         "details": null,
@@ -82,7 +82,7 @@
         "stepId": "step-8",
         "nodeName": "Node: CONFIDENCE_JUDGE",
         "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:56 am",
+        "timestamp": "04:41:29 am",
         "status": "SUCCESS",
         "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
       },
@@ -90,7 +90,7 @@
         "stepId": "step-9",
         "nodeName": "Node: SELF_EVALUATOR",
         "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:56 am",
+        "timestamp": "04:41:29 am",
         "status": "SUCCESS",
         "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
       },
@@ -98,7 +98,7 @@
         "stepId": "step-10",
         "nodeName": "Node: SYNTHESIS_AGENT",
         "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:56 am",
+        "timestamp": "04:41:29 am",
         "status": "SUCCESS",
         "message": "Final Strategic Intelligence Dossier compiled successfully."
       }
@@ -107,7 +107,7 @@
       {
         "checkpointId": "chk-1",
         "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:55.810Z",
+        "timestamp": "2026-08-22T23:11:28.739Z",
         "planVersion": 1,
         "completedTasksCount": 0,
         "evidenceCount": 0,
@@ -117,7 +117,7 @@
       {
         "checkpointId": "chk-2",
         "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:56.471Z",
+        "timestamp": "2026-08-22T23:11:29.655Z",
         "planVersion": 1,
         "completedTasksCount": 3,
         "evidenceCount": 0,
@@ -127,7 +127,7 @@
       {
         "checkpointId": "chk-3",
         "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:56.472Z",
+        "timestamp": "2026-08-22T23:11:29.656Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -137,7 +137,7 @@
       {
         "checkpointId": "chk-4",
         "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:56.472Z",
+        "timestamp": "2026-08-22T23:11:29.657Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -147,22 +147,22 @@
     ]
   },
   {
-    "investigationId": "inv-mt4z9zl4-wapq",
+    "investigationId": "inv-mt4zsp47-969a",
     "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:55.797Z",
+    "timestamp": "2026-08-22T23:11:28.726Z",
     "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
     "confidenceScore": 61,
     "evidenceCount": 5,
     "conflictsCount": 0,
     "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
     "threatAssessment": "MEDIUM (Threat Index: 65/100)",
     "executionHistory": [
       {
         "stepId": "step-1",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
+        "timestamp": "04:41:28 am",
         "status": "INFO",
         "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
       },
@@ -170,448 +170,7 @@
         "stepId": "step-2",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
-        "status": "SUCCESS",
-        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
-        "details": {
-          "tasksCount": 4
-        },
-        "executionTimeMs": 0
-      },
-      {
-        "stepId": "step-3",
-        "nodeName": "Node: PARALLEL_EXECUTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
-        "status": "INFO",
-        "message": "Launching 4 investigation tasks in parallel..."
-      },
-      {
-        "stepId": "step-4",
-        "nodeName": "Node: TOOL_FAILURE_DETECTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
-        "status": "FAILURE",
-        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
-        "details": {
-          "failureDetails": [
-            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
-          ]
-        }
-      },
-      {
-        "stepId": "step-5",
-        "nodeName": "Node: REPLANNER",
-        "agentRole": "REPLANNER",
-        "timestamp": "04:26:55 am",
-        "status": "REPLAN",
-        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
-      },
-      {
-        "stepId": "step-6",
-        "nodeName": "Node: REPLANNER_FALLBACK",
-        "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:55 am",
-        "status": "RECOVERY",
-        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
-      },
-      {
-        "stepId": "step-7",
-        "nodeName": "Node: EVIDENCE_RESOLVER",
-        "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:55 am",
-        "status": "INFO",
-        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
-        "details": null,
-        "executionTimeMs": 1
-      },
-      {
-        "stepId": "step-8",
-        "nodeName": "Node: CONFIDENCE_JUDGE",
-        "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:55 am",
-        "status": "SUCCESS",
-        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
-      },
-      {
-        "stepId": "step-9",
-        "nodeName": "Node: SELF_EVALUATOR",
-        "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:55 am",
-        "status": "SUCCESS",
-        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
-      },
-      {
-        "stepId": "step-10",
-        "nodeName": "Node: SYNTHESIS_AGENT",
-        "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:55 am",
-        "status": "SUCCESS",
-        "message": "Final Strategic Intelligence Dossier compiled successfully."
-      }
-    ],
-    "checkpoints": [
-      {
-        "checkpointId": "chk-1",
-        "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:55.144Z",
-        "planVersion": 1,
-        "completedTasksCount": 0,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-2",
-        "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:55.796Z",
-        "planVersion": 1,
-        "completedTasksCount": 3,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-3",
-        "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:55.797Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-4",
-        "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:55.797Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 61
-      }
-    ]
-  },
-  {
-    "investigationId": "inv-mt4z9z23-ctss",
-    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:55.137Z",
-    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "confidenceScore": 61,
-    "evidenceCount": 5,
-    "conflictsCount": 0,
-    "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
-    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
-    "executionHistory": [
-      {
-        "stepId": "step-1",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:54 am",
-        "status": "INFO",
-        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
-      },
-      {
-        "stepId": "step-2",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:54 am",
-        "status": "SUCCESS",
-        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
-        "details": {
-          "tasksCount": 4
-        },
-        "executionTimeMs": 0
-      },
-      {
-        "stepId": "step-3",
-        "nodeName": "Node: PARALLEL_EXECUTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:54 am",
-        "status": "INFO",
-        "message": "Launching 4 investigation tasks in parallel..."
-      },
-      {
-        "stepId": "step-4",
-        "nodeName": "Node: TOOL_FAILURE_DETECTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:55 am",
-        "status": "FAILURE",
-        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
-        "details": {
-          "failureDetails": [
-            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
-          ]
-        }
-      },
-      {
-        "stepId": "step-5",
-        "nodeName": "Node: REPLANNER",
-        "agentRole": "REPLANNER",
-        "timestamp": "04:26:55 am",
-        "status": "REPLAN",
-        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
-      },
-      {
-        "stepId": "step-6",
-        "nodeName": "Node: REPLANNER_FALLBACK",
-        "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:55 am",
-        "status": "RECOVERY",
-        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
-      },
-      {
-        "stepId": "step-7",
-        "nodeName": "Node: EVIDENCE_RESOLVER",
-        "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:55 am",
-        "status": "INFO",
-        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
-        "details": null,
-        "executionTimeMs": 0
-      },
-      {
-        "stepId": "step-8",
-        "nodeName": "Node: CONFIDENCE_JUDGE",
-        "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:55 am",
-        "status": "SUCCESS",
-        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
-      },
-      {
-        "stepId": "step-9",
-        "nodeName": "Node: SELF_EVALUATOR",
-        "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:55 am",
-        "status": "SUCCESS",
-        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
-      },
-      {
-        "stepId": "step-10",
-        "nodeName": "Node: SYNTHESIS_AGENT",
-        "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:55 am",
-        "status": "SUCCESS",
-        "message": "Final Strategic Intelligence Dossier compiled successfully."
-      }
-    ],
-    "checkpoints": [
-      {
-        "checkpointId": "chk-1",
-        "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:54.459Z",
-        "planVersion": 1,
-        "completedTasksCount": 0,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-2",
-        "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:55.135Z",
-        "planVersion": 1,
-        "completedTasksCount": 3,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-3",
-        "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:55.136Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-4",
-        "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:55.137Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 61
-      }
-    ]
-  },
-  {
-    "investigationId": "inv-mt4z9yiw-zskf",
-    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:54.452Z",
-    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "confidenceScore": 61,
-    "evidenceCount": 5,
-    "conflictsCount": 0,
-    "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
-    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
-    "executionHistory": [
-      {
-        "stepId": "step-1",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
-        "status": "INFO",
-        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
-      },
-      {
-        "stepId": "step-2",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
-        "status": "SUCCESS",
-        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
-        "details": {
-          "tasksCount": 4
-        },
-        "executionTimeMs": 0
-      },
-      {
-        "stepId": "step-3",
-        "nodeName": "Node: PARALLEL_EXECUTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
-        "status": "INFO",
-        "message": "Launching 4 investigation tasks in parallel..."
-      },
-      {
-        "stepId": "step-4",
-        "nodeName": "Node: TOOL_FAILURE_DETECTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:54 am",
-        "status": "FAILURE",
-        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
-        "details": {
-          "failureDetails": [
-            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
-          ]
-        }
-      },
-      {
-        "stepId": "step-5",
-        "nodeName": "Node: REPLANNER",
-        "agentRole": "REPLANNER",
-        "timestamp": "04:26:54 am",
-        "status": "REPLAN",
-        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
-      },
-      {
-        "stepId": "step-6",
-        "nodeName": "Node: REPLANNER_FALLBACK",
-        "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:54 am",
-        "status": "RECOVERY",
-        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
-      },
-      {
-        "stepId": "step-7",
-        "nodeName": "Node: EVIDENCE_RESOLVER",
-        "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:54 am",
-        "status": "INFO",
-        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
-        "details": null,
-        "executionTimeMs": 0
-      },
-      {
-        "stepId": "step-8",
-        "nodeName": "Node: CONFIDENCE_JUDGE",
-        "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:54 am",
-        "status": "SUCCESS",
-        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
-      },
-      {
-        "stepId": "step-9",
-        "nodeName": "Node: SELF_EVALUATOR",
-        "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:54 am",
-        "status": "SUCCESS",
-        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
-      },
-      {
-        "stepId": "step-10",
-        "nodeName": "Node: SYNTHESIS_AGENT",
-        "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:54 am",
-        "status": "SUCCESS",
-        "message": "Final Strategic Intelligence Dossier compiled successfully."
-      }
-    ],
-    "checkpoints": [
-      {
-        "checkpointId": "chk-1",
-        "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:53.768Z",
-        "planVersion": 1,
-        "completedTasksCount": 0,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-2",
-        "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:54.451Z",
-        "planVersion": 1,
-        "completedTasksCount": 3,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-3",
-        "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:54.452Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-4",
-        "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:54.452Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 61
-      }
-    ]
-  },
-  {
-    "investigationId": "inv-mt4z9y0f-38ru",
-    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:53.759Z",
-    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "confidenceScore": 61,
-    "evidenceCount": 5,
-    "conflictsCount": 0,
-    "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
-    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
-    "executionHistory": [
-      {
-        "stepId": "step-1",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
-        "status": "INFO",
-        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
-      },
-      {
-        "stepId": "step-2",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "SUCCESS",
         "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
         "details": {
@@ -623,7 +182,7 @@
         "stepId": "step-3",
         "nodeName": "Node: PARALLEL_EXECUTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "INFO",
         "message": "Launching 4 investigation tasks in parallel..."
       },
@@ -631,7 +190,7 @@
         "stepId": "step-4",
         "nodeName": "Node: TOOL_FAILURE_DETECTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "FAILURE",
         "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
         "details": {
@@ -644,7 +203,7 @@
         "stepId": "step-5",
         "nodeName": "Node: REPLANNER",
         "agentRole": "REPLANNER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "REPLAN",
         "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
       },
@@ -652,7 +211,7 @@
         "stepId": "step-6",
         "nodeName": "Node: REPLANNER_FALLBACK",
         "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "RECOVERY",
         "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
       },
@@ -660,7 +219,7 @@
         "stepId": "step-7",
         "nodeName": "Node: EVIDENCE_RESOLVER",
         "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "INFO",
         "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
         "details": null,
@@ -670,7 +229,7 @@
         "stepId": "step-8",
         "nodeName": "Node: CONFIDENCE_JUDGE",
         "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "SUCCESS",
         "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
       },
@@ -678,7 +237,7 @@
         "stepId": "step-9",
         "nodeName": "Node: SELF_EVALUATOR",
         "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "SUCCESS",
         "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
       },
@@ -686,7 +245,7 @@
         "stepId": "step-10",
         "nodeName": "Node: SYNTHESIS_AGENT",
         "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:28 am",
         "status": "SUCCESS",
         "message": "Final Strategic Intelligence Dossier compiled successfully."
       }
@@ -695,7 +254,7 @@
       {
         "checkpointId": "chk-1",
         "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:53.104Z",
+        "timestamp": "2026-08-22T23:11:28.040Z",
         "planVersion": 1,
         "completedTasksCount": 0,
         "evidenceCount": 0,
@@ -705,7 +264,7 @@
       {
         "checkpointId": "chk-2",
         "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:53.758Z",
+        "timestamp": "2026-08-22T23:11:28.723Z",
         "planVersion": 1,
         "completedTasksCount": 3,
         "evidenceCount": 0,
@@ -715,7 +274,7 @@
       {
         "checkpointId": "chk-3",
         "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:53.758Z",
+        "timestamp": "2026-08-22T23:11:28.725Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -725,7 +284,7 @@
       {
         "checkpointId": "chk-4",
         "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:53.759Z",
+        "timestamp": "2026-08-22T23:11:28.726Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -735,22 +294,22 @@
     ]
   },
   {
-    "investigationId": "inv-mt4z9xhn-1qwv",
+    "investigationId": "inv-mt4zsokf-9fvl",
     "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:53.092Z",
+    "timestamp": "2026-08-22T23:11:28.027Z",
     "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
     "confidenceScore": 61,
     "evidenceCount": 5,
     "conflictsCount": 0,
     "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
     "threatAssessment": "MEDIUM (Threat Index: 65/100)",
     "executionHistory": [
       {
         "stepId": "step-1",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:52 am",
+        "timestamp": "04:41:27 am",
         "status": "INFO",
         "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
       },
@@ -758,7 +317,154 @@
         "stepId": "step-2",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:52 am",
+        "timestamp": "04:41:27 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:27 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:28 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "04:41:28 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "04:41:28 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "04:41:28 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "04:41:28 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "04:41:28 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "04:41:28 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T23:11:27.327Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T23:11:28.023Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T23:11:28.025Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T23:11:28.027Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4zso24-hrnz",
+    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "timestamp": "2026-08-22T23:11:27.315Z",
+    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:26 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:26 am",
         "status": "SUCCESS",
         "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
         "details": {
@@ -770,7 +476,7 @@
         "stepId": "step-3",
         "nodeName": "Node: PARALLEL_EXECUTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:52 am",
+        "timestamp": "04:41:26 am",
         "status": "INFO",
         "message": "Launching 4 investigation tasks in parallel..."
       },
@@ -778,7 +484,7 @@
         "stepId": "step-4",
         "nodeName": "Node: TOOL_FAILURE_DETECTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:27 am",
         "status": "FAILURE",
         "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
         "details": {
@@ -791,7 +497,7 @@
         "stepId": "step-5",
         "nodeName": "Node: REPLANNER",
         "agentRole": "REPLANNER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:27 am",
         "status": "REPLAN",
         "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
       },
@@ -799,7 +505,7 @@
         "stepId": "step-6",
         "nodeName": "Node: REPLANNER_FALLBACK",
         "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:27 am",
         "status": "RECOVERY",
         "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
       },
@@ -807,7 +513,7 @@
         "stepId": "step-7",
         "nodeName": "Node: EVIDENCE_RESOLVER",
         "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:27 am",
         "status": "INFO",
         "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
         "details": null,
@@ -817,7 +523,7 @@
         "stepId": "step-8",
         "nodeName": "Node: CONFIDENCE_JUDGE",
         "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:27 am",
         "status": "SUCCESS",
         "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
       },
@@ -825,7 +531,7 @@
         "stepId": "step-9",
         "nodeName": "Node: SELF_EVALUATOR",
         "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:27 am",
         "status": "SUCCESS",
         "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
       },
@@ -833,7 +539,7 @@
         "stepId": "step-10",
         "nodeName": "Node: SYNTHESIS_AGENT",
         "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:53 am",
+        "timestamp": "04:41:27 am",
         "status": "SUCCESS",
         "message": "Final Strategic Intelligence Dossier compiled successfully."
       }
@@ -842,7 +548,7 @@
       {
         "checkpointId": "chk-1",
         "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:52.428Z",
+        "timestamp": "2026-08-22T23:11:26.668Z",
         "planVersion": 1,
         "completedTasksCount": 0,
         "evidenceCount": 0,
@@ -852,7 +558,7 @@
       {
         "checkpointId": "chk-2",
         "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:53.089Z",
+        "timestamp": "2026-08-22T23:11:27.312Z",
         "planVersion": 1,
         "completedTasksCount": 3,
         "evidenceCount": 0,
@@ -862,7 +568,7 @@
       {
         "checkpointId": "chk-3",
         "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:53.091Z",
+        "timestamp": "2026-08-22T23:11:27.313Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -872,7 +578,7 @@
       {
         "checkpointId": "chk-4",
         "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:53.092Z",
+        "timestamp": "2026-08-22T23:11:27.315Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -882,22 +588,22 @@
     ]
   },
   {
-    "investigationId": "inv-mt4z9wtr-py16",
+    "investigationId": "inv-mt4zsnjp-ofe6",
     "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:52.417Z",
+    "timestamp": "2026-08-22T23:11:26.656Z",
     "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
     "confidenceScore": 61,
     "evidenceCount": 5,
     "conflictsCount": 0,
     "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
     "threatAssessment": "MEDIUM (Threat Index: 65/100)",
     "executionHistory": [
       {
         "stepId": "step-1",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "INFO",
         "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
       },
@@ -905,154 +611,7 @@
         "stepId": "step-2",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:51 am",
-        "status": "SUCCESS",
-        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
-        "details": {
-          "tasksCount": 4
-        },
-        "executionTimeMs": 0
-      },
-      {
-        "stepId": "step-3",
-        "nodeName": "Node: PARALLEL_EXECUTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:51 am",
-        "status": "INFO",
-        "message": "Launching 4 investigation tasks in parallel..."
-      },
-      {
-        "stepId": "step-4",
-        "nodeName": "Node: TOOL_FAILURE_DETECTION",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:52 am",
-        "status": "FAILURE",
-        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
-        "details": {
-          "failureDetails": [
-            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
-          ]
-        }
-      },
-      {
-        "stepId": "step-5",
-        "nodeName": "Node: REPLANNER",
-        "agentRole": "REPLANNER",
-        "timestamp": "04:26:52 am",
-        "status": "REPLAN",
-        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
-      },
-      {
-        "stepId": "step-6",
-        "nodeName": "Node: REPLANNER_FALLBACK",
-        "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:52 am",
-        "status": "RECOVERY",
-        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
-      },
-      {
-        "stepId": "step-7",
-        "nodeName": "Node: EVIDENCE_RESOLVER",
-        "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:52 am",
-        "status": "INFO",
-        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
-        "details": null,
-        "executionTimeMs": 0
-      },
-      {
-        "stepId": "step-8",
-        "nodeName": "Node: CONFIDENCE_JUDGE",
-        "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:52 am",
-        "status": "SUCCESS",
-        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
-      },
-      {
-        "stepId": "step-9",
-        "nodeName": "Node: SELF_EVALUATOR",
-        "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:52 am",
-        "status": "SUCCESS",
-        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
-      },
-      {
-        "stepId": "step-10",
-        "nodeName": "Node: SYNTHESIS_AGENT",
-        "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:52 am",
-        "status": "SUCCESS",
-        "message": "Final Strategic Intelligence Dossier compiled successfully."
-      }
-    ],
-    "checkpoints": [
-      {
-        "checkpointId": "chk-1",
-        "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:51.567Z",
-        "planVersion": 1,
-        "completedTasksCount": 0,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-2",
-        "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:52.416Z",
-        "planVersion": 1,
-        "completedTasksCount": 3,
-        "evidenceCount": 0,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-3",
-        "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:52.416Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 50
-      },
-      {
-        "checkpointId": "chk-4",
-        "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:52.417Z",
-        "planVersion": 2,
-        "completedTasksCount": 0,
-        "evidenceCount": 5,
-        "conflictsCount": 0,
-        "confidenceScore": 61
-      }
-    ]
-  },
-  {
-    "investigationId": "inv-mt4z9wbf-vf6b",
-    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:51.558Z",
-    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "confidenceScore": 61,
-    "evidenceCount": 5,
-    "conflictsCount": 0,
-    "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
-    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
-    "executionHistory": [
-      {
-        "stepId": "step-1",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
-        "status": "INFO",
-        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
-      },
-      {
-        "stepId": "step-2",
-        "nodeName": "Node: PLANNER",
-        "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:26 am",
         "status": "SUCCESS",
         "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
         "details": {
@@ -1064,7 +623,7 @@
         "stepId": "step-3",
         "nodeName": "Node: PARALLEL_EXECUTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:26 am",
         "status": "INFO",
         "message": "Launching 4 investigation tasks in parallel..."
       },
@@ -1072,7 +631,7 @@
         "stepId": "step-4",
         "nodeName": "Node: TOOL_FAILURE_DETECTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "FAILURE",
         "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
         "details": {
@@ -1085,7 +644,7 @@
         "stepId": "step-5",
         "nodeName": "Node: REPLANNER",
         "agentRole": "REPLANNER",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "REPLAN",
         "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
       },
@@ -1093,7 +652,7 @@
         "stepId": "step-6",
         "nodeName": "Node: REPLANNER_FALLBACK",
         "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "RECOVERY",
         "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
       },
@@ -1101,7 +660,7 @@
         "stepId": "step-7",
         "nodeName": "Node: EVIDENCE_RESOLVER",
         "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "INFO",
         "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
         "details": null,
@@ -1111,7 +670,7 @@
         "stepId": "step-8",
         "nodeName": "Node: CONFIDENCE_JUDGE",
         "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "SUCCESS",
         "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
       },
@@ -1119,7 +678,7 @@
         "stepId": "step-9",
         "nodeName": "Node: SELF_EVALUATOR",
         "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "SUCCESS",
         "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
       },
@@ -1127,7 +686,7 @@
         "stepId": "step-10",
         "nodeName": "Node: SYNTHESIS_AGENT",
         "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:51 am",
+        "timestamp": "04:41:26 am",
         "status": "SUCCESS",
         "message": "Final Strategic Intelligence Dossier compiled successfully."
       }
@@ -1136,7 +695,7 @@
       {
         "checkpointId": "chk-1",
         "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:50.908Z",
+        "timestamp": "2026-08-22T23:11:26.006Z",
         "planVersion": 1,
         "completedTasksCount": 0,
         "evidenceCount": 0,
@@ -1146,7 +705,7 @@
       {
         "checkpointId": "chk-2",
         "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:51.556Z",
+        "timestamp": "2026-08-22T23:11:26.654Z",
         "planVersion": 1,
         "completedTasksCount": 3,
         "evidenceCount": 0,
@@ -1156,7 +715,7 @@
       {
         "checkpointId": "chk-3",
         "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:51.557Z",
+        "timestamp": "2026-08-22T23:11:26.655Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -1166,7 +725,7 @@
       {
         "checkpointId": "chk-4",
         "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:51.558Z",
+        "timestamp": "2026-08-22T23:11:26.656Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -1176,22 +735,22 @@
     ]
   },
   {
-    "investigationId": "inv-mt4z9vsu-nr6v",
+    "investigationId": "inv-mt4zsmzp-95tr",
     "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:50.897Z",
+    "timestamp": "2026-08-22T23:11:25.990Z",
     "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
     "confidenceScore": 61,
     "evidenceCount": 5,
     "conflictsCount": 0,
     "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
     "threatAssessment": "MEDIUM (Threat Index: 65/100)",
     "executionHistory": [
       {
         "stepId": "step-1",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:25 am",
         "status": "INFO",
         "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
       },
@@ -1199,7 +758,301 @@
         "stepId": "step-2",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:25 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:25 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:25 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "04:41:25 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "04:41:25 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "04:41:25 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "04:41:25 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "04:41:25 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "04:41:25 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T23:11:25.286Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T23:11:25.987Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T23:11:25.988Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T23:11:25.990Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4zsmh0-gzvk",
+    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "timestamp": "2026-08-22T23:11:25.274Z",
+    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:24 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:24 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:24 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:25 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "04:41:25 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "04:41:25 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "04:41:25 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "04:41:25 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "04:41:25 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "04:41:25 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T23:11:24.612Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T23:11:25.271Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T23:11:25.272Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T23:11:25.274Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4zslm1-pkwe",
+    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "timestamp": "2026-08-22T23:11:24.599Z",
+    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:23 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:23 am",
         "status": "SUCCESS",
         "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
         "details": {
@@ -1211,7 +1064,7 @@
         "stepId": "step-3",
         "nodeName": "Node: PARALLEL_EXECUTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:23 am",
         "status": "INFO",
         "message": "Launching 4 investigation tasks in parallel..."
       },
@@ -1219,7 +1072,7 @@
         "stepId": "step-4",
         "nodeName": "Node: TOOL_FAILURE_DETECTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:24 am",
         "status": "FAILURE",
         "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
         "details": {
@@ -1232,7 +1085,7 @@
         "stepId": "step-5",
         "nodeName": "Node: REPLANNER",
         "agentRole": "REPLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:24 am",
         "status": "REPLAN",
         "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
       },
@@ -1240,7 +1093,7 @@
         "stepId": "step-6",
         "nodeName": "Node: REPLANNER_FALLBACK",
         "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:24 am",
         "status": "RECOVERY",
         "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
       },
@@ -1248,17 +1101,17 @@
         "stepId": "step-7",
         "nodeName": "Node: EVIDENCE_RESOLVER",
         "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:24 am",
         "status": "INFO",
         "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
         "details": null,
-        "executionTimeMs": 1
+        "executionTimeMs": 0
       },
       {
         "stepId": "step-8",
         "nodeName": "Node: CONFIDENCE_JUDGE",
         "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:24 am",
         "status": "SUCCESS",
         "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
       },
@@ -1266,7 +1119,7 @@
         "stepId": "step-9",
         "nodeName": "Node: SELF_EVALUATOR",
         "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:24 am",
         "status": "SUCCESS",
         "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
       },
@@ -1274,7 +1127,7 @@
         "stepId": "step-10",
         "nodeName": "Node: SYNTHESIS_AGENT",
         "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:24 am",
         "status": "SUCCESS",
         "message": "Final Strategic Intelligence Dossier compiled successfully."
       }
@@ -1283,7 +1136,7 @@
       {
         "checkpointId": "chk-1",
         "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:50.238Z",
+        "timestamp": "2026-08-22T23:11:23.497Z",
         "planVersion": 1,
         "completedTasksCount": 0,
         "evidenceCount": 0,
@@ -1293,7 +1146,7 @@
       {
         "checkpointId": "chk-2",
         "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:50.895Z",
+        "timestamp": "2026-08-22T23:11:24.596Z",
         "planVersion": 1,
         "completedTasksCount": 3,
         "evidenceCount": 0,
@@ -1303,7 +1156,7 @@
       {
         "checkpointId": "chk-3",
         "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:50.896Z",
+        "timestamp": "2026-08-22T23:11:24.597Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -1313,7 +1166,7 @@
       {
         "checkpointId": "chk-4",
         "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:50.897Z",
+        "timestamp": "2026-08-22T23:11:24.599Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -1323,22 +1176,22 @@
     ]
   },
   {
-    "investigationId": "inv-mt4z9v70-vwyr",
+    "investigationId": "inv-mt4zsl3q-aofv",
     "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
-    "timestamp": "2026-08-22T22:56:50.229Z",
+    "timestamp": "2026-08-22T23:11:23.483Z",
     "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
     "confidenceScore": 61,
     "evidenceCount": 5,
     "conflictsCount": 0,
     "replansCount": 1,
-    "summary": "Executive Synthesis: Key findings and intelligence regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".",
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
     "threatAssessment": "MEDIUM (Threat Index: 65/100)",
     "executionHistory": [
       {
         "stepId": "step-1",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:49 am",
+        "timestamp": "04:41:22 am",
         "status": "INFO",
         "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
       },
@@ -1346,7 +1199,154 @@
         "stepId": "step-2",
         "nodeName": "Node: PLANNER",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:49 am",
+        "timestamp": "04:41:22 am",
+        "status": "SUCCESS",
+        "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
+        "details": {
+          "tasksCount": 4
+        },
+        "executionTimeMs": 1
+      },
+      {
+        "stepId": "step-3",
+        "nodeName": "Node: PARALLEL_EXECUTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:22 am",
+        "status": "INFO",
+        "message": "Launching 4 investigation tasks in parallel..."
+      },
+      {
+        "stepId": "step-4",
+        "nodeName": "Node: TOOL_FAILURE_DETECTION",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:23 am",
+        "status": "FAILURE",
+        "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
+        "details": {
+          "failureDetails": [
+            "NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)"
+          ]
+        }
+      },
+      {
+        "stepId": "step-5",
+        "nodeName": "Node: REPLANNER",
+        "agentRole": "REPLANNER",
+        "timestamp": "04:41:23 am",
+        "status": "REPLAN",
+        "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
+      },
+      {
+        "stepId": "step-6",
+        "nodeName": "Node: REPLANNER_FALLBACK",
+        "agentRole": "NEWS_AGENT",
+        "timestamp": "04:41:23 am",
+        "status": "RECOVERY",
+        "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
+      },
+      {
+        "stepId": "step-7",
+        "nodeName": "Node: EVIDENCE_RESOLVER",
+        "agentRole": "EVIDENCE_RESOLVER",
+        "timestamp": "04:41:23 am",
+        "status": "INFO",
+        "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
+        "details": null,
+        "executionTimeMs": 0
+      },
+      {
+        "stepId": "step-8",
+        "nodeName": "Node: CONFIDENCE_JUDGE",
+        "agentRole": "CONFIDENCE_JUDGE",
+        "timestamp": "04:41:23 am",
+        "status": "SUCCESS",
+        "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
+      },
+      {
+        "stepId": "step-9",
+        "nodeName": "Node: SELF_EVALUATOR",
+        "agentRole": "SELF_EVALUATOR",
+        "timestamp": "04:41:23 am",
+        "status": "SUCCESS",
+        "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
+      },
+      {
+        "stepId": "step-10",
+        "nodeName": "Node: SYNTHESIS_AGENT",
+        "agentRole": "SYNTHESIS_AGENT",
+        "timestamp": "04:41:23 am",
+        "status": "SUCCESS",
+        "message": "Final Strategic Intelligence Dossier compiled successfully."
+      }
+    ],
+    "checkpoints": [
+      {
+        "checkpointId": "chk-1",
+        "nodeName": "PLANNER",
+        "timestamp": "2026-08-22T23:11:22.839Z",
+        "planVersion": 1,
+        "completedTasksCount": 0,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-2",
+        "nodeName": "PARALLEL_EXECUTION",
+        "timestamp": "2026-08-22T23:11:23.480Z",
+        "planVersion": 1,
+        "completedTasksCount": 3,
+        "evidenceCount": 0,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-3",
+        "nodeName": "EVIDENCE_RESOLVER",
+        "timestamp": "2026-08-22T23:11:23.482Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 50
+      },
+      {
+        "checkpointId": "chk-4",
+        "nodeName": "COMPLETED",
+        "timestamp": "2026-08-22T23:11:23.483Z",
+        "planVersion": 2,
+        "completedTasksCount": 0,
+        "evidenceCount": 5,
+        "conflictsCount": 0,
+        "confidenceScore": 61
+      }
+    ]
+  },
+  {
+    "investigationId": "inv-mt4zskg8-03hn",
+    "userQuery": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "timestamp": "2026-08-22T23:11:22.823Z",
+    "planObjective": "Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation",
+    "confidenceScore": 61,
+    "evidenceCount": 5,
+    "conflictsCount": 0,
+    "replansCount": 1,
+    "summary": "Executive Strategic Briefing regarding \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\". Identified 5 intelligence sources and 9 key entities across the competitive landscape.",
+    "threatAssessment": "MEDIUM (Threat Index: 65/100)",
+    "executionHistory": [
+      {
+        "stepId": "step-1",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:21 am",
+        "status": "INFO",
+        "message": "Creating dynamic investigation plan for \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\"..."
+      },
+      {
+        "stepId": "step-2",
+        "nodeName": "Node: PLANNER",
+        "agentRole": "PLANNER",
+        "timestamp": "04:41:22 am",
         "status": "SUCCESS",
         "message": "Dynamic Plan created: 4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition and TSMC 2nm AI chip allocation\".)",
         "details": {
@@ -1358,7 +1358,7 @@
         "stepId": "step-3",
         "nodeName": "Node: PARALLEL_EXECUTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:49 am",
+        "timestamp": "04:41:22 am",
         "status": "INFO",
         "message": "Launching 4 investigation tasks in parallel..."
       },
@@ -1366,7 +1366,7 @@
         "stepId": "step-4",
         "nodeName": "Node: TOOL_FAILURE_DETECTION",
         "agentRole": "PLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:22 am",
         "status": "FAILURE",
         "message": "TOOL FAILURE DETECTED: [NEWS_AGENT: News API 503 Service Unavailable (Simulated Tool Disruption)]. Triggering Autonomous Replanner.",
         "details": {
@@ -1379,7 +1379,7 @@
         "stepId": "step-5",
         "nodeName": "Node: REPLANNER",
         "agentRole": "REPLANNER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:22 am",
         "status": "REPLAN",
         "message": "AUTONOMOUS REPLANNING (Iteration 1/3): Creating alternate strategy and configuring fallback tool routing..."
       },
@@ -1387,7 +1387,7 @@
         "stepId": "step-6",
         "nodeName": "Node: REPLANNER_FALLBACK",
         "agentRole": "NEWS_AGENT",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:22 am",
         "status": "RECOVERY",
         "message": "RECOVERY SUCCESS: News Agent routed through fallback Knowledge Base context."
       },
@@ -1395,7 +1395,7 @@
         "stepId": "step-7",
         "nodeName": "Node: EVIDENCE_RESOLVER",
         "agentRole": "EVIDENCE_RESOLVER",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:22 am",
         "status": "INFO",
         "message": "Collected 5 evidence items across 4 tasks. 0 unresolved conflicts detected.",
         "details": null,
@@ -1405,7 +1405,7 @@
         "stepId": "step-8",
         "nodeName": "Node: CONFIDENCE_JUDGE",
         "agentRole": "CONFIDENCE_JUDGE",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:22 am",
         "status": "SUCCESS",
         "message": "DETERMINISTIC CONFIDENCE SCORE CALCULATED: 61% (Calculated 61% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. Applied 3% penalty for 1 replan iteration(s).)"
       },
@@ -1413,7 +1413,7 @@
         "stepId": "step-9",
         "nodeName": "Node: SELF_EVALUATOR",
         "agentRole": "SELF_EVALUATOR",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:22 am",
         "status": "SUCCESS",
         "message": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 61% confidence score. All conflicts resolved."
       },
@@ -1421,7 +1421,7 @@
         "stepId": "step-10",
         "nodeName": "Node: SYNTHESIS_AGENT",
         "agentRole": "SYNTHESIS_AGENT",
-        "timestamp": "04:26:50 am",
+        "timestamp": "04:41:22 am",
         "status": "SUCCESS",
         "message": "Final Strategic Intelligence Dossier compiled successfully."
       }
@@ -1430,7 +1430,7 @@
       {
         "checkpointId": "chk-1",
         "nodeName": "PLANNER",
-        "timestamp": "2026-08-22T22:56:49.492Z",
+        "timestamp": "2026-08-22T23:11:22.034Z",
         "planVersion": 1,
         "completedTasksCount": 0,
         "evidenceCount": 0,
@@ -1440,7 +1440,7 @@
       {
         "checkpointId": "chk-2",
         "nodeName": "PARALLEL_EXECUTION",
-        "timestamp": "2026-08-22T22:56:50.225Z",
+        "timestamp": "2026-08-22T23:11:22.818Z",
         "planVersion": 1,
         "completedTasksCount": 3,
         "evidenceCount": 0,
@@ -1450,7 +1450,7 @@
       {
         "checkpointId": "chk-3",
         "nodeName": "EVIDENCE_RESOLVER",
-        "timestamp": "2026-08-22T22:56:50.226Z",
+        "timestamp": "2026-08-22T23:11:22.820Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -1460,7 +1460,7 @@
       {
         "checkpointId": "chk-4",
         "nodeName": "COMPLETED",
-        "timestamp": "2026-08-22T22:56:50.228Z",
+        "timestamp": "2026-08-22T23:11:22.823Z",
         "planVersion": 2,
         "completedTasksCount": 0,
         "evidenceCount": 5,
@@ -1472,7 +1472,7 @@
   {
     "investigationId": "inv-seed-1",
     "userQuery": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
-    "timestamp": "2026-08-22T22:56:49.426Z",
+    "timestamp": "2026-08-22T23:11:21.952Z",
     "planObjective": "Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware.",
     "confidenceScore": 79,
     "evidenceCount": 7,

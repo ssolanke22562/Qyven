@@ -1,5 +1,5 @@
 import { ResearchAgentSource } from "./types";
-import { TraceSpan } from "../../../eval/types";
+import { TraceSpan, RuntimePolicy } from "../../../eval/types";
 
 
 export type AgentRole =
@@ -101,11 +101,49 @@ export interface QyvenCheckpoint {
 
 export interface DemoOptions {
   enableAdversarialMode: boolean;
+  scenario?:
+    | "normal"
+    | "news_503"
+    | "patent_timeout"
+    | "tool_error"
+    | "tool_unavailable"
+    | "conflicting_evidence"
+    | "slow_tool"
+    | "invalid_partial_response";
   forceNewsFailure?: boolean;
   forcePatentTimeout?: boolean;
   forceSecUnavailable?: boolean;
   injectConflictingEvidence?: boolean;
+  forceToolError?: boolean;
+  forceSlowToolMs?: number;
+  forceInvalidResponse?: boolean;
   deterministicSeed?: string;
+}
+
+export function createDefaultRuntimePolicy(): RuntimePolicy {
+  return {
+    id: "default-policy-v1",
+    version: 1,
+    name: "Standard Autonomous Policy",
+    description: "Standard retry backoff, multi-source routing with cached domain fallback",
+    retryPolicy: {
+      maxRetries: 2,
+      backoffMs: 500,
+      avoidFailingTools: [],
+    },
+    toolRouting: {
+      enableNewsFallbackKB: true,
+      newsTimeoutMs: 5000,
+      patentTimeoutMs: 6000,
+      secTimeoutMs: 5000,
+      bypassUnavailableTools: [],
+      useDirectKnowledgeFallback: true,
+    },
+    conflictResolutionStrategy: "strict_hierarchy",
+    confidenceBonusForRecovery: 5,
+    allowPartialSynthesis: true,
+    updatedAt: new Date().toISOString(),
+  };
 }
 
 export interface QyvenState {
@@ -154,8 +192,9 @@ export interface QyvenState {
   stateSignatures: string[];
   isFallback: boolean;
   
-  // Demo Mode Settings
+  // Demo Mode & Runtime Self-Repair Policy
   demoOptions: DemoOptions;
+  runtimePolicy: RuntimePolicy;
   
   // Final Result Payload
   finalReport?: {
@@ -175,15 +214,19 @@ export interface QyvenState {
   // Distributed Tracing
   // ──────────────────────────────────────────────
   traceId: string;
+  runId: string;
   spans: TraceSpan[];
 }
 
 export function createInitialQyvenState(
   userQuery: string,
   sessionId: string = `sess-${Date.now()}`,
-  demoOptions: DemoOptions = { enableAdversarialMode: false }
+  demoOptions: DemoOptions = { enableAdversarialMode: false },
+  runtimePolicy?: RuntimePolicy
 ): QyvenState {
   const investigationId = `inv-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+  const traceId = `trace-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  const runId = `run-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
   
   return {
     investigationId,
@@ -230,8 +273,11 @@ export function createInitialQyvenState(
     stateSignatures: [],
     isFallback: false,
     demoOptions,
+    runtimePolicy: runtimePolicy || createDefaultRuntimePolicy(),
     startTimeMs: Date.now(),
-    traceId: `trace-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    traceId,
+    runId,
     spans: [],
   };
 }
+

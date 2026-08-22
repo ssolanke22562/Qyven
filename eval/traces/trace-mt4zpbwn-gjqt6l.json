@@ -1,0 +1,476 @@
+{
+  "traceId": "trace-mt4zpbwn-gjqt6l",
+  "runId": "run-mt4zpbwn-5kg8",
+  "investigationId": "inv-mt4zpbwn-oz6y",
+  "sessionId": "test-session-1",
+  "query": "Analyze competitor silicon fab acquisition",
+  "status": "COMPLETED",
+  "startTimeMs": 1787440130951,
+  "endTimeMs": 1787440132134,
+  "totalDurationMs": 1183,
+  "spanCount": 19,
+  "errorSpanCount": 0,
+  "totalPromptTokens": "[REDACTED]",
+  "totalCompletionTokens": "[REDACTED]",
+  "totalTokens": "[REDACTED]",
+  "estimatedTotalCostUsd": 0.0021584000000000004,
+  "agentBreakdown": [
+    {
+      "agentRole": "RESEARCH_AGENT",
+      "promptTokens": "[REDACTED]",
+      "completionTokens": "[REDACTED]",
+      "totalTokens": "[REDACTED]",
+      "estimatedCostUsd": 0.0001736,
+      "callCount": 1
+    },
+    {
+      "agentRole": "ANALYSIS_AGENT",
+      "promptTokens": "[REDACTED]",
+      "completionTokens": "[REDACTED]",
+      "totalTokens": "[REDACTED]",
+      "estimatedCostUsd": 0.001544,
+      "callCount": 1
+    },
+    {
+      "agentRole": "SYNTHESIS_AGENT",
+      "promptTokens": "[REDACTED]",
+      "completionTokens": "[REDACTED]",
+      "totalTokens": "[REDACTED]",
+      "estimatedCostUsd": 0.0004408000000000001,
+      "callCount": 1
+    }
+  ],
+  "spans": [
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpbwp-3ak4jz",
+      "name": "pipeline.run",
+      "agentRole": "ORCHESTRATOR",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440130953,
+      "endTimeMs": 1787440132134,
+      "durationMs": 1181,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Analyze competitor silicon fab acquisition",
+        "scenario": "normal",
+        "outputSummary": "Pipeline COMPLETED in 1183ms",
+        "confidenceScore": 64,
+        "isFallback": false
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpbwp-tc2c1z",
+      "parentSpanId": "span-mt4zpbwp-3ak4jz",
+      "name": "node.PLANNER",
+      "agentRole": "PLANNER",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440130953,
+      "endTimeMs": 1787440130994,
+      "durationMs": 41,
+      "status": "ok",
+      "promptMetadata": {
+        "systemPromptSnippet": "Dynamic Supervisor / Planner decomposing research objective into parallel vectors.",
+        "userPromptSnippet": "Analyze competitor silicon fab acquisition",
+        "templateName": "PlannerSupervisorV1"
+      },
+      "attributes": {
+        "outputSummary": "4 tasks scheduled (Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition\".)"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "decision-mt4zpbxt-fqa4vq",
+      "parentSpanId": "span-mt4zpbwp-tc2c1z",
+      "name": "decision [ROUTING_DECISION]",
+      "agentRole": "PLANNER",
+      "eventType": "ROUTING_DECISION",
+      "startTimeMs": 1787440130993,
+      "endTimeMs": 1787440130993,
+      "durationMs": 0,
+      "status": "ok",
+      "decision": {
+        "decisionType": "ROUTING_DECISION",
+        "selectedOption": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "alternatives": [
+          "SINGLE_AGENT_FALLBACK",
+          "SEQUENTIAL_PIPELINE"
+        ],
+        "reasonSummary": "Decomposed into 4 parallel investigation vectors: Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition\".",
+        "confidence": 95
+      },
+      "attributes": {
+        "decision": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "decisionType": "ROUTING_DECISION",
+        "reasoning": "Decomposed into 4 parallel investigation vectors: Dynamic Plan v1: Identified 4 independent parallel investigation vectors for objective \"Analyze competitor silicon fab acquisition\".",
+        "confidence": 95
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpbxu-g4tsz1",
+      "parentSpanId": "span-mt4zpbwp-3ak4jz",
+      "name": "node.PARALLEL_EXECUTION",
+      "agentRole": "PLANNER",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440130994,
+      "endTimeMs": 1787440132128,
+      "durationMs": 1134,
+      "status": "ok",
+      "attributes": {
+        "outputSummary": "All tasks completed"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "decision-mt4zpbxv-jqtcj5",
+      "parentSpanId": "span-mt4zpbxu-g4tsz1",
+      "name": "decision [TOOL_SELECTION]",
+      "agentRole": "PLANNER",
+      "eventType": "TOOL_SELECTION",
+      "startTimeMs": 1787440130995,
+      "endTimeMs": 1787440130995,
+      "durationMs": 0,
+      "status": "ok",
+      "decision": {
+        "decisionType": "TOOL_SELECTION",
+        "selectedOption": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "alternatives": [
+          "DEFER_EXECUTION",
+          "SEQUENTIAL_EXECUTION"
+        ],
+        "reasonSummary": "Executing 4 tools concurrently for latency optimization.",
+        "confidence": 90
+      },
+      "attributes": {
+        "decision": "RESEARCH_AGENT, NEWS_AGENT, PATENT_AGENT, SEC_AGENT",
+        "decisionType": "TOOL_SELECTION",
+        "reasoning": "Executing 4 tools concurrently for latency optimization.",
+        "confidence": 90
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpbxw-dwmcw6",
+      "parentSpanId": "span-mt4zpbxu-g4tsz1",
+      "name": "task.RESEARCH_AGENT",
+      "agentRole": "RESEARCH_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440130996,
+      "endTimeMs": 1787440131807,
+      "durationMs": 811,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Extract published scientific literature & pre-prints regarding \"Analyze competitor silicon fab acquisition\"",
+        "outputSummary": "Retrieved 0 sources (88% confidence)",
+        "sourcesRetrieved": 0,
+        "confidenceScore": 88,
+        "model": "Groq Engine (groq/compound)",
+        "promptTokens": "[REDACTED]",
+        "completionTokens": "[REDACTED]",
+        "totalTokens": "[REDACTED]",
+        "isEstimatedTokens": "[REDACTED]",
+        "estimatedCostUsd": 0.0001736
+      },
+      "tokenUsage": "[REDACTED]"
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpc05-twb5bf",
+      "parentSpanId": "span-mt4zpbxu-g4tsz1",
+      "name": "task.NEWS_AGENT",
+      "agentRole": "NEWS_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440131077,
+      "endTimeMs": 1787440131809,
+      "durationMs": 732,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Retrieve breaking news & market announcements for \"Analyze competitor silicon fab acquisition\"",
+        "outputSummary": "Retrieved 0 news articles",
+        "sourcesRetrieved": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpc07-cic79c",
+      "parentSpanId": "span-mt4zpbxu-g4tsz1",
+      "name": "task.PATENT_AGENT",
+      "agentRole": "PATENT_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440131079,
+      "endTimeMs": 1787440132128,
+      "durationMs": 1049,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Investigate USPTO/WIPO filings & IP assignments related to \"Analyze competitor silicon fab acquisition\"",
+        "outputSummary": "Retrieved 3 patent specifications"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpc0b-0lfk8g",
+      "parentSpanId": "span-mt4zpbxu-g4tsz1",
+      "name": "task.SEC_AGENT",
+      "agentRole": "SEC_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440131084,
+      "endTimeMs": 1787440131084,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "inputSummary": "Audit official SEC 10-K, 10-Q & 8-K financial disclosure filings",
+        "outputSummary": "Retrieved 2 SEC EDGAR filings"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "tool-mt4zpc0c-h9ond3",
+      "parentSpanId": "span-mt4zpc0b-0lfk8g",
+      "name": "tool.call [searchSecFilings]",
+      "agentRole": "TOOL",
+      "eventType": "TOOL_CALL",
+      "startTimeMs": 1787440131084,
+      "endTimeMs": 1787440131084,
+      "durationMs": 0,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchSecFilings",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition\"}",
+        "toolResult": "2 filings retrieved",
+        "toolLatencyMs": 0,
+        "retryCount": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "tool-mt4zpckf-teh0xq",
+      "parentSpanId": "span-mt4zpbxw-dwmcw6",
+      "name": "tool.call [searchArxiv+searchNews]",
+      "agentRole": "TOOL",
+      "eventType": "TOOL_CALL",
+      "startTimeMs": 1787440130996,
+      "endTimeMs": 1787440131807,
+      "durationMs": 811,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchArxiv+searchNews",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition\"}",
+        "toolResult": "0 sources retrieved",
+        "toolLatencyMs": 811,
+        "retryCount": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "tool-mt4zpckh-gljyu3",
+      "parentSpanId": "span-mt4zpc05-twb5bf",
+      "name": "tool.call [searchNews]",
+      "agentRole": "TOOL",
+      "eventType": "TOOL_CALL",
+      "startTimeMs": 1787440131077,
+      "endTimeMs": 1787440131809,
+      "durationMs": 732,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchNews",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition\"}",
+        "toolResult": "0 articles retrieved",
+        "toolLatencyMs": 732,
+        "retryCount": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "tool-mt4zpctc-np21y7",
+      "parentSpanId": "span-mt4zpc07-cic79c",
+      "name": "tool.call [searchPatents]",
+      "agentRole": "TOOL",
+      "eventType": "TOOL_CALL",
+      "startTimeMs": 1787440131079,
+      "endTimeMs": 1787440132128,
+      "durationMs": 1049,
+      "status": "ok",
+      "attributes": {
+        "toolName": "searchPatents",
+        "toolArgs": "{\"query\":\"Analyze competitor silicon fab acquisition\"}",
+        "toolResult": "3 patents retrieved",
+        "toolLatencyMs": 1049,
+        "retryCount": 0
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpctc-0aa579",
+      "parentSpanId": "span-mt4zpbwp-3ak4jz",
+      "name": "node.EVIDENCE_RESOLVER",
+      "agentRole": "EVIDENCE_RESOLVER",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440132128,
+      "endTimeMs": 1787440132129,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "outputSummary": "5 evidence items, 0 conflicts"
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpctd-pk16nu",
+      "parentSpanId": "span-mt4zpbwp-3ak4jz",
+      "name": "node.CONFIDENCE_JUDGE",
+      "agentRole": "CONFIDENCE_JUDGE",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440132129,
+      "endTimeMs": 1787440132129,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "confidenceScore": 64,
+        "outputSummary": "Calculated 64% confidence deterministically: 5 evidence items across 2 distinct source categories (PATENT, SEC). Avg Reliability: 90%. 0 conflicts. "
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpctd-ibsavb",
+      "parentSpanId": "span-mt4zpbwp-3ak4jz",
+      "name": "node.SELF_EVALUATOR",
+      "agentRole": "SELF_EVALUATOR",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440132129,
+      "endTimeMs": 1787440132130,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "decision": "PASSED",
+        "reasoning": "Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved."
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "decision-mt4zpcte-pnlu5v",
+      "parentSpanId": "span-mt4zpctd-ibsavb",
+      "name": "decision [SELF_EVAL_DECISION]",
+      "agentRole": "SELF_EVALUATOR",
+      "eventType": "SELF_EVAL_DECISION",
+      "startTimeMs": 1787440132130,
+      "endTimeMs": 1787440132130,
+      "durationMs": 0,
+      "status": "ok",
+      "decision": {
+        "decisionType": "SELF_EVAL_DECISION",
+        "selectedOption": "PASS_QUALITY_GATE",
+        "alternatives": [
+          "TRIGGER_REPLAN"
+        ],
+        "reasonSummary": "Self-evaluator verified answer answers goal with sufficient evidence. Feedback: Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved.",
+        "confidence": 94
+      },
+      "attributes": {
+        "decision": "PASS_QUALITY_GATE",
+        "decisionType": "SELF_EVAL_DECISION",
+        "reasoning": "Self-evaluator verified answer answers goal with sufficient evidence. Feedback: Self-Evaluation PASSED: Answer verified across 5 evidence items with 64% confidence score. All conflicts resolved.",
+        "confidence": 94
+      }
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpcte-mwwl3s",
+      "parentSpanId": "span-mt4zpbwp-3ak4jz",
+      "name": "node.ANALYSIS_AGENT",
+      "agentRole": "ANALYSIS_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440132130,
+      "endTimeMs": 1787440132131,
+      "durationMs": 1,
+      "status": "ok",
+      "attributes": {
+        "entitiesExtracted": 5,
+        "outputSummary": "5 entities, 1 relationships",
+        "model": "Groq Engine (groq/compound)",
+        "promptTokens": "[REDACTED]",
+        "completionTokens": "[REDACTED]",
+        "totalTokens": "[REDACTED]",
+        "isEstimatedTokens": "[REDACTED]",
+        "estimatedCostUsd": 0.001544
+      },
+      "tokenUsage": "[REDACTED]"
+    },
+    {
+      "traceId": "trace-mt4zpbwn-gjqt6l",
+      "runId": "run-mt4zpbwn-5kg8",
+      "spanId": "span-mt4zpctf-1juony",
+      "parentSpanId": "span-mt4zpbwp-3ak4jz",
+      "name": "node.SYNTHESIS_AGENT",
+      "agentRole": "SYNTHESIS_AGENT",
+      "eventType": "SPAN_START",
+      "startTimeMs": 1787440132131,
+      "endTimeMs": 1787440132132,
+      "durationMs": 1,
+      "status": "ok",
+      "promptMetadata": {
+        "systemPromptSnippet": "Strategic intelligence synthesis placing Recent News first, Past Context second, Threat Takeaways third.",
+        "userPromptSnippet": "Analyze competitor silicon fab acquisition",
+        "templateName": "SynthesisAgentDossierV1"
+      },
+      "attributes": {
+        "sourcesRetrieved": 0,
+        "inputSummary": "0 sources, 5 entities",
+        "outputSummary": "Synthesis complete. Threat: MEDIUM (Threat Index: 65/100)",
+        "confidenceScore": 64,
+        "model": "Groq Engine (groq/compound)",
+        "promptTokens": "[REDACTED]",
+        "completionTokens": "[REDACTED]",
+        "totalTokens": "[REDACTED]",
+        "isEstimatedTokens": "[REDACTED]",
+        "estimatedCostUsd": 0.0004408000000000001
+      },
+      "tokenUsage": "[REDACTED]"
+    }
+  ],
+  "runtimePolicy": {
+    "id": "default-policy-v1",
+    "version": 1,
+    "name": "Standard Autonomous Policy",
+    "description": "Standard retry backoff, multi-source routing with cached domain fallback",
+    "retryPolicy": {
+      "maxRetries": 2,
+      "backoffMs": 500,
+      "avoidFailingTools": []
+    },
+    "toolRouting": {
+      "enableNewsFallbackKB": true,
+      "newsTimeoutMs": 5000,
+      "patentTimeoutMs": 6000,
+      "secTimeoutMs": 5000,
+      "bypassUnavailableTools": [],
+      "useDirectKnowledgeFallback": true
+    },
+    "conflictResolutionStrategy": "strict_hierarchy",
+    "confidenceBonusForRecovery": 5,
+    "allowPartialSynthesis": true,
+    "updatedAt": "2026-08-22T23:08:50.951Z"
+  },
+  "demoOptions": {
+    "enableAdversarialMode": false
+  }
+}

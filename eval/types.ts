@@ -6,22 +6,74 @@ import { DemoOptions } from "@/lib/agents/qyvenState";
 
 export type SpanStatus = "ok" | "error" | "unset";
 
+export type TraceEventType =
+  | "SPAN_START"
+  | "SPAN_END"
+  | "LLM_CALL"
+  | "TOOL_CALL"
+  | "TOOL_RESULT"
+  | "ROUTING_DECISION"
+  | "TOOL_SELECTION"
+  | "FALLBACK_DECISION"
+  | "REPLANNING_DECISION"
+  | "SELF_EVAL_DECISION"
+  | "REPAIR_APPLIED"
+  | "ERROR";
+
+export type DecisionType =
+  | "ROUTING_DECISION"
+  | "TOOL_SELECTION"
+  | "FALLBACK_DECISION"
+  | "REPLANNING_DECISION"
+  | "SELF_EVAL_DECISION";
+
+export interface DecisionPayload {
+  decisionType: DecisionType;
+  selectedOption: string;
+  alternatives: string[];
+  reasonSummary: string; // Concise summary (no hidden chain-of-thought)
+  confidence?: number;
+  trigger?: string;
+}
+
+export interface PromptMetadata {
+  systemPromptSnippet?: string;
+  userPromptSnippet?: string;
+  templateName?: string;
+  parametersSanitized?: Record<string, string | number | boolean>;
+}
+
+export interface TokenUsage {
+  promptTokens: number;
+  completionTokens: number;
+  totalTokens: number;
+  isEstimated: boolean;
+  modelName: string;
+  estimatedCostUsd: number;
+}
+
 export interface TraceSpan {
   traceId: string;
+  runId: string;
   spanId: string;
   parentSpanId?: string;
   name: string;
   agentRole: string;
+  eventType?: TraceEventType;
   startTimeMs: number;
   endTimeMs: number;
   durationMs: number;
   status: SpanStatus;
+  promptMetadata?: PromptMetadata;
+  tokenUsage?: TokenUsage;
+  decision?: DecisionPayload;
   attributes: {
     // LLM call attributes
     model?: string;
     promptTokens?: number;
     completionTokens?: number;
     totalTokens?: number;
+    isEstimatedTokens?: boolean;
     estimatedCostUsd?: number;
     llmLatencyMs?: number;
     // Tool call attributes
@@ -32,6 +84,7 @@ export interface TraceSpan {
     // Decision attributes
     decision?: string;
     reasoning?: string;
+    decisionType?: DecisionType;
     // Error attributes
     errorMessage?: string;
     errorType?: string;
@@ -42,14 +95,25 @@ export interface TraceSpan {
     entitiesExtracted?: number;
     confidenceScore?: number;
     isFallback?: boolean;
+    retryCount?: number;
     // General
     [key: string]: string | number | boolean | undefined;
   };
   events?: Array<{ name: string; timestampMs: number; attributes?: Record<string, string | number | boolean> }>;
 }
 
+export interface AgentTokenBreakdown {
+  agentRole: string;
+  promptTokens: number;
+  completionTokens: number;
+  totalTokens: number;
+  estimatedCostUsd: number;
+  callCount: number;
+}
+
 export interface TraceFile {
   traceId: string;
+  runId: string;
   investigationId: string;
   sessionId: string;
   query: string;
@@ -61,48 +125,106 @@ export interface TraceFile {
   errorSpanCount: number;
   totalPromptTokens: number;
   totalCompletionTokens: number;
+  totalTokens: number;
   estimatedTotalCostUsd: number;
+  agentBreakdown: AgentTokenBreakdown[];
   spans: TraceSpan[];
-  demoOptions: Record<string, boolean | string | undefined>;
+  runtimePolicy?: RuntimePolicy;
+  demoOptions: Record<string, boolean | string | undefined | number>;
+}
+
+// ──────────────────────────────────────────────
+// Safe Runtime Policy & Self-Repair Engine Types
+// ──────────────────────────────────────────────
+
+export interface RuntimePolicy {
+  id: string;
+  version: number;
+  name: string;
+  description: string;
+  retryPolicy: {
+    maxRetries: number;
+    backoffMs: number;
+    avoidFailingTools: string[];
+  };
+  toolRouting: {
+    enableNewsFallbackKB: boolean;
+    newsTimeoutMs: number;
+    patentTimeoutMs: number;
+    secTimeoutMs: number;
+    bypassUnavailableTools: string[];
+    useDirectKnowledgeFallback: boolean;
+  };
+  conflictResolutionStrategy: "strict_hierarchy" | "consensus" | "freshness_first";
+  confidenceBonusForRecovery: number;
+  allowPartialSynthesis: boolean;
+  updatedAt: string;
+}
+
+export interface RepairAction {
+  target: "retry_policy" | "tool_routing" | "fallback_activation" | "timeout_adjustment" | "agent_routing";
+  action: string;
+  description: string;
+  previousValue: string | number | boolean | string[];
+  newValue: string | number | boolean | string[];
+}
+
+export interface RepairPlan {
+  planId: string;
+  traceId: string;
+  timestamp: string;
+  triggeringError: string;
+  failedComponent: string;
+  actions: RepairAction[];
+  rationale: string;
+  expectedImprovement: string;
 }
 
 export interface DiagnosisReport {
   traceId: string;
+  runId?: string;
   diagnosedAt: string;
   severityLevel: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
   rootCause: string;
+  failedComponent: string;
+  failedTool: string | null;
+  failureType: string;
+  triggeringEvent: string;
+  upstreamDependency: string;
+  downstreamImpact: string[];
+  retryBehavior: string;
+  fallbackBehavior: string;
+  confidenceScore: number; // 0-100%
   failedSpan: {
     spanId: string;
     name: string;
     agentRole: string;
     errorMessage: string;
   } | null;
-  downstreamImpact: string[];
   suggestedFix: string;
+  repairPlan?: RepairPlan;
   autoFixApplied: string | null;
-  beforeAfterSummary?: {
-    sourcesWithoutFix: number;
-    sourcesWithFix: number;
-    confidenceWithoutFix: number;
-    confidenceWithFix: number;
-  };
   raw?: string;
 }
 
 // ──────────────────────────────────────────────
-// Benchmark Types
+// Experiment & Benchmark Types
 // ──────────────────────────────────────────────
 
 export interface BenchmarkRunRecord {
   phase: "before" | "after";
   iteration: number;
   traceId: string;
+  runId: string;
   sessionId: string;
   startedAt: string;
   finishedAt: string;
   latencyMs: number;
   toolCallCount: number;
   errorCount: number;
+  retryCount: number;
+  fallbackCount: number;
+  totalTokens: number;
   sourcesRetrieved: number;
   confidenceScore: number;
   success: boolean;
@@ -116,9 +238,13 @@ export interface BenchmarkComparison {
   n: number;
   before: {
     avgLatencyMs: number;
+    medianLatencyMs: number;
     p95LatencyMs: number;
     avgToolCalls: number;
     avgErrors: number;
+    avgRetries: number;
+    avgFallbacks: number;
+    avgTokens: number;
     avgSourcesRetrieved: number;
     avgConfidenceScore: number;
     successRate: number;
@@ -126,9 +252,13 @@ export interface BenchmarkComparison {
   };
   after: {
     avgLatencyMs: number;
+    medianLatencyMs: number;
     p95LatencyMs: number;
     avgToolCalls: number;
     avgErrors: number;
+    avgRetries: number;
+    avgFallbacks: number;
+    avgTokens: number;
     avgSourcesRetrieved: number;
     avgConfidenceScore: number;
     successRate: number;
@@ -139,12 +269,28 @@ export interface BenchmarkComparison {
     latencyPctChange: number;
     errorCountChange: number;
     errorPctChange: number;
+    retryCountChange: number;
     successRateChange: number;
     confidenceChange: number;
     sourcesChange: number;
+    tokensChange: number;
+    tokensPctChange: number;
   };
   rawBefore: BenchmarkRunRecord[];
   rawAfter: BenchmarkRunRecord[];
+}
+
+export interface ExperimentResult {
+  experimentId: string;
+  scenario: string;
+  timestamp: string;
+  baselineRun: TraceFile;
+  diagnosis: DiagnosisReport;
+  repairPlan: RepairPlan;
+  repairedPolicy: RuntimePolicy;
+  improvedRun: TraceFile;
+  comparison: BenchmarkComparison;
+  executionTimeMs: number;
 }
 
 export type EvalCategory =

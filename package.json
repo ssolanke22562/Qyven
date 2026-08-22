@@ -11,7 +11,8 @@
     "eval:http": "tsx eval/runEval.ts --via-http && tsx eval/scoreResults.ts",
     "eval:score": "tsx eval/scoreResults.ts",
     "trace-benchmark": "tsx eval/trace-benchmark.ts",
-    "trace-eval": "tsx eval/trace-benchmark.ts && tsx eval/scoreResults.ts"
+    "trace-eval": "tsx eval/trace-benchmark.ts && tsx eval/scoreResults.ts",
+    "test:tracing": "tsx eval/test-tracing.ts"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.0",
