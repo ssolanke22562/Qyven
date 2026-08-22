@@ -1,173 +1,93 @@
-## AgentX (InsightScout Engine) — Autonomous Competitor Intelligence Agent
+## Qyven — Autonomous Multi-Agent State Graph & Competitor Intelligence Platform
 
-[![Live Vercel Deployment](https://img.shields.io/badge/🚀%20Live%20Deployment-qyven--web.vercel.app-00f0ff?style=for-the-badge&logo=vercel)](https://qyven-web.vercel.app/)
+[![Live Production Deployment](https://img.shields.io/badge/🚀%20Live%20Deployment-qyven--web.vercel.app-00f0ff?style=for-the-badge&logo=vercel)](https://qyven-web.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React Three Fiber](https://img.shields.io/badge/Three.js-R3F-blue?style=flat-square&logo=three.js)](https://docs.pmnd.rs/react-three-fiber)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
-[![Groq LPU](https://img.shields.io/badge/Groq-LPU%20650%20tok%2Fs-orange?style=flat-square)](https://groq.com/)
+[![Groq LPU](https://img.shields.io/badge/Groq-LPU%20Inference-orange?style=flat-square)](https://groq.com/)
 
 > 🚀 **Live Production Deployment**: [**https://qyven-web.vercel.app/**](https://qyven-web.vercel.app/)
 > 
-> **Visually striking, dark-themed, 3D interactive landing and showcase application for AgentX — an autonomous competitor intelligence & research agent powered by persistent self-organizing knowledge graphs, Groq LPU inference, and Graph RAG.**
+> **Qyven is an autonomous, self-healing multi-agent intelligence platform featuring dynamic planning, parallel task execution, tool failure recovery, evidence conflict resolution, deterministic confidence scoring (0–100%), self-evaluation loops, persistent memory, and a 3D interactive knowledge graph.**
 
 ---
 
-## 🌟 Highlights & Features
+## 🌟 Architecture Highlights
 
-1. **Persistent Self-Organizing 3D Knowledge Graph**
-   - Initialized with scattered 3D coordinates, nodes dynamically self-organize and converge into semantic thematic clusters on page load using dampening spring physics.
-   - Categorized by color:
-     - 🔵 **Research Trend** (`#00f0ff` Electric Cyan)
-     - 🔴 **Competitor Strategy** (`#f43f5e` Neon Rose)
-     - 🟣 **Technological Development** (`#a855f7` Electric Violet)
-     - 🟢 **Policy & Regulation** (`#10b981` Neon Emerald)
-     - 🟡 **Market Signal** (`#f59e0b` Amber Gold)
-   - Real-time traveling light pulses along similarity edges with smooth mouse parallax and orbital drift.
+### 1. Autonomous Multi-Agent State Graph Architecture
+- **Dynamic Supervisor / Planner**: Decomposes user goals dynamically into parallel execution vectors.
+- **Parallel Multi-Source Agents**: Concurrent dispatch across **Research (ArXiv)**, **News Feed**, **Patent Office (USPTO/WIPO)**, and **SEC EDGAR Corporate Filings**.
+- **Tool Failure Recovery & Replanning**: Automatically catches tool disruptions (e.g. 503 errors or timeouts), logs failures, updates plan versions, and routes through fallback domain knowledge.
+- **Evidence Verification & Conflict Resolver**: Resolves competing claims using the **Source Reliability Hierarchy**:
+  $$\text{SEC EDGAR (0.98)} > \text{Company Official (0.95)} > \text{News (0.88)} > \text{Patent (0.85)} > \text{ArXiv (0.82)}$$
+- **Deterministic Confidence Judge**: Computes exact 0–100% scores via formula from evidence item count, source diversity, source reliability, conflict resolution, and replan penalties.
+- **Self-Evaluation Loop**: Evaluates answer quality against user goals and triggers autonomous replanning if evidence or confidence is insufficient.
 
-2. **3D Interactive Pipeline Flow**
-   - Horizontal 3D scene modeling the 4 weekly development stages:
-     - **Week 1: The Scout** (`monitor.py`) — Multi-stream async crawlers (ArXiv, Patents, SEC 8-K, Social).
-     - **Week 2: The Analyst** (`classify.py, recommend.py, link.py`) — Structured JSON extraction and 1024-dim embeddings.
-     - **Week 3: The Cartographer** (`build_graph.py`) — Louvain community clustering & topological graph synthesis.
-     - **Week 4: The Oracle** (`ask.py, app.py`) — Conversational Graph RAG & proactive threat alerts.
-   - Animated ingestion streams (ArXiv, Patents, News, Social) feed particle streams into Stage 1.
-   - Clickable modules with slide-over detail drawers showing contracts, metrics, and executable Python 3.11 code.
+### 2. Demonstrable Context & Memory Management
+- **Short-Term Context Gateway**: Sliding window managing turn history, entity recency, and conversational context injection.
+- **Cross-Session Long-Term Memory**: Keyword and entity overlap scoring for persistent cross-session retrieval.
+- **Production Serverless Persistence**: Supports Upstash Redis / Vercel KV REST API with in-memory caching and safe local fallback.
 
-3. **Live Knowledge Graph Demo (Dedicated 3D Sandbox)**
-   - Complete 3D sandbox with `OrbitControls` (pan, rotate, zoom).
-   - Real-time taxonomy filtering and instant substring search.
-   - **Node Inspector Drawer**: View complete executive summaries, threat severity ratings (1-100), source citations, connected node jump links, and simulated Oracle triggers.
+### 3. Adversarial University Demo Panel (Interactive UI)
+- **1-Click Adversarial Demo Preset**: Executes complex query *"Analyze whether NVIDIA is becoming a major competitive threat in AI inference hardware."*
+- **Failure Controls**: Toggle forced News API failures (503), Patent timeouts, or injected conflicting timeline evidence.
+- **Real-Time Execution Telemetry**: Visual step-by-step stream displaying state transitions (`PLANNER → PARALLEL_EXECUTION → TOOL_FAILURE → REPLANNER → EVIDENCE_RESOLVER → CONFIDENCE_JUDGE → SELF_EVALUATOR → SYNTHESIS`).
 
-4. **Tech Stack Showcase (3D Holographic Tilt Cards)**
-   - Interactive 3D tilt cards for Python 3.11+, Groq LPU (Llama 3.3 70B), Sentence-Transformers, Scikit-Learn/NetworkX, React Three Fiber, Vis-Network, Next.js 14, and FAISS.
+### 4. Interactive 3D Knowledge Graph & 3D Pipeline
+- **3D Self-Organizing Knowledge Graph**: Three.js / React Three Fiber interactive scene with semantic clustering, glowing edges, mouse parallax, and node inspection drawers.
+- **3D Pipeline Scene**: Animated ingestion streams modeling data collection, analysis, community clustering, and Graph RAG synthesis.
 
-5. **5 Strategic Architecture Safeguards**
-   - Production safeguards with code snippets, architecture highlights, and impact metrics:
-     1. *Idempotent Ingestion Pipeline (SHA-256 Bloom Filter)*
-     2. *Graceful Multi-LLM Fallbacks & Circuit Breakers*
-     3. *Decoupled Asynchronous Worker Queues*
-     4. *Social Noise & Hallucination Filtering*
-     5. *UI & Vector Scalability (LOD & Instancing)*
+---
 
-6. **Ask The Oracle: Live Interactive Query Simulator**
-   - Interactive terminal simulator executing multi-step Graph RAG traversal traces (*Vector Search* → *Sub-graph Traversal* → *Evidence Synthesis* → *Executive Dossier*).
+## 🤖 Multi-Agent State Graph Workflow
 
-## 🤖 Multi-Agent Architecture
-
-AgentX features a genuine backend **Multi-Agent Architecture** powered by an explicit **Agent Orchestrator** coordinating **3 specialized AI agents** with distinct responsibilities, role-specific system prompts, real JSON payload communication, and live execution status telemetry.
-
-### 1. Research Agent
-- **Responsibility**: Ingests the user query, queries live external APIs in parallel (**ArXiv Research Papers API** and **Market News API**), filters noise, validates evidence relevance, and outputs structured findings.
-- **Output Schema**: Sources, key findings, preliminary entities, evidence points, and confidence scores (0-100%).
-- **System Prompt**: `"You are a specialized Research Agent in the AgentX Multi-Agent architecture. Your responsibility is to analyze user objectives, query live data sources, filter irrelevant information, and output structured research findings..."`
-
-### 2. Analysis Agent
-- **Responsibility**: Receives the Research Agent's output, classifies findings into explicit domain categories (*Competitors, Technologies, Market Signals, Patents*), extracts multi-hop relationships between entities, and grounds findings against internal knowledge graph nodes (`MOCK_NODES`).
-- **Output Schema**: Extracted entities, multi-hop relationships, taxonomy classifications, key insights, grounded node IDs, and threat ratings.
-- **System Prompt**: `"You are a specialized Analysis Agent in the AgentX Multi-Agent architecture. Your responsibility is to receive structured findings from the Research Agent, analyze/classify evidence, discover multi-hop relationships, and ground findings against the internal Knowledge Base..."`
-
-### 3. Synthesis / Intelligence Agent
-- **Responsibility**: Receives outputs from both the Research Agent and Analysis Agent, performs **Graph RAG** contextualization, and compiles the final executive intelligence dossier.
-- **Structural Directive**: Strictly enforces ordering:
-  1. `📰 RECENT NEWS & CURRENT SIGNALS` (FIRST)
-  2. `📜 PAST CONTEXT & HISTORICAL BACKGROUND` (SECOND)
-  3. `🎯 STRATEGIC TAKEAWAY & THREAT INDEX` (THIRD)
-- **Output Schema**: Executive summary, recent breaking news list, past context background, threat index rating, recommended counter-actions, and cited knowledge node IDs.
-- **System Prompt**: `"You are a strategic intelligence synthesizer in the AgentX Multi-Agent architecture. Your responsibility is to combine structured findings from Research and Analysis agents into a cohesive, evidence-backed report..."`
-
-### 4. Agent Orchestrator & Workflow
-- **Orchestration Flow**:
-  ```text
-  USER QUERY
-      │
-      ▼
-  ┌───────────────┐
-  │ ORCHESTRATOR  │
-  └───────┬───────┘
-          │
-  ┌───────┴───────┐
-  ▼               ▼
-┌──────────────┐ ┌──────────────┐
-│ RESEARCH     │►│ ANALYSIS     │
-│ AGENT        │ │ AGENT        │
-└──────────────┘ └──────┬───────┘
-                        │
-                        ▼
-                 ┌──────────────┐
-                 │ SYNTHESIS    │
-                 │ AGENT        │
-                 └──────┬───────┘
-                        ▼
-                 FINAL RESULT
-  ```
-- **Task & Context Management**: The orchestrator passes structured JSON payloads from one agent to the next, handles tool failures gracefully, tracks latency per agent, and records structured execution logs.
-
-### 5. Inter-Agent Communication (JSON Payload)
-```json
-{
-  "task": "Analyze competitor silicon fab acquisition and TSMC 2nm allocation",
-  "researchFindings": {
-    "sources": [
-      { "type": "news", "title": "Competitor NPU Fab Acquisition", "link": "https://..." },
-      { "type": "arxiv", "title": "Test-Time Compute Scaling Laws", "link": "https://..." }
-    ],
-    "keyFindings": ["Competitor acquired low-power NPU fab", "2nm foundry allocation booked through 2027"],
-    "confidenceScore": 94
-  },
-  "analysisResults": {
-    "extractedEntities": [
-      { "name": "Competitor Alpha", "category": "Competitor", "confidence": 95, "threatIndex": 88 },
-      { "name": "FP4 Dynamic Quantization", "category": "Technology", "confidence": 92 }
-    ],
-    "relationships": [
-      { "source": "Competitor Alpha", "target": "Custom NPU Fab", "relationType": "ACQUIRED" }
-    ],
-    "groundedNodes": ["comp-01", "tech-01", "mkt-03"],
-    "threatRating": "HIGH (Index: 85/100)"
-  },
-  "synthesisIntelligence": {
-    "summary": "Executive briefing placing RECENT NEWS FIRST, followed by PAST CONTEXT.",
-    "recommendedActions": ["Benchmark FP4 dynamic quantization", "Review 3D graph nodes"]
-  }
-}
-```
-
-### 6. Example Execution Walkthrough
 ```text
-[ORCHESTRATOR] Task received: "Analyze competitor silicon fab acquisition"
-        ↓
-[RESEARCH AGENT] Searching sources (ArXiv API & News API)...
-        ↓
-[RESEARCH AGENT] 12 relevant documents retrieved (94% confidence)
-        ↓
-[ANALYSIS AGENT] Extracting entities and discovering relationships...
-        ↓
-[ANALYSIS AGENT] 34 entities / 18 relationships identified across 4 graph nodes
-        ↓
-[SYNTHESIS AGENT] Generating strategic intelligence briefing...
-        ↓
-[SYNTHESIS AGENT] Final intelligence report & recommendations generated
-        ↓
-[ORCHESTRATOR] Final response generated in 546ms across 3 specialized agents
+                                USER QUERY / ADVERSARIAL DEMO TRIGGER
+                                                 │
+                                                 ▼
+                                     🧠 PLANNER / SUPERVISOR
+                             (Dynamic Task Decomposition & Budgeting)
+                                                 │
+                  ┌──────────────────────────────┼──────────────────────────────┐
+                  ▼                              ▼                              ▼
+          📜 PATENT AGENT                📰 NEWS AGENT                  🔬 RESEARCH AGENT
+     (Patent Office Search API)      (News & Signal Feed API)         (ArXiv & Academic API)
+                  │                              │                              │
+                  └──────────────────────────────┼──────────────────────────────┘
+                                                 ▼
+                                         🏢 SEC AGENT
+                                    (EDGAR Corporate Filings)
+                                                 │
+                                                 ▼
+                                ⚖ EVIDENCE & CONFLICT RESOLVER
+                      (Claim Extraction, Reliability Hierarchy, Freshness)
+                                                 │
+                                                 ▼
+                                      🎯 CONFIDENCE JUDGE
+                         (Deterministic Score Formula: 0-100% + LLM Reasoning)
+                                                 │
+                                                 ▼
+                                      🔍 SELF-EVALUATOR
+                            (Question Alignment & Coverage Check)
+                                 │                            │
+                     Passed      │                            │  Failed Evaluation
+                 ┌───────────────┘                            └──────────────────┐
+                 ▼                                                               ▼
+        🧠 SYNTHESIS AGENT                                              🔄 REPLANNER
+(Executive Intelligence Report)                                 (Alternative Tool / Source)
+                 │                                                               │
+                 ▼                                                               ▼
+    MEMORIZE & CHECKPOINT                                               RE-EXECUTE TASK
 ```
-
-### 🏆 Requirement Alignment Statement
-This implementation strictly satisfies the requirement:
-> *"Use at least 2 specialized agents with clearly defined responsibilities and demonstrate meaningful collaboration or orchestration between agents."*
-- **Real Backend Code**: Implemented in TypeScript under `src/lib/agents/` (`researchAgent.ts`, `analysisAgent.ts`, `synthesisAgent.ts`, `orchestrator.ts`).
-- **Real Orchestration**: The orchestrator manages sequential execution, passes real JSON outputs between agents, handles errors, and emits live status telemetry.
-- **Frontend Telemetry**: The UI displays live agent statuses, real execution logs, inter-agent JSON payload inspectors, and role-specific prompt specs.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ API Endpoints
 
-- **Framework**: Next.js 14 (App Router, TypeScript)
-- **3D Graphics**: Three.js, `@react-three/fiber`, `@react-three/drei`
-- **Animations**: `framer-motion`, Tailwind CSS keyframes
-- **Icons**: `lucide-react`
-- **Effects**: Custom cyber glassmorphism, scanlines, Canvas Confetti
+- **`POST /api/agentic`**: Runs the full `QyvenStateGraph` pipeline with dynamic planning, parallel execution, conflict resolution, deterministic confidence judging, self-evaluation, and investigation memory storage.
+- **`POST /api/memory`**: Performs short-term sliding window context retrieval, cross-session long-term memory commits, and integrity checks.
+- **`POST /api/oracle`**: Oracle Terminal simulator with Graph RAG vector search, sub-graph traversal, and executive dossier synthesis.
 
 ---
 
@@ -181,7 +101,7 @@ This implementation strictly satisfies the requirement:
 
 ```bash
 # Clone repository
-git clone https://github.com/crystalOG9/Qyven.git
+git clone https://github.com/ssolanke22562/Qyven.git
 cd Qyven
 
 # Install dependencies
@@ -191,7 +111,7 @@ npm install
 npm run dev
 ```
 
-Open https://qyven-web.vercel.app in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Production Build
 
@@ -202,53 +122,40 @@ npm start
 
 ---
 
-## 📂 Project Structure
+## 📂 Key Directory Structure
 
 ```
-├── public/                     # Static assets & icons
+├── data/                       # Persistent JSON memory & investigation store
 ├── src/
 │   ├── app/
+│   │   ├── api/
+│   │   │   ├── agentic/        # Autonomous State Graph API route
+│   │   │   ├── memory/         # Context & Memory Management API route
+│   │   │   └── oracle/         # Oracle terminal Graph RAG API route
 │   │   ├── globals.css         # Cyber aesthetic, scanlines & scrollbars
 │   │   ├── layout.tsx          # Root layout with Space Grotesk / Inter fonts
 │   │   └── page.tsx            # Main showcase page assembling all sections
 │   ├── components/
-│   │   ├── 3d/
-│   │   │   ├── BackgroundGraph.tsx          # Persistent 3D self-organizing graph
-│   │   │   ├── CanvasWrapper.tsx            # Performance & SSR-safe Canvas wrapper
-│   │   │   ├── EdgeMesh.tsx                 # Glowing edges & traveling light packets
-│   │   │   ├── InteractiveGraphExplorer.tsx # Full 3D sandbox with OrbitControls
-│   │   │   ├── NodeMesh.tsx                 # Pulsing 3D node spheres & halos
-│   │   │   └── Pipeline3DScene.tsx          # Horizontal 3D pipeline visualization
+│   │   ├── 3d/                 # Three.js 3D Knowledge Graph & Pipeline components
 │   │   ├── sections/
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── PipelineSection.tsx
-│   │   │   ├── GraphDemoSection.tsx
-│   │   │   ├── TechStackSection.tsx
-│   │   │   ├── SafeguardsSection.tsx
+│   │   │   ├── AgenticDashboardSection.tsx # Adversarial Demo & Telemetry HUD
+│   │   │   ├── MemoryDemoSection.tsx       # Context & Memory Hackathon Section
+│   │   │   ├── MultiAgentArchitectureSection.tsx
 │   │   │   ├── OracleTerminalSection.tsx
-│   │   │   └── FooterSection.tsx
+│   │   │   └── ...
 │   │   └── ui/
-│   │       ├── ArchitectureModal.tsx
-│   │       ├── CustomCursor.tsx
-│   │       ├── Navbar.tsx
-│   │       ├── NodeInspectorDrawer.tsx
-│   │       └── PipelineDetailDrawer.tsx
-│   ├── data/
-│   │   ├── knowledgeGraphData.ts   # 40+ nodes & 60+ edges schema
-│   │   ├── pipelineStages.ts       # 4-stage architecture specifications
-│   │   ├── safeguardsData.ts       # 5 strategic production safeguards
-│   │   ├── sampleQueries.ts        # Presets for the Oracle simulator
-│   │   └── techStackData.ts        # Benchmarks & tech specifications
-│   ├── hooks/
-│   │   ├── useReducedMotion.ts
-│   │   └── useScrollSpy.ts
 │   ├── lib/
-│   │   └── utils.ts
-│   └── types/
-│       └── index.ts
-├── package.json
-├── tailwind.config.ts
-└── tsconfig.json
+│   │   ├── agents/
+│   │   │   ├── qyvenState.ts          # Typed Investigation State Schema
+│   │   │   ├── stateGraph.ts          # TypeScript State Graph Execution Engine
+│   │   │   ├── plannerAgent.ts        # Dynamic Planner / Supervisor Agent
+│   │   │   ├── evidenceAgent.ts       # Verification & Conflict Resolution Agent
+│   │   │   ├── confidenceJudge.ts     # Deterministic Confidence Judge (0-100%)
+│   │   │   ├── selfEvaluator.ts       # Self-Evaluation Agent
+│   │   │   ├── investigationMemory.ts # Serverless-safe Investigation Store
+│   │   │   └── orchestrator.ts        # Backward-compatible Agent Orchestrator
+│   │   ├── memory/                    # Short-term & Long-term Memory Managers
+│   │   └── tools/                     # Patent, SEC, News, and ArXiv tools
 ```
 
 ---

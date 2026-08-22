@@ -324,10 +324,10 @@ Located at [`src/data/knowledgeGraphData.ts`](file:///c:/Users/sarth/OneDrive/Do
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| `GEMINI_API_KEY` | **Yes** | Primary LLM engine for multi-agent reasoning and Graph RAG synthesis |
-| `GROQ_API_KEY` | Optional | High-speed LPU fallback LLM inference (Llama 3.3 70B) |
+| `GROQ_API_KEY` | **Yes** | Groq LPU high-speed inference engine for multi-agent reasoning and Graph RAG synthesis |
 | `NEWS_API_KEY` | Optional | Live breaking market news retrieval (NewsData API) |
-| `GROQ_MODEL` | Optional | Specifies Groq model ID (`openai/gpt-oss-120b` or `llama-3.3-70b-versatile`) |
+| `KV_REST_API_URL` / `UPSTASH_REDIS_REST_URL` | Optional | Vercel KV / Upstash Redis REST API URL for serverless production memory persistence |
+| `KV_REST_API_TOKEN` / `UPSTASH_REDIS_REST_TOKEN` | Optional | Vercel KV / Upstash Redis REST API Token for serverless production memory persistence |
 | `NEXT_PUBLIC_GITHUB_URL` | Optional | GitHub Repository link |
 
 ### Production Deployment Details
@@ -339,6 +339,7 @@ Located at [`src/data/knowledgeGraphData.ts`](file:///c:/Users/sarth/OneDrive/Do
 
 ## 🚀 Key Takeaways & Architectural Strengths
 
-1. **True Multi-Agent Collaboration**: Not a single monolithic prompt, but 3 distinct AI agents executing sequentially with structured JSON payloads, telemetry tracking, and inter-agent communication logging.
-2. **Grounded Graph RAG**: Synthesizes live web & academic search results while anchoring insights against persistent 3D knowledge graph nodes.
-3. **Immersive 3D Visual Experience**: Seamlessly integrates Three.js interactive visual computing directly into modern Next.js web application architecture.
+1. **Fully Autonomous State Graph Architecture**: Features dynamic supervisor planning, parallel tool dispatch across SEC, Patents, ArXiv, and News, automatic failure recovery, replanning, evidence conflict resolution (SEC > News hierarchy), deterministic confidence judging (0–100%), and self-evaluation.
+2. **Serverless Production Context & Memory Management**: Short-term sliding window + cross-session long-term memory store backed by Upstash Redis / Vercel KV REST API with safe in-memory fallback.
+3. **Grounded Graph RAG**: Synthesizes live web & academic search results while anchoring insights against persistent 3D knowledge graph nodes.
+4. **Immersive 3D Visual Experience**: Seamlessly integrates Three.js interactive visual computing directly into modern Next.js web application architecture.
