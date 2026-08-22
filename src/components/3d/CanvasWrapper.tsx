@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
@@ -20,6 +20,7 @@ export function CanvasWrapper({
   interactive = true,
 }: CanvasWrapperProps) {
   const [mounted, setMounted] = useState(false);
+  const [force3D, setForce3D] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -37,12 +38,21 @@ export function CanvasWrapper({
     );
   }
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion && !force3D) {
     return (
       <div className={`w-full h-full bg-radial-vignette relative overflow-hidden flex items-center justify-center ${className}`}>
         <div className="absolute inset-0 bg-cyber-grid bg-[size:32px_32px] opacity-30" />
-        <div className="relative z-10 text-center p-6 border border-cyan-500/20 bg-slate-900/80 rounded-xl backdrop-blur-md">
-          <p className="font-mono text-cyan-400 text-sm">Reduced motion active: Displaying static schematic topology</p>
+        <div className="relative z-10 text-center p-6 border border-cyan-500/30 bg-slate-900/90 rounded-2xl backdrop-blur-md max-w-md shadow-2xl">
+          <p className="font-mono text-cyan-400 text-sm font-semibold mb-2">Reduced motion active: Displaying static schematic topology</p>
+          <p className="text-xs text-slate-400 mb-4 font-sans leading-relaxed">
+            Your OS / Browser accessibility settings have reduced motion enabled.
+          </p>
+          <button
+            onClick={() => setForce3D(true)}
+            className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono font-bold text-xs shadow-cyan-glow transition-all"
+          >
+            Enable 3D Scene Anyway
+          </button>
         </div>
       </div>
     );
