@@ -191,7 +191,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open (https://qyven-web.vercel.app/)in your browser.
 
 ### Production Build
 
