@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const initialState = createInitialQyvenState(query.trim(), sessionId, initialDemoOpts);
     const finalState = await qyvenEngine.runGraph(initialState);
 
-    const memoryHistory = investigationMemory.getAllInvestigations();
+    const memoryHistory = await investigationMemory.getAllInvestigationsAsync();
 
     return NextResponse.json({
       success: true,
